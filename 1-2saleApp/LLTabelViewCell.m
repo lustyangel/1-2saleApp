@@ -16,6 +16,8 @@
     if (self) {
         
         _lImageView=[[UIImageView alloc]initWithFrame:CGRectMake(5, 5, 70, 70)];
+        _lImageView.layer.borderColor=[UIColor darkGrayColor].CGColor;
+        _lImageView.layer.borderWidth=1;
         _lImageView.image=[UIImage imageNamed:@"product.png"];
         [self addSubview:_lImageView];
         // Initialization code
@@ -26,13 +28,13 @@
         [self addSubview:_nameLabel];
         
         _priceLabel=[[UILabel alloc]initWithFrame:CGRectMake(80, 40, 235, 20)];
-        _priceLabel.font=[UIFont systemFontOfSize:10];
+        _priceLabel.font=[UIFont systemFontOfSize:11];
         _priceLabel.backgroundColor=[UIColor clearColor];
         _priceLabel.textColor=[UIColor redColor];
         [self addSubview:_priceLabel];
         
         _sellCount=[[UILabel alloc]initWithFrame:CGRectMake(80,60 , 235, 20)];
-        _sellCount.font=[UIFont systemFontOfSize:10];
+        _sellCount.font=[UIFont systemFontOfSize:11];
         _sellCount.backgroundColor=[UIColor clearColor];
         [self addSubview:_sellCount];
     }

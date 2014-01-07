@@ -17,10 +17,10 @@
         // Initialization code
         self.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"searchImage.png"]];
         
-        UITextField *lField=[[UITextField alloc]initWithFrame:CGRectMake(10, 5, self.frame.size.width-40, self.frame.size.height)];
-        lField.delegate=self;
-        lField.placeholder=@"请输入搜索关键字";
-        [self addSubview:lField];
+        _lField=[[UITextField alloc]initWithFrame:CGRectMake(10, 5, self.frame.size.width-40, self.frame.size.height)];
+        _lField.delegate=self;
+        _lField.placeholder=@"请输入搜索关键字";
+        [self addSubview:_lField];
         
 //        _lDeleteButton=[[UIButton alloc]initWithFrame:CGRectMake(225, 8, 15, 15)];
 //        _lDeleteButton.tag=101;
@@ -30,7 +30,6 @@
     }
     return self;
 }
-
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     return [_LLDelegate LLtextField:textField shouldChangeCharactersInRange:range replacementString:string];

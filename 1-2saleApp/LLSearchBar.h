@@ -11,6 +11,7 @@
 @interface LLSearchBar : UIView<UITextFieldDelegate>
 
 @property (nonatomic,retain)UIButton *lDeleteButton;
+@property (nonatomic,retain)UITextField *lField;
 @property (nonatomic,assign)id<LLSearchBarDelegate> LLDelegate;
 
 @end
