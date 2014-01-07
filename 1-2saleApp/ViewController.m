@@ -32,8 +32,8 @@
     NSLog(@"%@ %@",_remenberPasswordArray,_localPasswordArray);
     [self.dragButton setImage:[UIImage imageNamed:@"login_textfield_more@2x.png"] forState:UIControlStateNormal];
     
-    UIImageView *lImageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"login_bg_ip5@2x.jpg"]];
-    [self.view addSubview:lImageView];
+//    UIImageView *lImageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"login_bg_ip5@2x.jpg"]];
+//    [self.view addSubview:lImageView];
     //设置光标位置
     self.nameText.leftView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 60, 0)];
    self.nameText.leftView.userInteractionEnabled = NO;
