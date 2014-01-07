@@ -36,20 +36,20 @@
         [rightButton addTarget:self action:@selector(rightButtonTouchCancel:) forControlEvents:UIControlEventTouchCancel];
         [self addSubview:rightButton];
         
-        UIButton *lSeletButton=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 180, 34)];
-        lSeletButton.center=CGPointMake(self.center.x, 22);
-        lSeletButton.layer.cornerRadius=5;
-        lSeletButton.backgroundColor=[UIColor colorWithRed:0.48 green:0.86 blue:0.2 alpha:1];
-        lSeletButton.layer.borderColor=[UIColor blackColor].CGColor;
-        lSeletButton.layer.borderWidth=1;
-        [lSeletButton addTarget:self action:@selector(actionViewTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:lSeletButton];
+        UIView *backView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 180, 34)];
+        backView.center=CGPointMake(self.center.x, 22);
+        backView.layer.cornerRadius=5;
+        backView.backgroundColor=[UIColor colorWithRed:0.48 green:0.86 blue:0.2 alpha:1];
+        backView.layer.borderColor=[UIColor blackColor].CGColor;
+        backView.layer.borderWidth=1;
+        [self addSubview:backView];
         
-        _actionView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 88, 32)];
-        _actionView.center=CGPointMake(115, 22);
-        _actionView.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"actionView.png"]];
-        _actionView.layer.cornerRadius=3;
-        [self addSubview:_actionView];
+        UIButton *actionView=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 88, 32)];
+        actionView.center=CGPointMake(115, 22);
+        actionView.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"actionView.png"]];
+        actionView.layer.cornerRadius=3;
+        [actionView addTarget:self action:@selector(actionViewTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:actionView];
         
         UILabel *label1=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 88, 32)];
         label1.center=CGPointMake(115, 22);
@@ -73,14 +73,14 @@
 -(void)actionViewTouchUpInside:(UIButton *)sender{
     if (_Select) {
         [UIView beginAnimations:@"123" context:nil];
-        _actionView.center=CGPointMake(205, 22);
+        sender.center=CGPointMake(205, 22);
         [UIView commitAnimations];
         _Select=NO;
         [_LLDelegate actionViewSelect:1];
     }
     else{
         [UIView beginAnimations:@"123" context:nil];
-        _actionView.center=CGPointMake(115, 22);
+        sender.center=CGPointMake(115, 22);
         [UIView commitAnimations];
         _Select=YES;
         [_LLDelegate actionViewSelect:0];
