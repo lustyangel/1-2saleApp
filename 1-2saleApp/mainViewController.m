@@ -7,7 +7,8 @@
 //
 
 #import "mainViewController.h"
-
+#import "ViewController.h"
+#import "UserInfoViewController.h"
 @interface mainViewController ()
 
 @end
@@ -186,6 +187,7 @@
         if (_rightView==nil) {
             _rightView=[[UIView alloc]initWithFrame:self.view.frame];
         }
+        _lRightView.delegate=self;
         self.rightView=self.lRightView.view;
         _rightView.center=CGPointMake(480, self.view.frame.size.height/2);
         [self.view addSubview:_rightView];
@@ -202,10 +204,21 @@
 
 -(void)rightViewTabelViewClick:(int)num{
     switch (num) {
-        case 0:
+        case 0:{
+            ViewController *lViewController=[[ViewController alloc]init];
+             UINavigationController *lNavigationController=[[UINavigationController alloc]initWithRootViewController:lViewController];
+            [self presentViewController:lNavigationController animated:YES completion:nil];
+        }
             ;
             break;
         case 1:
+            ;
+            break;
+            
+        case 3:{
+            UserInfoViewController *lUserInfoViewController=[[UserInfoViewController alloc]init];
+            [self presentViewController:lUserInfoViewController animated:YES completion:nil];
+        }
             ;
             break;
             
