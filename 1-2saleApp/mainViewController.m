@@ -252,7 +252,7 @@
 }
 
 -(void)rightViewTabelViewClick:(int)num{
-    self frontViewClick:<#(UIButton *)#>
+//    self frontViewClick:<#(UIButton *)#>
     switch (num) {
         case 0:
             ;
