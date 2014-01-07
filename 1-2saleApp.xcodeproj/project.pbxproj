@@ -27,6 +27,8 @@
 		1023FF67187549CF000E19C6 /* toolbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 1023FF66187549CF000E19C6 /* toolbar.png */; };
 		1023FF6918754B82000E19C6 /* leftButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 1023FF6818754B82000E19C6 /* leftButton.png */; };
 		1023FF6F18755393000E19C6 /* actionView.png in Resources */ = {isa = PBXBuildFile; fileRef = 1023FF6E18755393000E19C6 /* actionView.png */; };
+		10659E2B187BF6BE0068D576 /* ShowHotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10659E28187BF6BE0068D576 /* ShowHotView.m */; };
+		10659E2C187BF6BE0068D576 /* ShowAllView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10659E2A187BF6BE0068D576 /* ShowAllView.m */; };
 		10D02B35187645AE007FC518 /* LLTabelViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10D02B34187645AE007FC518 /* LLTabelViewCell.m */; };
 		10D02B3718764C23007FC518 /* product.png in Resources */ = {isa = PBXBuildFile; fileRef = 10D02B3618764C23007FC518 /* product.png */; };
 		10D02B3A187653F4007FC518 /* LLSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 10D02B39187653F4007FC518 /* LLSelectButton.m */; };
@@ -96,6 +98,10 @@
 		1023FF66187549CF000E19C6 /* toolbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toolbar.png; sourceTree = "<group>"; };
 		1023FF6818754B82000E19C6 /* leftButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leftButton.png; sourceTree = "<group>"; };
 		1023FF6E18755393000E19C6 /* actionView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = actionView.png; sourceTree = "<group>"; };
+		10659E27187BF6BE0068D576 /* ShowHotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowHotView.h; sourceTree = "<group>"; };
+		10659E28187BF6BE0068D576 /* ShowHotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowHotView.m; sourceTree = "<group>"; };
+		10659E29187BF6BE0068D576 /* ShowAllView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowAllView.h; sourceTree = "<group>"; };
+		10659E2A187BF6BE0068D576 /* ShowAllView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowAllView.m; sourceTree = "<group>"; };
 		10D02B33187645AE007FC518 /* LLTabelViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LLTabelViewCell.h; path = "1-2saleApp/LLTabelViewCell.h"; sourceTree = "<group>"; };
 		10D02B34187645AE007FC518 /* LLTabelViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LLTabelViewCell.m; path = "1-2saleApp/LLTabelViewCell.m"; sourceTree = "<group>"; };
 		10D02B3618764C23007FC518 /* product.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = product.png; sourceTree = "<group>"; };
@@ -229,6 +235,10 @@
 				10EA6B67187B8CE20067E2DA /* HotViewController.xib */,
 				10EA6B6A187B8D060067E2DA /* HotView.h */,
 				10EA6B6B187B8D060067E2DA /* HotView.m */,
+				10659E27187BF6BE0068D576 /* ShowHotView.h */,
+				10659E28187BF6BE0068D576 /* ShowHotView.m */,
+				10659E29187BF6BE0068D576 /* ShowAllView.h */,
+				10659E2A187BF6BE0068D576 /* ShowAllView.m */,
 				10EA6B6D187B94390067E2DA /* DanLi.h */,
 				10EA6B6E187B94390067E2DA /* DanLi.m */,
 				10D2D027187BDDC600490C3A /* ShoppingCart购物车 */,
@@ -480,6 +490,8 @@
 				10D2D023187BDDA600490C3A /* ShoppingCartViewController.m in Sources */,
 				10D2D025187BDDA600490C3A /* ShoppingCartInterface.m in Sources */,
 				10D2D026187BDDA600490C3A /* CustomerTableViewCell.m in Sources */,
+				10659E2B187BF6BE0068D576 /* ShowHotView.m in Sources */,
+				10659E2C187BF6BE0068D576 /* ShowAllView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
