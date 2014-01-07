@@ -34,7 +34,6 @@
     _lTabelView.dataSource=self;
     _lTabelView.backgroundColor=[UIColor grayColor];
     _lTabelView.separatorColor=[UIColor lightGrayColor];
-    _lTabelView.bounces=NO;
     [self.view addSubview:_lTabelView];
     
 }
@@ -71,6 +70,5 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [_delegate rightViewTabelViewClick:[indexPath row]];
-    
 }
 @end

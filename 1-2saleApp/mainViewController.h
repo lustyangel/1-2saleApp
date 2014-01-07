@@ -14,7 +14,6 @@
 #import "ASINetworkQueue.h"
 #import "loadView.h"
 #import "RightViewController.h"
-#import "ShowHotView.h"
 
 @interface mainViewController : UIViewController<LLSearchBarDelegate,UITableViewDataSource,UITableViewDelegate,NSURLConnectionDataDelegate,LLSelectButtonDelegate,LLToolbarDelegate,RightViewDelegate>{
     NSMutableData *_lData;
@@ -24,14 +23,12 @@
     int _loadState;
     UIImageView *_sorryImage;
     UIButton *_backButton;
-    BOOL _searchState;  // 0  普通状态, 1  ,2  ,3 正在下载
-    UIButton *_FrontView;
-    BOOL  _requesting;
+    BOOL _searchState;
     
 //    UIView *_mainView;
 //    UIView *_rightView;
 }
-@property(nonatomic,retain)RightViewController *lRightViewController;
+@property(nonatomic,retain)RightViewController *lRightView;
 @property (nonatomic,retain)UIView *mainView;
 @property (nonatomic,retain)UIView *rightView;
 
