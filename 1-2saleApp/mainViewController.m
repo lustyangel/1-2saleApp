@@ -7,6 +7,7 @@
 //
 
 #import "mainViewController.h"
+#import "ShoppingCartViewController.h"
 
 @interface mainViewController ()
 
@@ -186,6 +187,7 @@
         if (_rightView==nil) {
             _rightView=[[UIView alloc]initWithFrame:self.view.frame];
         }
+        _lRightView.delegate=self;
         self.rightView=self.lRightView.view;
         _rightView.center=CGPointMake(480, self.view.frame.size.height/2);
         [self.view addSubview:_rightView];
@@ -205,10 +207,12 @@
         case 0:
             ;
             break;
-        case 1:
-            ;
+        case 1://push to 购物车
+        {
+            ShoppingCartViewController *lShoppingCartViewController = [[ShoppingCartViewController alloc] init];
+            [self presentViewController:lShoppingCartViewController animated:YES completion:nil];
             break;
-            
+        }
         default:
             break;
     }
