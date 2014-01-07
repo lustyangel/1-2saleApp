@@ -24,6 +24,7 @@
     UIImageView *_sorryImage;
     UIButton *_backButton;
     BOOL _searchState;
+    UIButton *_FrontView;
     
 //    UIView *_mainView;
 //    UIView *_rightView;

@@ -107,6 +107,9 @@
     NSLog(@"A:%@",lText.text);
     NSLog(@"%@",[sender userInfo]);
 }
+
+#pragma mark - 搜索键click
+
 -(void)searchClickDown:(UIButton *)sender{
     sender.backgroundColor=[UIColor colorWithRed:0.8 green:66/255 blue:66/255 alpha:1];
 }
@@ -138,6 +141,8 @@
 //    [sender setTitle:@"Hot" forState:UIControlStateHighlighted];
 //    sender.backgroundColor=[UIColor colorWithRed:0.8 green:66/255 blue:66/255 alpha:1];
 //}
+#pragma mark - 搜索栏删除button
+
 -(void)DeleteClickUpInside:(UIButton *)sender{
     _lSearchBar.lField.text=@"";
     [_lSearchBar.lField becomeFirstResponder];
@@ -150,6 +155,8 @@
 //    sender.backgroundColor=[UIColor colorWithRed:1 green:66/255 blue:66/255 alpha:1];
 //}
 
+
+#pragma mark - 搜索栏 textfied
 
 -(BOOL)LLtextField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     
@@ -174,21 +181,34 @@
     
 }
 
-#pragma mark - LLToolbar ButtonClick
+#pragma mark - 导航条
 
 -(void)buttonItemSelect:(int)selectNumber{
+    [_lSearchBar.lField resignFirstResponder];
     if (selectNumber==0) {
         self.view.center=CGPointMake(320, self.view.center.y);
     }
     else{
+        
 //        RightViewController *leftView=[[RightViewController alloc]init];
         self.lRightView=[[RightViewController alloc]init];
         if (_rightView==nil) {
             _rightView=[[UIView alloc]initWithFrame:self.view.frame];
         }
+        _lRightView.delegate=self;
         self.rightView=self.lRightView.view;
         _rightView.center=CGPointMake(480, self.view.frame.size.height/2);
         [self.view addSubview:_rightView];
+        
+        if (_FrontView==nil) {
+            _FrontView=[[UIButton alloc]initWithFrame:self.view.frame];
+            [_FrontView addTarget:self action:@selector(frontViewClick:) forControlEvents:UIControlEventTouchUpInside];
+            _FrontView.backgroundColor=[UIColor grayColor];
+            _FrontView.alpha=0.2;
+        }
+        _FrontView.frame=self.view.frame;
+        [_mainView addSubview:_FrontView];
+        
         [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionLayoutSubviews animations:^{
             _mainView.center=CGPointMake(0, self.view.frame.size.height/2);
             _rightView.center=CGPointMake(320, self.view.frame.size.height/2);
@@ -196,8 +216,18 @@
             
         }];
         
-        NSLog(@"%f,%f",self.view.frame.size.height/2,self.view.center.y);
     }
+}
+
+-(void)frontViewClick:(UIButton *)sender{
+    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionLayoutSubviews animations:^{
+        _mainView.center=CGPointMake(160, self.view.frame.size.height/2);
+        _rightView.center=CGPointMake(480, self.view.frame.size.height/2);
+    }completion:^(BOOL finish){
+        
+    }];
+    
+    sender.frame=CGRectZero;
 }
 
 -(void)rightViewTabelViewClick:(int)num{
@@ -206,7 +236,7 @@
             ;
             break;
         case 1:
-            ;
+            NSLog(@"123");
             break;
             
         default:
@@ -214,7 +244,7 @@
     }
 }
 
-#pragma mark - Connect
+#pragma mark - 网络连接
 
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
     [_lData setLength:0];
@@ -293,6 +323,8 @@
         [_lTabelView reloadData];
 }
 
+#pragma mark - 返回所有商品按钮
+
 -(void)backAllProduct:(UIButton *)sender{
     [_showArray removeAllObjects];
     [self getdata];
@@ -301,6 +333,7 @@
     _lSearchBar.lField.text=@"";
 }
 
+#pragma mark - tabelview 显示
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return _showArray.count;
@@ -333,6 +366,8 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+#pragma mark - 判断本地是否有图片
+
 -(UIImage *)judgeLocationImage:(NSString *)imageName{
     NSString *lStr=[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *lPath=[lStr stringByAppendingPathComponent:imageName];
@@ -345,6 +380,8 @@
         return lImage;
     }
 }
+
+#pragma mark - 从网络获取图片
 
 -(void)getHeadImage:(NSString *)imageName{
     if (![self queue]) {
@@ -373,6 +410,8 @@
     NSLog(@"Error");
 }
 
+#pragma mark - 排序方式
+
 -(void)buttonValueChange:(LLSelectValue)SelectValue{
 //    NSLog(@"%@",SelectValue.value1,SelectValue.value2);
     if (SelectValue.value2==2) {
@@ -393,6 +432,8 @@
     
     
 }
+
+#pragma mark - 建立网络连接
 
 -(void)getdata{
     NSString *bodyString=[NSString stringWithFormat:@"type=%i&order=%i&owncount=%i",_paixu,_updown,_showArray.count];
@@ -417,6 +458,8 @@
     NSURLConnection *lConnection1=[NSURLConnection connectionWithRequest:lRequest1 delegate:self];
     [lConnection1 start];
 }
+
+#pragma mark - 上拉加载功能
 
 -(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
     float offset=scrollView.contentOffset.y;
