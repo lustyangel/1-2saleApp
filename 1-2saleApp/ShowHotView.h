@@ -1,5 +1,5 @@
 //
-//  HotViewController.h
+//  ShowHotView.h
 //  1-2saleApp
 //
 //  Created by TY on 14-1-7.
@@ -10,7 +10,7 @@
 #import "HotView.h"
 #import "ASINetworkQueue.h"
 
-@interface HotViewController : UIViewController<NSURLConnectionDataDelegate>{
+@interface ShowHotView : UIView<NSURLConnectionDataDelegate>{
     NSMutableData *_lData;
     NSMutableArray *_showArray;
 }

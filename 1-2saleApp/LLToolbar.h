@@ -10,6 +10,7 @@
 @protocol LLToolbarDelegate;
 @interface LLToolbar : UIView{
     BOOL _Select;
+    UIView *_actionView;
 }
 
 @property (nonatomic,retain)id<LLToolbarDelegate>LLDelegate;

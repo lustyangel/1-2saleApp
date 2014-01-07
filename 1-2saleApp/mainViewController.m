@@ -95,6 +95,9 @@
     
     
     [self getdata];
+    
+    ShowHotView *lShowHotView=[[ShowHotView alloc]initWithFrame:CGRectMake(0, 44, 320, 504)];
+    [_mainView addSubview:lShowHotView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -183,30 +186,43 @@
 
 #pragma mark - 导航条
 
+-(void)actionViewSelect:(int)selectNumber{
+    switch (selectNumber) {
+        case 0:
+            ;
+            break;
+            
+        case 1:
+            ;
+            break;
+            
+        default:
+            break;
+    }
+}
+
 -(void)buttonItemSelect:(int)selectNumber{
     [_lSearchBar.lField resignFirstResponder];
     if (selectNumber==0) {
-        self.view.center=CGPointMake(320, self.view.center.y);
+//        self.view.center=CGPointMake(320, self.view.center.y);
     }
     else{
-        
-//        RightViewController *leftView=[[RightViewController alloc]init];
-        self.lRightView=[[RightViewController alloc]init];
         if (_rightView==nil) {
+            self.lRightViewController=[[RightViewController alloc]init];
             _rightView=[[UIView alloc]initWithFrame:self.view.frame];
         }
-        _lRightView.delegate=self;
-        self.rightView=self.lRightView.view;
+        _lRightViewController.delegate=self;
+        self.rightView=self.lRightViewController.view;
         _rightView.center=CGPointMake(480, self.view.frame.size.height/2);
         [self.view addSubview:_rightView];
         
         if (_FrontView==nil) {
-            _FrontView=[[UIButton alloc]initWithFrame:self.view.frame];
+            _FrontView=[[UIButton alloc]init];
             [_FrontView addTarget:self action:@selector(frontViewClick:) forControlEvents:UIControlEventTouchUpInside];
             _FrontView.backgroundColor=[UIColor grayColor];
-            _FrontView.alpha=0.2;
+            _FrontView.alpha=0.3;
         }
-        _FrontView.frame=self.view.frame;
+        _FrontView.frame=_mainView.frame;
         [_mainView addSubview:_FrontView];
         
         [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionLayoutSubviews animations:^{
@@ -227,7 +243,7 @@
         
     }];
     
-    sender.frame=CGRectZero;
+    sender.frame=CGRectMake(0, 0, 0, 0);
 }
 
 -(void)rightViewTabelViewClick:(int)num{
@@ -259,6 +275,7 @@
 }
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection{
+    _requesting=NO;
     _sorryImage.hidden=YES;
     _lTabelView.hidden=NO;
     NSDictionary *lDic=[NSJSONSerialization JSONObjectWithData:_lData options:NSJSONReadingAllowFragments error:nil];
@@ -436,6 +453,9 @@
 #pragma mark - 建立网络连接
 
 -(void)getdata{
+    if (_requesting) {
+        return;
+    }
     NSString *bodyString=[NSString stringWithFormat:@"type=%i&order=%i&owncount=%i",_paixu,_updown,_showArray.count];
 
     NSURL *lUrl=[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/shop/getgoods.php",kIP]];
@@ -444,6 +464,7 @@
     [lRequest1 setHTTPMethod:@"post"];
     [lRequest1 setHTTPBody:[bodyString dataUsingEncoding:NSUTF8StringEncoding]];
     NSURLConnection *lConnection1=[NSURLConnection connectionWithRequest:lRequest1 delegate:self];
+    _requesting=YES;
     [lConnection1 start];
 }
 
@@ -478,7 +499,9 @@
     
 }
 
+
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
     float offset=scrollView.contentOffset.y;
 
     if (offset>(_showArray.count*80-368)&&_loadState==1) {
@@ -513,6 +536,7 @@
     [UIView commitAnimations];
     _loadState=0;
     [_loadView xuanzhuanfanhui];
+//    _lTabelView.bounces=YES;
 }
 
 @end

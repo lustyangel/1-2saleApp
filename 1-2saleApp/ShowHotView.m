@@ -1,44 +1,25 @@
 //
-//  HotViewController.m
+//  ShowHotView.m
 //  1-2saleApp
 //
 //  Created by TY on 14-1-7.
 //  Copyright (c) 2014年 ljt. All rights reserved.
 //
 
-#import "HotViewController.h"
+#import "ShowHotView.h"
 
-@interface HotViewController ()
+@implementation ShowHotView
 
-@end
-
-@implementation HotViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithFrame:(CGRect)frame
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithFrame:frame];
     if (self) {
-        // Custom initialization
+        // Initialization code
         _lData=[[NSMutableData alloc]init];
         _showArray=[[NSMutableArray alloc]init];
+        [self getdata];
     }
     return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    [self getdata];
-    
-    // Do any additional setup after loading the view from its nib.
-    
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(void)getdata{
@@ -77,16 +58,23 @@
         if (i<9) {
             HotView *lHotView=[[HotView alloc]initWithDictionary:lDic];
             lHotView.frame=CGRectMake(5+i%3*105, 5+i/3*145, 300, 300);
-            [self.view addSubview:lHotView];
+            [self addSubview:lHotView];
         }
         else{
             HotView *lHotView=[[HotView alloc]initWithDictionary:lDic];
             lHotView.frame=CGRectMake(5, 5+i/3*145, 310, 100);
-            [self.view addSubview:lHotView];
+            [self addSubview:lHotView];
         }
     }
 }
 
-
+/*
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect
+{
+    // Drawing code
+}
+*/
 
 @end
