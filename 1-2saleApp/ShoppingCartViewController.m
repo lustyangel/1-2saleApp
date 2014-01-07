@@ -118,7 +118,7 @@
 {
     _castAccountView = [[UIView alloc] initWithFrame:CGRectMake(0, 494, 320, 54)];
     _castAccountView.backgroundColor = [UIColor colorWithHue:1 saturation:0 brightness:0 alpha:0.1];
-    _castAccountView.hidden = NO;
+    _castAccountView.hidden = YES;
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 4, 150, 14)];
     label.text = @"商品总价（不含运费）:";

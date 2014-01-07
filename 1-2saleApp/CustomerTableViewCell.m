@@ -14,7 +14,7 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        _goodsImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 80, 80)];
+        _goodsImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 20, 80, 80)];
         _goodsImageView.image = [UIImage imageNamed:@"ddefault"];
         
         _goodsNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 10, 160, 50)];
@@ -39,14 +39,14 @@
         _goodsPriceLabel.backgroundColor = [UIColor clearColor];
         
         _deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _deleteButton.frame = CGRectMake(273, 35, 40, 50);
+        _deleteButton.frame = CGRectMake(273, 45, 40, 50);
         [_deleteButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [_deleteButton setTitle:@"删除" forState:UIControlStateNormal];
         _deleteButton.titleLabel.font = [UIFont systemFontOfSize:14];
         
         _subdeceButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _subdeceButton.frame = CGRectMake(100, 90, 30, 15);
-        [_subdeceButton setTitle:@"—" forState:UIControlStateNormal];
+        [_subdeceButton setTitle:@"-" forState:UIControlStateNormal];
         [_subdeceButton setTitleColor:[UIColor colorWithHue:1 saturation:0 brightness:0 alpha:0.6] forState:UIControlStateNormal];
         _subdeceButton.backgroundColor = [UIColor colorWithHue:1 saturation:0 brightness:0 alpha:0.1];
         
@@ -58,7 +58,7 @@
         [_addButton addTarget:self action:@selector(addButton:) forControlEvents:UIControlEventTouchUpInside];
         
         _chooseButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _chooseButton.frame = CGRectMake(285, 15, 15, 15);
+        _chooseButton.frame = CGRectMake(285, 25, 15, 15);
         _chooseButton.layer.borderWidth = 0.3;
         _chooseButton.layer.borderColor = [[UIColor blueColor] CGColor];
         [_chooseButton addTarget:self action:@selector(chooseButtonClick:) forControlEvents:UIControlEventTouchUpInside];
