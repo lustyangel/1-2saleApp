@@ -8,6 +8,8 @@
 
 #import "mainViewController.h"
 #import "ShoppingCartViewController.h"
+#import "ViewController.h"
+#import "InfoViewController.h"
 
 @interface mainViewController ()
 
@@ -255,13 +257,22 @@
 //    self frontViewClick:<#(UIButton *)#>
     switch (num) {
         case 0:
-            ;
+        {
+            ViewController *lLoginViewController = [[ViewController alloc] init];
+            [self presentViewController:lLoginViewController animated:YES completion:nil];
+        }
             break;
         case 1:{
             ShoppingCartViewController *lShoppingCartViewController = [[ShoppingCartViewController alloc] init];
             [self presentViewController:lShoppingCartViewController animated:YES completion:nil];
         }
             break;
+        case 3:{
+            InfoViewController *lInfoViewController = [[InfoViewController alloc] init];
+            [self presentViewController:lInfoViewController animated:YES completion:nil];
+        }
+            break;
+            
             
         default:
             break;

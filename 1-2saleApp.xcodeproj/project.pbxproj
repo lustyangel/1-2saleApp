@@ -260,28 +260,12 @@
 		1023FF321874F4F6000E19C6 /* 1-2saleApp */ = {
 			isa = PBXGroup;
 			children = (
-				10D93C9A187BF816009FEBB4 /* LoginAndRegist */,
-				10D93C99187BF809009FEBB4 /* UserInformation */,
-				1023FF5418750DFD000E19C6 /* image */,
 				1023FF3B1874F4F6000E19C6 /* AppDelegate.h */,
 				1023FF3C1874F4F6000E19C6 /* AppDelegate.m */,
-				1023FF491874F52D000E19C6 /* mainViewController.h */,
-				1023FF4A1874F52D000E19C6 /* mainViewController.m */,
-				1023FF4B1874F52D000E19C6 /* mainViewController.xib */,
-				10EA6B65187B8CE20067E2DA /* HotViewController.h */,
-				10EA6B66187B8CE20067E2DA /* HotViewController.m */,
-				10EA6B67187B8CE20067E2DA /* HotViewController.xib */,
-				10EA6B6A187B8D060067E2DA /* HotView.h */,
-				10EA6B6B187B8D060067E2DA /* HotView.m */,
-				10659E27187BF6BE0068D576 /* ShowHotView.h */,
-				10659E28187BF6BE0068D576 /* ShowHotView.m */,
-				10659E29187BF6BE0068D576 /* ShowAllView.h */,
-				10659E2A187BF6BE0068D576 /* ShowAllView.m */,
-				10EA6B6D187B94390067E2DA /* DanLi.h */,
-				10EA6B6E187B94390067E2DA /* DanLi.m */,
+				10659E36187BFC2D0068D576 /* mainViewController */,
 				10D2D027187BDDC600490C3A /* ShoppingCart购物车 */,
-				10EA6B7B187B9CAE0067E2DA /* CustomView */,
-				10EA6B7A187B9C8F0067E2DA /* right&leftView */,
+				10D93C9A187BF816009FEBB4 /* LoginAndRegist */,
+				10D93C99187BF809009FEBB4 /* UserInformation */,
 				10D02B3B1876589B007FC518 /* ASIHttpRequest */,
 				1023FF331874F4F6000E19C6 /* Supporting Files */,
 			);
@@ -318,6 +302,30 @@
 				10D13AF7187AA5E3000769C5 /* backimage.png */,
 			);
 			name = image;
+			sourceTree = "<group>";
+		};
+		10659E36187BFC2D0068D576 /* mainViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1023FF5418750DFD000E19C6 /* image */,
+				1023FF491874F52D000E19C6 /* mainViewController.h */,
+				1023FF4A1874F52D000E19C6 /* mainViewController.m */,
+				1023FF4B1874F52D000E19C6 /* mainViewController.xib */,
+				10EA6B65187B8CE20067E2DA /* HotViewController.h */,
+				10EA6B66187B8CE20067E2DA /* HotViewController.m */,
+				10EA6B67187B8CE20067E2DA /* HotViewController.xib */,
+				10EA6B6A187B8D060067E2DA /* HotView.h */,
+				10EA6B6B187B8D060067E2DA /* HotView.m */,
+				10659E27187BF6BE0068D576 /* ShowHotView.h */,
+				10659E28187BF6BE0068D576 /* ShowHotView.m */,
+				10659E29187BF6BE0068D576 /* ShowAllView.h */,
+				10659E2A187BF6BE0068D576 /* ShowAllView.m */,
+				10EA6B6D187B94390067E2DA /* DanLi.h */,
+				10EA6B6E187B94390067E2DA /* DanLi.m */,
+				10EA6B7B187B9CAE0067E2DA /* CustomView */,
+				10EA6B7A187B9C8F0067E2DA /* right&leftView */,
+			);
+			name = mainViewController;
 			sourceTree = "<group>";
 		};
 		10D02B3B1876589B007FC518 /* ASIHttpRequest */ = {
@@ -388,8 +396,8 @@
 		10D93C99187BF809009FEBB4 /* UserInformation */ = {
 			isa = PBXGroup;
 			children = (
-				10D93C9C187BF833009FEBB4 /* Main */,
-				10D93C9B187BF829009FEBB4 /* LRpicture */,
+				10D93CBC187BF879009FEBB4 /* Main */,
+				10D93CBD187BF880009FEBB4 /* INFOPicture */,
 			);
 			name = UserInformation;
 			sourceTree = "<group>";
@@ -397,8 +405,8 @@
 		10D93C9A187BF816009FEBB4 /* LoginAndRegist */ = {
 			isa = PBXGroup;
 			children = (
-				10D93CBD187BF880009FEBB4 /* INFOPicture */,
-				10D93CBC187BF879009FEBB4 /* Main */,
+				10D93C9C187BF833009FEBB4 /* Main */,
+				10D93C9B187BF829009FEBB4 /* LRpicture */,
 			);
 			name = LoginAndRegist;
 			sourceTree = "<group>";
