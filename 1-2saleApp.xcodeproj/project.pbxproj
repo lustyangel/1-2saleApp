@@ -29,6 +29,15 @@
 		10659E2B187BF6BE0068D576 /* ShowHotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10659E28187BF6BE0068D576 /* ShowHotView.m */; };
 		10659E2C187BF6BE0068D576 /* ShowAllView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10659E2A187BF6BE0068D576 /* ShowAllView.m */; };
 		10659E35187BFB7C0068D576 /* LLToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 10659E34187BFB7C0068D576 /* LLToolbar.m */; };
+		10754921187CE4B200174964 /* AllOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1075491F187CE4B200174964 /* AllOrderViewController.m */; };
+		10754922187CE4B200174964 /* AllOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10754920187CE4B200174964 /* AllOrderViewController.xib */; };
+		10754925187CE4BF00174964 /* OrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10754924187CE4BF00174964 /* OrderCell.m */; };
+		10754928187CE4C800174964 /* UIScrollView+PullLoad.m in Sources */ = {isa = PBXBuildFile; fileRef = 10754927187CE4C800174964 /* UIScrollView+PullLoad.m */; };
+		1075492B187CE4D600174964 /* showCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1075492A187CE4D600174964 /* showCell.m */; };
+		1075492F187CE4DF00174964 /* OrderImformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1075492D187CE4DF00174964 /* OrderImformationViewController.m */; };
+		10754930187CE4DF00174964 /* OrderImformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1075492E187CE4DF00174964 /* OrderImformationViewController.xib */; };
+		10754957187D4C6B00174964 /* evaluateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10754955187D4C6B00174964 /* evaluateViewController.m */; };
+		10754958187D4C6B00174964 /* evaluateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10754956187D4C6B00174964 /* evaluateViewController.xib */; };
 		10D02B35187645AE007FC518 /* LLTabelViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10D02B34187645AE007FC518 /* LLTabelViewCell.m */; };
 		10D02B3718764C23007FC518 /* product.png in Resources */ = {isa = PBXBuildFile; fileRef = 10D02B3618764C23007FC518 /* product.png */; };
 		10D02B3A187653F4007FC518 /* LLSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 10D02B39187653F4007FC518 /* LLSelectButton.m */; };
@@ -118,6 +127,21 @@
 		10659E2A187BF6BE0068D576 /* ShowAllView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowAllView.m; sourceTree = "<group>"; };
 		10659E33187BFB7C0068D576 /* LLToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLToolbar.h; sourceTree = "<group>"; };
 		10659E34187BFB7C0068D576 /* LLToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLToolbar.m; sourceTree = "<group>"; };
+		1075491E187CE4B200174964 /* AllOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllOrderViewController.h; sourceTree = "<group>"; };
+		1075491F187CE4B200174964 /* AllOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllOrderViewController.m; sourceTree = "<group>"; };
+		10754920187CE4B200174964 /* AllOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AllOrderViewController.xib; sourceTree = "<group>"; };
+		10754923187CE4BF00174964 /* OrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCell.h; sourceTree = "<group>"; };
+		10754924187CE4BF00174964 /* OrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCell.m; sourceTree = "<group>"; };
+		10754926187CE4C800174964 /* UIScrollView+PullLoad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+PullLoad.h"; sourceTree = "<group>"; };
+		10754927187CE4C800174964 /* UIScrollView+PullLoad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+PullLoad.m"; sourceTree = "<group>"; };
+		10754929187CE4D600174964 /* showCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = showCell.h; sourceTree = "<group>"; };
+		1075492A187CE4D600174964 /* showCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = showCell.m; sourceTree = "<group>"; };
+		1075492C187CE4DF00174964 /* OrderImformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderImformationViewController.h; sourceTree = "<group>"; };
+		1075492D187CE4DF00174964 /* OrderImformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderImformationViewController.m; sourceTree = "<group>"; };
+		1075492E187CE4DF00174964 /* OrderImformationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderImformationViewController.xib; sourceTree = "<group>"; };
+		10754954187D4C6B00174964 /* evaluateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = evaluateViewController.h; sourceTree = "<group>"; };
+		10754955187D4C6B00174964 /* evaluateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = evaluateViewController.m; sourceTree = "<group>"; };
+		10754956187D4C6B00174964 /* evaluateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = evaluateViewController.xib; sourceTree = "<group>"; };
 		10D02B33187645AE007FC518 /* LLTabelViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LLTabelViewCell.h; path = "1-2saleApp/LLTabelViewCell.h"; sourceTree = "<group>"; };
 		10D02B34187645AE007FC518 /* LLTabelViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LLTabelViewCell.m; path = "1-2saleApp/LLTabelViewCell.m"; sourceTree = "<group>"; };
 		10D02B3618764C23007FC518 /* product.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = product.png; sourceTree = "<group>"; };
@@ -262,6 +286,8 @@
 			children = (
 				1023FF3B1874F4F6000E19C6 /* AppDelegate.h */,
 				1023FF3C1874F4F6000E19C6 /* AppDelegate.m */,
+				10754953187D4B0D00174964 /* address */,
+				1075491D187CE0A500174964 /* Order */,
 				10659E36187BFC2D0068D576 /* mainViewController */,
 				10D2D027187BDDC600490C3A /* ShoppingCart购物车 */,
 				10D93C9A187BF816009FEBB4 /* LoginAndRegist */,
@@ -299,7 +325,11 @@
 				10D13AEF187A5C5F000769C5 /* loadImage.png */,
 				10D02B6E187697CF007FC518 /* moveView.png */,
 				10D13AF5187A97D5000769C5 /* sorry.png */,
+				10D2D028187BDE4000490C3A /* ddefault.png */,
+				10D2D029187BDE4000490C3A /* chooseGoods.jpg */,
 				10D13AF7187AA5E3000769C5 /* backimage.png */,
+				10D2D02A187BDE4000490C3A /* delete.jpg */,
+				10D2D02E187BEE8100490C3A /* title_back.png */,
 			);
 			name = image;
 			sourceTree = "<group>";
@@ -326,6 +356,35 @@
 				10EA6B7A187B9C8F0067E2DA /* right&leftView */,
 			);
 			name = mainViewController;
+			sourceTree = "<group>";
+		};
+		1075491D187CE0A500174964 /* Order */ = {
+			isa = PBXGroup;
+			children = (
+				10754926187CE4C800174964 /* UIScrollView+PullLoad.h */,
+				10754927187CE4C800174964 /* UIScrollView+PullLoad.m */,
+				10754923187CE4BF00174964 /* OrderCell.h */,
+				10754924187CE4BF00174964 /* OrderCell.m */,
+				10754929187CE4D600174964 /* showCell.h */,
+				1075492A187CE4D600174964 /* showCell.m */,
+				1075491E187CE4B200174964 /* AllOrderViewController.h */,
+				1075491F187CE4B200174964 /* AllOrderViewController.m */,
+				10754920187CE4B200174964 /* AllOrderViewController.xib */,
+				1075492C187CE4DF00174964 /* OrderImformationViewController.h */,
+				1075492D187CE4DF00174964 /* OrderImformationViewController.m */,
+				1075492E187CE4DF00174964 /* OrderImformationViewController.xib */,
+				10754954187D4C6B00174964 /* evaluateViewController.h */,
+				10754955187D4C6B00174964 /* evaluateViewController.m */,
+				10754956187D4C6B00174964 /* evaluateViewController.xib */,
+			);
+			name = Order;
+			sourceTree = "<group>";
+		};
+		10754953187D4B0D00174964 /* address */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = address;
 			sourceTree = "<group>";
 		};
 		10D02B3B1876589B007FC518 /* ASIHttpRequest */ = {
@@ -385,10 +444,6 @@
 				10D2D020187BDDA600490C3A /* ShoppingCartInterface.m */,
 				10D2D021187BDDA600490C3A /* CustomerTableViewCell.h */,
 				10D2D022187BDDA600490C3A /* CustomerTableViewCell.m */,
-				10D2D028187BDE4000490C3A /* ddefault.png */,
-				10D2D029187BDE4000490C3A /* chooseGoods.jpg */,
-				10D2D02A187BDE4000490C3A /* delete.jpg */,
-				10D2D02E187BEE8100490C3A /* title_back.png */,
 			);
 			name = "ShoppingCart购物车";
 			sourceTree = "<group>";
@@ -578,6 +633,9 @@
 				10D93CB9187BF84C009FEBB4 /* logonViewController.xib in Resources */,
 				10D93CBB187BF84C009FEBB4 /* InfoViewController.xib in Resources */,
 				10D93CC2187BF890009FEBB4 /* UserInfoViewController.xib in Resources */,
+				10754922187CE4B200174964 /* AllOrderViewController.xib in Resources */,
+				10754930187CE4DF00174964 /* OrderImformationViewController.xib in Resources */,
+				10754958187D4C6B00174964 /* evaluateViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -620,6 +678,12 @@
 				10D93CBA187BF84C009FEBB4 /* InfoViewController.m in Sources */,
 				10D93CC1187BF890009FEBB4 /* UserInfoViewController.m in Sources */,
 				10659E35187BFB7C0068D576 /* LLToolbar.m in Sources */,
+				10754921187CE4B200174964 /* AllOrderViewController.m in Sources */,
+				10754925187CE4BF00174964 /* OrderCell.m in Sources */,
+				10754928187CE4C800174964 /* UIScrollView+PullLoad.m in Sources */,
+				1075492B187CE4D600174964 /* showCell.m in Sources */,
+				1075492F187CE4DF00174964 /* OrderImformationViewController.m in Sources */,
+				10754957187D4C6B00174964 /* evaluateViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

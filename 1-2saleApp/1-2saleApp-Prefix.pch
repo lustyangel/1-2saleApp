@@ -15,6 +15,6 @@
 #import "ASIHTTPRequest.h"
 #import "Reachability.h"
 
-#define kIP @"192.168.1.136"
+#define kIP @"192.168.1.137"
 
 #endif
