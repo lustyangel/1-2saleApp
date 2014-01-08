@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "mainViewController.h"
-#import "HotViewController.h"
 
 @implementation AppDelegate
 

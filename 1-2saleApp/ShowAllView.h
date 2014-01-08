@@ -7,7 +7,32 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LLSearchBar.h"
+#import "LLTabelViewCell.h"
+#import "LLSelectButton.h"
+#import "loadView.h"
+#import "ASINetworkQueue.h"
 
-@interface ShowAllView : UIView
+@interface ShowAllView : UIView<LLSearchBarDelegate,UITableViewDataSource,UITableViewDelegate,NSURLConnectionDataDelegate,LLSelectButtonDelegate>{
+    NSMutableData *_lData;
+    int _paixu;
+    int _updown;
+    loadView *_loadView;
+    int _loadState;
+    UIImageView *_sorryImage;
+    UIButton *_backButton;
+    BOOL _searchState;  // 0  普通状态, 1  ,2  ,3 正在下载
+    UIButton *_FrontView;
+    BOOL  _requesting;
+}
+
+
+@property (nonatomic,retain)UITableView *lTabelView;
+@property (nonatomic,retain)UIButton *lDeleteButton;
+@property (nonatomic,retain)UIButton *lSearchButton;
+@property (nonatomic,retain)NSMutableArray *showArray;
+@property (nonatomic,retain)LLSearchBar *lSearchBar;
+
+@property (nonatomic,retain)ASINetworkQueue *queue;
 
 @end

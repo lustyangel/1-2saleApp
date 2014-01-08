@@ -27,13 +27,23 @@
     if (self) {
         self.layer.borderColor=[UIColor blackColor].CGColor;
         self.layer.borderWidth=1;
+        self.backgroundColor=[UIColor whiteColor];
+        
+        self.lDic=[NSDictionary dictionaryWithDictionary:dic];
+        _imageName=[dic objectForKey:@"headerimage"];
+        
+        [self addTarget:self action:@selector(HotViewTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+        
 //        self.backgroundColor=[UIColor grayColor];
-        
-        
-        if ([self judgeLocationImage:[dic objectForKey:@"headerimage"]]!=nil) {
-            UIImageView *lImageView=[[UIImageView alloc]initWithImage:[self judgeLocationImage:[dic objectForKey:@"headerimage"]]];
-            [self addSubview:lImageView];
-        }
+        UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(5, 110, 130, 50)];
+        label.text=[dic objectForKey:@"name"];
+        label.numberOfLines=3;
+        label.font=[UIFont systemFontOfSize:13];
+        [self addSubview:label];
+        //140, 160
+        _lImageView=[[UIImageView alloc]initWithFrame:CGRectMake(20, 5, 100,100)];
+        _lImageView.image=[self judgeLocationImage:[dic objectForKey:@"headerimage"]];
+        [self addSubview:_lImageView];
     }
     return self;
 }
@@ -72,11 +82,20 @@
 }
 
 -(void)DownloadFinish:(ASIHTTPRequest *)sender{
-    //    [_lTabelView reloadData];
+    _lImageView.image=[self judgeLocationImage:_imageName];
+
 }
 -(void)DownloadFailed:(ASIHTTPRequest *)sender{
     NSLog(@"Error");
 }
+
+-(void)HotViewTouchUpInside:(UIButton *)sender{
+    [DanLi sharDanli].goodsID=[[_lDic objectForKey:@"goodsid"]intValue];
+    [_LLDelegate HotViewClick];
+}
+
+
+
 
 /*
 // Only override drawRect: if you perform custom drawing.

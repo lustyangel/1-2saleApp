@@ -7,40 +7,25 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LLSearchBar.h"
 #import "LLToolbar.h"
-#import "LLTabelViewCell.h"
-#import "LLSelectButton.h"
-#import "ASINetworkQueue.h"
-#import "loadView.h"
 #import "RightViewController.h"
 #import "ShowHotView.h"
+#import "ShowAllView.h"
+#import "GoodsIngoViewController.h"
+#import "HotView.h"
 
-@interface mainViewController : UIViewController<LLSearchBarDelegate,UITableViewDataSource,UITableViewDelegate,NSURLConnectionDataDelegate,LLSelectButtonDelegate,LLToolbarDelegate,RightViewDelegate>{
-    NSMutableData *_lData;
-    int _paixu;
-    int _updown;
-    loadView *_loadView;
-    int _loadState;
-    UIImageView *_sorryImage;
-    UIButton *_backButton;
-    BOOL _searchState;  // 0  普通状态, 1  ,2  ,3 正在下载
+@interface mainViewController : UIViewController<LLToolbarDelegate,RightViewDelegate,ShowHotViewDelegate>{
     UIButton *_FrontView;
-    BOOL  _requesting;
     
-//    UIView *_mainView;
-//    UIView *_rightView;
 }
 @property(nonatomic,retain)RightViewController *lRightViewController;
+@property(nonatomic,retain)GoodsIngoViewController *lGoodsIngoViewController;
 @property (nonatomic,retain)UIView *mainView;
 @property (nonatomic,retain)UIView *rightView;
 
-@property (nonatomic,retain)UITableView *lTabelView;
-@property (nonatomic,retain)UIButton *lDeleteButton;
-@property (nonatomic,retain)UIButton *lSearchButton;
-@property (nonatomic,retain)NSMutableArray *showArray;
-@property (nonatomic,retain)LLSearchBar *lSearchBar;
+@property (nonatomic,retain)ShowHotView *HotView;
+@property (nonatomic,retain)ShowAllView *AllView;
 
-@property (nonatomic,retain)ASINetworkQueue *queue;
+
 
 @end

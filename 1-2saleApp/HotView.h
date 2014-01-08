@@ -8,14 +8,25 @@
 
 #import <UIKit/UIKit.h>
 #import "ASINetworkQueue.h"
+@protocol HotViewDelegate;
 
-@interface HotView : UIButton
+@interface HotView : UIButton{
+    NSString *_imageName;
+    NSTimer *lTimer;
+}
 
+@property (nonatomic,retain)NSDictionary *lDic;
+@property (nonatomic,retain)UIImageView *lImageView;
 @property (nonatomic,retain)ASINetworkQueue *queue;
+@property (nonatomic,assign)id<HotViewDelegate>LLDelegate;
 
 
 -(id)initWithDictionary:(NSDictionary *)dic;
 
+@end
 
+@protocol HotViewDelegate <NSObject>
+
+-(void)HotViewClick;
 
 @end

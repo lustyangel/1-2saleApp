@@ -9,11 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "HotView.h"
 #import "ASINetworkQueue.h"
+@protocol ShowHotViewDelegate;
 
-@interface ShowHotView : UIView<NSURLConnectionDataDelegate>{
+@interface ShowHotView : UIView<NSURLConnectionDataDelegate,UIScrollViewDelegate,HotViewDelegate>{
     NSMutableData *_lData;
     NSMutableArray *_showArray;
 }
 
+@property (nonatomic,retain) UIScrollView *lScrollView;
+@property (nonatomic,assign)id<ShowHotViewDelegate>LLDelegate;
+
+@end
+
+@protocol ShowHotViewDelegate <NSObject>
+
+-(void)ShowHotViewClick;
 
 @end

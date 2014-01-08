@@ -10,4 +10,9 @@
 
 @interface DanLi : NSObject
 
+@property (nonatomic,assign)int userID;
+@property (nonatomic,assign)int goodsID;
+
++(DanLi *)sharDanli;
+
 @end

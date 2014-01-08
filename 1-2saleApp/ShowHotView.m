@@ -17,6 +17,14 @@
         // Initialization code
         _lData=[[NSMutableData alloc]init];
         _showArray=[[NSMutableArray alloc]init];
+        
+        self.backgroundColor=[UIColor underPageBackgroundColor];
+        _lScrollView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, 320, 504)];
+        _lScrollView.delegate=self;
+        _lScrollView.contentSize=CGSizeMake(320, 10+5*170);
+        [self addSubview:_lScrollView];
+        
+        
         [self getdata];
     }
     return self;
@@ -28,6 +36,7 @@
     NSURL *lUrl=[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/shop/hotgoods.php ",kIP]];
     //    NSURL *lUrl=[NSURL URLWithString:@"http://192.168.1.125/shop/getgoods.php"];
     NSMutableURLRequest *lRequest1=[NSMutableURLRequest requestWithURL:lUrl];
+    [lRequest1 setTimeoutInterval:5];
     [lRequest1 setHTTPMethod:@"post"];
     [lRequest1 setHTTPBody:[bodyString dataUsingEncoding:NSUTF8StringEncoding]];
     NSURLConnection *lConnection1=[NSURLConnection connectionWithRequest:lRequest1 delegate:self];
@@ -55,17 +64,21 @@
 -(void)showView{
     for (int i=0; i<10; i++) {
         NSDictionary *lDic=[_showArray objectAtIndex:i];
-        if (i<9) {
-            HotView *lHotView=[[HotView alloc]initWithDictionary:lDic];
-            lHotView.frame=CGRectMake(5+i%3*105, 5+i/3*145, 300, 300);
-            [self addSubview:lHotView];
-        }
-        else{
-            HotView *lHotView=[[HotView alloc]initWithDictionary:lDic];
-            lHotView.frame=CGRectMake(5, 5+i/3*145, 310, 100);
-            [self addSubview:lHotView];
-        }
+        HotView *lHotView=[[HotView alloc]initWithDictionary:lDic];
+        lHotView.frame=CGRectMake(10+i%2*160, 10+i/2*170, 140, 160);
+        lHotView.LLDelegate=self;
+            [_lScrollView addSubview:lHotView];
+//        }
+//        else{
+//            HotView *lHotView=[[HotView alloc]initWithDictionary:lDic];
+//            lHotView.frame=CGRectMake(3, 5+i/3*133, 313, 98);
+//            [_lScrollView addSubview:lHotView];
+//        }
     }
+}
+
+-(void)HotViewClick{
+    [_LLDelegate ShowHotViewClick];
 }
 
 /*
