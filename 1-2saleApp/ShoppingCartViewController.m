@@ -7,6 +7,7 @@
 //
 
 #import "ShoppingCartViewController.h"
+#import "shareManager.h"
 
 @interface ShoppingCartViewController ()
 
@@ -47,6 +48,9 @@
     
     // 加载结算栏
     [self getCastAccountView];
+    
+    // 添加观察者
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shoppingCartNotificationCenter:) name:@"post" object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -104,12 +108,23 @@
         [_chooseGoodsButton setImage:nil forState:UIControlStateNormal];
         _chooseGoodsButton.layer.borderWidth = 0.3;
         _isChooseAllGoods = NO;
+        
+        for (int i=0; i<_allGoodsArray.count; i++) {
+            CustomerTableViewCell *lCell = (CustomerTableViewCell *) [self.view viewWithTag:100+i];
+            [lCell chooseButtonClick];
+        }
     }
     else
     {
         [_chooseGoodsButton setImage:[UIImage imageNamed:@"chooseGoods.jpg"] forState:UIControlStateNormal];
         _chooseGoodsButton.layer.borderWidth = 0;
         _isChooseAllGoods = YES;
+        
+        for (int i=0; i<_allGoodsArray.count; i++) {
+            CustomerTableViewCell *lCell = (CustomerTableViewCell *) [self.view viewWithTag:100+i];
+            [lCell chooseButtonClick];
+        }
+        
     }
 }
 
@@ -118,7 +133,7 @@
 {
     _castAccountView = [[UIView alloc] initWithFrame:CGRectMake(0, 494, 320, 54)];
     _castAccountView.backgroundColor = [UIColor colorWithHue:1 saturation:0 brightness:0 alpha:0.1];
-    _castAccountView.hidden = NO;
+    _castAccountView.hidden = YES;
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 4, 150, 14)];
     label.text = @"商品总价（不含运费）:";
@@ -127,7 +142,7 @@
     [_castAccountView addSubview:label];
     
     _allGoodsPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(150, 4, 165, 14)];
-    _allGoodsPriceLabel.text = [NSString stringWithFormat:@"￥%0.2f",_allGoodsPrice];
+    _allGoodsPriceLabel.text = [NSString stringWithFormat:@"￥%0.2f",KsingleManager.accountAllGoodsPrice];
     _allGoodsPriceLabel.textAlignment = NSTextAlignmentRight;
     _allGoodsPriceLabel.textColor = [UIColor redColor];
     _allGoodsPriceLabel.font = [UIFont systemFontOfSize:14];
@@ -156,7 +171,52 @@
     ShoppingCartInterface *lShoppingCartInterface = [[ShoppingCartInterface alloc] init];
     NSDictionary *lDictionary = [lShoppingCartInterface checkShoppingCart:@"4"];
     NSArray *lArray  = [lDictionary objectForKey:@"info"];
+    
+    // 得到所有商品总数
+    for (NSDictionary *getAallCountsDic in lArray) {
+        _allGoodsCounts += [[getAallCountsDic objectForKey:@"goodscount"] intValue];
+    }
+       
     return lArray;
+}
+
+// 接收通知
+- (void)shoppingCartNotificationCenter:(NSNotification *)sender
+{
+    NSDictionary *lDictionary = sender.userInfo;
+    
+    // 增减购物车商品数量
+    if ([[lDictionary objectForKey:@"event"] isEqual:@"addOrSubtract"]) {
+        NSArray *lArray  = [lDictionary objectForKey:@"info"];
+        
+        // 重置菜单栏商品总数
+        _allGoodsCounts = 0;
+        for (NSDictionary *getAallCountsDic in lArray) {
+            _allGoodsCounts += [[getAallCountsDic objectForKey:@"goodscount"] intValue];
+        }
+        NSString *lString = [NSString stringWithFormat:@"全部商品（%i）",_allGoodsCounts];
+        _showGoodsCountsLabel.text = lString;
+        
+        [_allGoodsArray setArray:lArray];
+        [_tableView reloadData];
+    }
+    
+    // 显示结算栏
+    if ([[lDictionary objectForKey:@"event"] isEqual:@"accountGoods"])
+    {
+        _allGoodsPriceLabel.text = [NSString stringWithFormat:@"￥%0.2f",KsingleManager.accountAllGoodsPrice];
+        
+        if (KsingleManager.isShowAccountView)
+        {
+            _castAccountView.hidden = NO;
+        }
+        else
+        {
+            _castAccountView.hidden = YES;
+        }
+        
+    }
+    
 }
 
 #pragma mark - UITableView DataSource
@@ -176,6 +236,7 @@
     
     NSInteger row = indexPath.row;
     NSDictionary *lDictionary = [_allGoodsArray objectAtIndex:row];
+    lCell.tag = 100 + row;
     
     NSString *goodsCount = [lDictionary objectForKey:@"goodscount"];
     NSString *imageName = [lDictionary objectForKey:@"headerimage"];

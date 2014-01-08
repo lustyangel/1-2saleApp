@@ -22,7 +22,7 @@
     
     UIView *_castAccountView;                               // 结算栏
     
-    float _allGoodsPrice;                                  // 所有商品总价
     UILabel *_allGoodsPriceLabel;                           // 显示所有商品总价
 }
+
 @end
