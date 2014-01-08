@@ -157,6 +157,8 @@
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection{
     _requesting=NO;
+    
+    
     _sorryImage.hidden=YES;
     _lTabelView.hidden=NO;
     NSDictionary *lDic=[NSJSONSerialization JSONObjectWithData:_lData options:NSJSONReadingAllowFragments error:nil];

@@ -147,6 +147,8 @@
     }];
 }
 
+#pragma mark - 右侧菜单栏点击事件
+
 -(void)rightViewTabelViewClick:(int)num{
     [self frontViewClickMethod];
 
@@ -174,8 +176,13 @@
     }
 }
 
+#pragma mark - hotView 点击事件，传入商品id
 
 -(void)ShowHotViewClick{
+    if (_lGoodsIngoViewController==nil) {
+        _lGoodsIngoViewController=[[GoodsIngoViewController alloc]init];
+    }
+    [self presentViewController:_lGoodsIngoViewController animated:YES completion:nil];
     NSLog(@"%i",[DanLi sharDanli].goodsID);
 }
 

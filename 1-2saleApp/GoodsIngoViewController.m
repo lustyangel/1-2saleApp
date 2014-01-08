@@ -27,12 +27,21 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    UIButton *lButton=[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [lButton setFrame:CGRectMake(100, 100, 100, 50)];
+    [lButton addTarget:self action:@selector(backClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:lButton];
+    
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)backClick:(UIButton *)sender{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
