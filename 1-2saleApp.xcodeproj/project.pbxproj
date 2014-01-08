@@ -29,6 +29,20 @@
 		10659E2B187BF6BE0068D576 /* ShowHotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10659E28187BF6BE0068D576 /* ShowHotView.m */; };
 		10659E2C187BF6BE0068D576 /* ShowAllView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10659E2A187BF6BE0068D576 /* ShowAllView.m */; };
 		10659E35187BFB7C0068D576 /* LLToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 10659E34187BFB7C0068D576 /* LLToolbar.m */; };
+		10754965187D522B00174964 /* AllAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1075495E187D522B00174964 /* AllAddressViewController.m */; };
+		10754966187D522B00174964 /* AddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10754960187D522B00174964 /* AddressViewController.m */; };
+		10754967187D522B00174964 /* AddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10754961187D522B00174964 /* AddressViewController.xib */; };
+		10754968187D522B00174964 /* EditAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10754963187D522B00174964 /* EditAddressViewController.m */; };
+		10754969187D522B00174964 /* EditAddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10754964187D522B00174964 /* EditAddressViewController.xib */; };
+		1075497A187D524F00174964 /* UIScrollView+PullLoad.m in Sources */ = {isa = PBXBuildFile; fileRef = 1075496C187D524F00174964 /* UIScrollView+PullLoad.m */; };
+		1075497B187D524F00174964 /* OrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1075496E187D524F00174964 /* OrderCell.m */; };
+		1075497C187D524F00174964 /* showCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10754970187D524F00174964 /* showCell.m */; };
+		1075497D187D524F00174964 /* AllOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10754972187D524F00174964 /* AllOrderViewController.m */; };
+		1075497E187D524F00174964 /* AllOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10754973187D524F00174964 /* AllOrderViewController.xib */; };
+		1075497F187D524F00174964 /* OrderImformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10754975187D524F00174964 /* OrderImformationViewController.m */; };
+		10754980187D524F00174964 /* OrderImformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10754976187D524F00174964 /* OrderImformationViewController.xib */; };
+		10754981187D524F00174964 /* evaluateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10754978187D524F00174964 /* evaluateViewController.m */; };
+		10754982187D524F00174964 /* evaluateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10754979187D524F00174964 /* evaluateViewController.xib */; };
 		10A2AA19187D45700048B1B4 /* GoodsIngoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A2AA17187D45700048B1B4 /* GoodsIngoViewController.m */; };
 		10A2AA1A187D45700048B1B4 /* GoodsIngoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10A2AA18187D45700048B1B4 /* GoodsIngoViewController.xib */; };
 		10D02B35187645AE007FC518 /* LLTabelViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10D02B34187645AE007FC518 /* LLTabelViewCell.m */; };
@@ -119,6 +133,29 @@
 		10659E2A187BF6BE0068D576 /* ShowAllView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowAllView.m; sourceTree = "<group>"; };
 		10659E33187BFB7C0068D576 /* LLToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLToolbar.h; sourceTree = "<group>"; };
 		10659E34187BFB7C0068D576 /* LLToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLToolbar.m; sourceTree = "<group>"; };
+		1075495D187D522B00174964 /* AllAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllAddressViewController.h; sourceTree = "<group>"; };
+		1075495E187D522B00174964 /* AllAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllAddressViewController.m; sourceTree = "<group>"; };
+		1075495F187D522B00174964 /* AddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressViewController.h; sourceTree = "<group>"; };
+		10754960187D522B00174964 /* AddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressViewController.m; sourceTree = "<group>"; };
+		10754961187D522B00174964 /* AddressViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressViewController.xib; sourceTree = "<group>"; };
+		10754962187D522B00174964 /* EditAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditAddressViewController.h; sourceTree = "<group>"; };
+		10754963187D522B00174964 /* EditAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditAddressViewController.m; sourceTree = "<group>"; };
+		10754964187D522B00174964 /* EditAddressViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditAddressViewController.xib; sourceTree = "<group>"; };
+		1075496B187D524F00174964 /* UIScrollView+PullLoad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+PullLoad.h"; sourceTree = "<group>"; };
+		1075496C187D524F00174964 /* UIScrollView+PullLoad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+PullLoad.m"; sourceTree = "<group>"; };
+		1075496D187D524F00174964 /* OrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCell.h; sourceTree = "<group>"; };
+		1075496E187D524F00174964 /* OrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCell.m; sourceTree = "<group>"; };
+		1075496F187D524F00174964 /* showCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = showCell.h; sourceTree = "<group>"; };
+		10754970187D524F00174964 /* showCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = showCell.m; sourceTree = "<group>"; };
+		10754971187D524F00174964 /* AllOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllOrderViewController.h; sourceTree = "<group>"; };
+		10754972187D524F00174964 /* AllOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllOrderViewController.m; sourceTree = "<group>"; };
+		10754973187D524F00174964 /* AllOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AllOrderViewController.xib; sourceTree = "<group>"; };
+		10754974187D524F00174964 /* OrderImformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderImformationViewController.h; sourceTree = "<group>"; };
+		10754975187D524F00174964 /* OrderImformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderImformationViewController.m; sourceTree = "<group>"; };
+		10754976187D524F00174964 /* OrderImformationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderImformationViewController.xib; sourceTree = "<group>"; };
+		10754977187D524F00174964 /* evaluateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = evaluateViewController.h; sourceTree = "<group>"; };
+		10754978187D524F00174964 /* evaluateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = evaluateViewController.m; sourceTree = "<group>"; };
+		10754979187D524F00174964 /* evaluateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = evaluateViewController.xib; sourceTree = "<group>"; };
 		10A2AA16187D45700048B1B4 /* GoodsIngoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsIngoViewController.h; sourceTree = "<group>"; };
 		10A2AA17187D45700048B1B4 /* GoodsIngoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsIngoViewController.m; sourceTree = "<group>"; };
 		10A2AA18187D45700048B1B4 /* GoodsIngoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoodsIngoViewController.xib; sourceTree = "<group>"; };
@@ -263,8 +300,10 @@
 		1023FF321874F4F6000E19C6 /* 1-2saleApp */ = {
 			isa = PBXGroup;
 			children = (
-				1023FF3B1874F4F6000E19C6 /* AppDelegate.h */,
+				1075496A187D523F00174964 /* order */,
+				1075495C187D521800174964 /* address */,
 				1023FF3C1874F4F6000E19C6 /* AppDelegate.m */,
+				1023FF3B1874F4F6000E19C6 /* AppDelegate.h */,
 				10659E36187BFC2D0068D576 /* mainViewController */,
 				10D2D027187BDDC600490C3A /* ShoppingCart购物车 */,
 				10D93C9A187BF816009FEBB4 /* LoginAndRegist */,
@@ -329,6 +368,43 @@
 				10EA6B7A187B9C8F0067E2DA /* right&leftView */,
 			);
 			name = mainViewController;
+			sourceTree = "<group>";
+		};
+		1075495C187D521800174964 /* address */ = {
+			isa = PBXGroup;
+			children = (
+				1075495D187D522B00174964 /* AllAddressViewController.h */,
+				1075495E187D522B00174964 /* AllAddressViewController.m */,
+				1075495F187D522B00174964 /* AddressViewController.h */,
+				10754960187D522B00174964 /* AddressViewController.m */,
+				10754961187D522B00174964 /* AddressViewController.xib */,
+				10754962187D522B00174964 /* EditAddressViewController.h */,
+				10754963187D522B00174964 /* EditAddressViewController.m */,
+				10754964187D522B00174964 /* EditAddressViewController.xib */,
+			);
+			name = address;
+			sourceTree = "<group>";
+		};
+		1075496A187D523F00174964 /* order */ = {
+			isa = PBXGroup;
+			children = (
+				1075496B187D524F00174964 /* UIScrollView+PullLoad.h */,
+				1075496C187D524F00174964 /* UIScrollView+PullLoad.m */,
+				1075496D187D524F00174964 /* OrderCell.h */,
+				1075496E187D524F00174964 /* OrderCell.m */,
+				1075496F187D524F00174964 /* showCell.h */,
+				10754970187D524F00174964 /* showCell.m */,
+				10754971187D524F00174964 /* AllOrderViewController.h */,
+				10754972187D524F00174964 /* AllOrderViewController.m */,
+				10754973187D524F00174964 /* AllOrderViewController.xib */,
+				10754974187D524F00174964 /* OrderImformationViewController.h */,
+				10754975187D524F00174964 /* OrderImformationViewController.m */,
+				10754976187D524F00174964 /* OrderImformationViewController.xib */,
+				10754977187D524F00174964 /* evaluateViewController.h */,
+				10754978187D524F00174964 /* evaluateViewController.m */,
+				10754979187D524F00174964 /* evaluateViewController.xib */,
+			);
+			name = order;
 			sourceTree = "<group>";
 		};
 		10D02B3B1876589B007FC518 /* ASIHttpRequest */ = {
@@ -578,11 +654,19 @@
 				10D93CBB187BF84C009FEBB4 /* InfoViewController.xib in Resources */,
 				10D93CC2187BF890009FEBB4 /* UserInfoViewController.xib in Resources */,
 				10A2AA1A187D45700048B1B4 /* GoodsIngoViewController.xib in Resources */,
+<<<<<<< HEAD
 				10F969DD187D557700125DB2 /* ShoppingCartViewController.xib in Resources */,
 				10F969E0187D557700125DB2 /* ddefault.png in Resources */,
 				10F969E1187D557700125DB2 /* chooseGoods.jpg in Resources */,
 				10F969E2187D557700125DB2 /* delete.jpg in Resources */,
 				10F969E3187D557700125DB2 /* title_back.png in Resources */,
+=======
+				10754967187D522B00174964 /* AddressViewController.xib in Resources */,
+				10754969187D522B00174964 /* EditAddressViewController.xib in Resources */,
+				1075497E187D524F00174964 /* AllOrderViewController.xib in Resources */,
+				10754980187D524F00174964 /* OrderImformationViewController.xib in Resources */,
+				10754982187D524F00174964 /* evaluateViewController.xib in Resources */,
+>>>>>>> d705ac045f04a4163ff9b6558736fb0ceb816947
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -622,10 +706,22 @@
 				10D93CC1187BF890009FEBB4 /* UserInfoViewController.m in Sources */,
 				10659E35187BFB7C0068D576 /* LLToolbar.m in Sources */,
 				10A2AA19187D45700048B1B4 /* GoodsIngoViewController.m in Sources */,
+<<<<<<< HEAD
 				10F969DC187D557700125DB2 /* ShoppingCartViewController.m in Sources */,
 				10F969DE187D557700125DB2 /* ShoppingCartInterface.m in Sources */,
 				10F969DF187D557700125DB2 /* CustomerTableViewCell.m in Sources */,
 				10F969E4187D557700125DB2 /* shareManager.m in Sources */,
+=======
+				10754965187D522B00174964 /* AllAddressViewController.m in Sources */,
+				10754966187D522B00174964 /* AddressViewController.m in Sources */,
+				10754968187D522B00174964 /* EditAddressViewController.m in Sources */,
+				1075497A187D524F00174964 /* UIScrollView+PullLoad.m in Sources */,
+				1075497B187D524F00174964 /* OrderCell.m in Sources */,
+				1075497C187D524F00174964 /* showCell.m in Sources */,
+				1075497D187D524F00174964 /* AllOrderViewController.m in Sources */,
+				1075497F187D524F00174964 /* OrderImformationViewController.m in Sources */,
+				10754981187D524F00174964 /* evaluateViewController.m in Sources */,
+>>>>>>> d705ac045f04a4163ff9b6558736fb0ceb816947
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
