@@ -84,6 +84,7 @@
 		10EA6B74187B9C780067E2DA /* LeftViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10EA6B72187B9C780067E2DA /* LeftViewController.xib */; };
 		10EA6B78187B9C860067E2DA /* RightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10EA6B76187B9C860067E2DA /* RightViewController.m */; };
 		10EA6B79187B9C860067E2DA /* RightViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10EA6B77187B9C860067E2DA /* RightViewController.xib */; };
+		10F9699E187D314700125DB2 /* shareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 10F9699D187D314700125DB2 /* shareManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -202,6 +203,8 @@
 		10EA6B75187B9C860067E2DA /* RightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RightViewController.h; path = "1-2saleApp/RightViewController.h"; sourceTree = "<group>"; };
 		10EA6B76187B9C860067E2DA /* RightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RightViewController.m; path = "1-2saleApp/RightViewController.m"; sourceTree = "<group>"; };
 		10EA6B77187B9C860067E2DA /* RightViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RightViewController.xib; path = "1-2saleApp/RightViewController.xib"; sourceTree = "<group>"; };
+		10F9699C187D314700125DB2 /* shareManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shareManager.h; sourceTree = "<group>"; };
+		10F9699D187D314700125DB2 /* shareManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = shareManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -389,6 +392,8 @@
 				10D2D029187BDE4000490C3A /* chooseGoods.jpg */,
 				10D2D02A187BDE4000490C3A /* delete.jpg */,
 				10D2D02E187BEE8100490C3A /* title_back.png */,
+				10F9699C187D314700125DB2 /* shareManager.h */,
+				10F9699D187D314700125DB2 /* shareManager.m */,
 			);
 			name = "ShoppingCart购物车";
 			sourceTree = "<group>";
@@ -620,6 +625,7 @@
 				10D93CBA187BF84C009FEBB4 /* InfoViewController.m in Sources */,
 				10D93CC1187BF890009FEBB4 /* UserInfoViewController.m in Sources */,
 				10659E35187BFB7C0068D576 /* LLToolbar.m in Sources */,
+				10F9699E187D314700125DB2 /* shareManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

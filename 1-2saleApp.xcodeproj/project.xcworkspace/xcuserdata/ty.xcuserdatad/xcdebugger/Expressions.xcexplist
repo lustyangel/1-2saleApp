@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "-[CustomerTableViewCell resetGoodsCart]:CustomerTableViewCell.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.tag">
+            </PersistentString>
+            <PersistentString
+               value = "self.goodsCounts">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ShoppingCartInterface resetShoppingCart:]:ShoppingCartInterface.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "customerId">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
