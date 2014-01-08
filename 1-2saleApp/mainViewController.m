@@ -10,6 +10,8 @@
 #import "ShoppingCartViewController.h"
 #import "ViewController.h"
 #import "InfoViewController.h"
+#import "DelayViewController.h"
+#define AutologonSign [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"AutologonSign"]
 
 @interface mainViewController ()
 
@@ -258,8 +260,16 @@
     switch (num) {
         case 0:
         {
-            ViewController *lLoginViewController = [[ViewController alloc] init];
+            NSArray *AutologonArray=[NSArray arrayWithContentsOfFile:AutologonSign];
+            NSString *AutologonString=[AutologonArray objectAtIndex:0];
+            if ([AutologonString isEqualToString:@"1"]) {
+                DelayViewController *lDelayViewController=[[DelayViewController alloc]init];
+                [self presentViewController:lDelayViewController animated:YES completion:nil];
+            }
+            else{
+             ViewController *lLoginViewController = [[ViewController alloc] init];
             [self presentViewController:lLoginViewController animated:YES completion:nil];
+            }
         }
             break;
         case 1:{

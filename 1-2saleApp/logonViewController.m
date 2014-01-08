@@ -17,7 +17,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title=@"注册页面";
         // Custom initialization
     }
     return self;
@@ -44,7 +43,7 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField{
     if (textField.tag==0) {
         _x=0;
-        NSString *lS1=@"http://192.168.1.136/shop/checkname.php?name=";
+        NSString *lS1=[NSString stringWithFormat:@"http://%@/shop/checkname.php?name=",kIP];
         NSString *lS2=[lS1 stringByAppendingString:self.nameText.text];
         NSURL *lURL=[NSURL URLWithString:lS2];
         NSMutableURLRequest *lURLRequest=[NSMutableURLRequest requestWithURL:lURL];
@@ -54,7 +53,7 @@
     }
     if (textField.tag==1) {
          _x=1;
-        NSString *lS1=@"http://192.168.1.136/shop/checkpassword.php?password=";
+        NSString *lS1=[NSString stringWithFormat:@"http://%@/shop/checkpassword.php?password=",kIP];
         NSString *lS2=[lS1 stringByAppendingString:self.cipherText.text];
         NSURL *lURL=[NSURL URLWithString:lS2];
         NSMutableURLRequest *lURLRequest=[NSMutableURLRequest requestWithURL:lURL];
@@ -63,7 +62,7 @@
         [lConnection start];    }
     if (textField.tag==2) {
          _x=2;
-        NSString *lS1=@"http://192.168.1.136/shop/checkemail.php?email=";
+        NSString *lS1=[NSString stringWithFormat:@"http://%@/shop/checkemail.php?email=",kIP];
         NSString *lS2=[lS1 stringByAppendingString:self.emailText.text];
         NSURL *lURL=[NSURL URLWithString:lS2];
         NSMutableURLRequest *lURLRequest=[NSMutableURLRequest requestWithURL:lURL];
@@ -73,7 +72,7 @@
     }
     if (textField.tag==3) {
         _x=3;
-        NSString *lS1=@"http://192.168.1.136/shop/checktelephone.php?telephone=";
+        NSString *lS1=[NSString stringWithFormat:@"http://%@/shop/checktelephone.php?telephone=",kIP];
         NSString *lS2=[lS1 stringByAppendingString:self.telephoneText.text];
         NSURL *lURL=[NSURL URLWithString:lS2];
         NSMutableURLRequest *lURLRequest=[NSMutableURLRequest requestWithURL:lURL];
@@ -121,7 +120,7 @@
     }
     _x=4;
     NSString *lBodyString=[NSString stringWithFormat:@"name=%@&password=%@&email=%@&telephone=%@",self.nameText.text,self.cipherText.text,self.emailText.text,self.telephoneText.text];
-    NSURL *lURL=[NSURL URLWithString:@"http://192.168.1.136/shop/register.php"];
+    NSURL *lURL=[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/shop/register.php",kIP]];
     NSMutableURLRequest *lURLRequest=[NSMutableURLRequest requestWithURL:lURL];
     [lURLRequest setHTTPMethod:@"post"];
     [lURLRequest setHTTPBody:[lBodyString dataUsingEncoding:NSUTF8StringEncoding]];
@@ -129,7 +128,6 @@
     [lConnection start];
 }
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
-    NSLog(@"connect didReceiveResponse");
     [_data setLength:0];
 }
 
@@ -208,6 +206,11 @@
     }
      _x=-1;
 }
+
+- (IBAction)backButton:(UIButton *)sender {
+  [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (IBAction)textExit:(UITextField *)sender {
     
 }

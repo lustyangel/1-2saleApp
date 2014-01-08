@@ -13,6 +13,7 @@
     int _x;
 }
 
+- (IBAction)backButton:(UIButton *)sender;
 - (IBAction)textExit:(UITextField *)sender;
 @property (retain, nonatomic) IBOutlet UITextField *nameText;
 @property (retain, nonatomic) IBOutlet UITextField *cipherText;

@@ -8,8 +8,12 @@
 
 #import "ViewController.h"
 #import "logonViewController.h"
-#import "InfoViewController.h"
+#import "mainViewController.h"
+#import "DelayViewController.h"
+
+#define signImage [UIImage imageNamed:@"check@2x.png"]
 #define localUsername [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"UesrnameData"]
+#define AutologonSign [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"AutologonSign"]
 #define localPassword [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"PasswordData"]
 #define localRemPassword [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"RemPassword"]
 @interface ViewController ()
@@ -21,15 +25,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title=@"用户登陆注册界面";
+      UIButton *lUIButtonItemBack=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+    [lUIButtonItemBack setImage:[UIImage imageNamed:@"title_back.png"] forState:UIControlStateNormal];
+    [lUIButtonItemBack addTarget:self action:@selector(clickBackButton:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:lUIButtonItemBack];
     _passwordSign=@"0";
+    _autologonSign=@"0";
     _ifDragButtonSpread=NO;
     _data=[[NSMutableData alloc]init];
     
      _localUsernameArray=[NSArray arrayWithContentsOfFile:localUsername];
     _localPasswordArray=[NSArray arrayWithContentsOfFile:localPassword];
     _remenberPasswordArray=[NSArray arrayWithContentsOfFile:localRemPassword];
-    NSLog(@"%@ %@",_remenberPasswordArray,_localPasswordArray);
+      NSLog(@"%@ %@",_remenberPasswordArray,_localPasswordArray);
     [self.dragButton setImage:[UIImage imageNamed:@"login_textfield_more@2x.png"] forState:UIControlStateNormal];
     
     //设置光标位置
@@ -43,19 +51,31 @@
     
     self.nameText.text=[_localUsernameArray objectAtIndex:_localUsernameArray.count-1];
     NSString *lString=[_remenberPasswordArray objectAtIndex:_localUsernameArray.count-1];
-     UIImage *lImage=[UIImage imageNamed:@"check@2x.png"];
-    if ([lString isEqualToString:@"1"]) {
-        self.cipherText.text=[_localPasswordArray objectAtIndex:_localUsernameArray.count-1];
-        [self.passwordSaveButton setImage:lImage forState:UIControlStateNormal];
-        _passwordSign=@"1";
-    }
     
     _tableView=[[UITableView alloc]initWithFrame:CGRectMake(74,225, 235, 220) style:UITableViewStylePlain];
-   _tableView.dataSource=self;
+    _tableView.dataSource=self;
     _tableView.delegate=self;
     _tableView.hidden=YES;
     
     [self.view addSubview:_tableView];
+
+    if ([lString isEqualToString:@"1"]) {
+        self.cipherText.text=[_localPasswordArray objectAtIndex:_localUsernameArray.count-1];
+        [self.passwordSaveButton setImage:signImage forState:UIControlStateNormal];
+        _passwordSign=@"1";
+    }
+    else{
+        [self.autologonButton setImage:signImage forState:UIControlStateNormal];
+        _autologonSign=@"0";
+    }
+    NSArray *AutologonArray=[NSArray arrayWithContentsOfFile:AutologonSign];
+    NSString *AutologonString=[AutologonArray objectAtIndex:0];
+    if ([AutologonString isEqualToString:@"1"]) {
+        [self.autologonButton setImage:signImage forState:UIControlStateNormal];
+        _autologonSign=@"1";
+        DelayViewController *lDelayViewController=[[DelayViewController alloc]init];
+        [self presentViewController:lDelayViewController animated:YES completion:nil];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -64,27 +84,34 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)cleanUsername{
-    self.nameText.text=@"";
-}
--(void)cleanCipher{
-    self.cipherText.text=@"";
+-(void)clickBackButton:(UIButton *)sender{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)cipherSaveButton:(UIButton *)sender {
-    UIImage *lImage=[UIImage imageNamed:@"check@2x.png"];
     if (!_passwordSign.intValue) {
-        [sender setImage:lImage forState:UIControlStateNormal];
+        [sender setImage:signImage forState:UIControlStateNormal];
         _passwordSign=@"1";
     }else{
         [sender setImage:nil forState:UIControlStateNormal];
         _passwordSign=@"0";
+        [self.autologonButton setImage:nil forState:UIControlStateNormal];
+        _autologonSign=@"0";
     }
 
 }
 
 - (IBAction)autologonButton:(UIButton *)sender {
-    
+    if (!_autologonSign.intValue) {
+        [self.passwordSaveButton setImage:signImage forState:UIControlStateNormal];
+        _passwordSign=@"1";
+        [sender setImage:signImage forState:UIControlStateNormal];
+        _autologonSign=@"1";
+    }
+    else{
+        [sender setImage:nil forState:UIControlStateNormal];
+        _autologonSign=@"0";
+    }
 }
 
 - (IBAction)dragButton:(UIButton *)sender {
@@ -115,11 +142,11 @@
     NSInteger row=[indexPath row];
     self.nameText.text=[_localUsernameArray objectAtIndex:_localUsernameArray.count-row-1];
     NSString *lString=[_remenberPasswordArray objectAtIndex:_remenberPasswordArray.count-row-1];
-     UIImage *lImage=[UIImage imageNamed:@"check@2x.png"];
+    
     NSLog(@"%i",lString.intValue);
     if (lString.intValue) {
         self.cipherText.text=[_localPasswordArray objectAtIndex:_localUsernameArray.count-row-1];
-        [self.passwordSaveButton setImage:lImage forState:UIControlStateNormal];
+        [self.passwordSaveButton setImage:signImage forState:UIControlStateNormal];
         _passwordSign=@"1";
     }
     else{
@@ -142,7 +169,7 @@
             }
     
     NSString *lBodyString=[NSString stringWithFormat:@"name=%@&password=%@",self.nameText.text,self.cipherText.text];
-    NSURL *lURL=[NSURL URLWithString:@"http://192.168.1.136/shop/login.php"];
+    NSURL *lURL=[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/shop/login.php",kIP]];
     NSMutableURLRequest *lURLRequest=[NSMutableURLRequest requestWithURL:lURL];
     [lURLRequest setHTTPMethod:@"post"];
     [lURLRequest setHTTPBody:[lBodyString dataUsingEncoding:NSUTF8StringEncoding]];
@@ -249,9 +276,10 @@
          [_tableView reloadData];
         _localPasswordArray=[NSArray arrayWithContentsOfFile:localPassword];
         _remenberPasswordArray=[NSArray arrayWithContentsOfFile:localRemPassword];
-       
-       InfoViewController *lFist=[[InfoViewController alloc]init];
-        [self.navigationController pushViewController:lFist animated:YES];
+        NSArray *lArray=[NSArray arrayWithObject:_autologonSign];
+        [lArray writeToFile:AutologonSign atomically:YES];
+        mainViewController *lmainViewController=[[mainViewController alloc]init];
+        [self presentViewController:lmainViewController animated:YES completion:nil];
     }
     else{
         UIAlertView *lAlertView=[[UIAlertView alloc]initWithTitle:@"error" message:@"Your Land Is Fail,Please Cheack Your Username and Your Password" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -260,10 +288,14 @@
     
 }
 - (IBAction)logonButton:(UIButton *)sender {
-    NSLog(@"111");
     logonViewController *llogonViewController=[[logonViewController alloc]init];
-    [self.navigationController pushViewController:llogonViewController animated:YES];
+    [self presentViewController:llogonViewController animated:YES completion:nil];
+//    [self.navigationController pushViewController:llogonViewController animated:YES];
 }
 - (IBAction)textExit:(UITextField *)sender {
+}
+- (IBAction)backButton:(UIButton *)sender {
+    mainViewController *lmainViewController=[[mainViewController alloc]init];
+    [self presentViewController:lmainViewController animated:YES completion:nil];
 }
 @end

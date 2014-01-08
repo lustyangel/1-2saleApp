@@ -16,7 +16,10 @@
     NSArray *_localPasswordArray;
     NSArray *_remenberPasswordArray;
     NSString *_passwordSign;
+    NSString *_autologonSign;
 }
+- (IBAction)backButton:(UIButton *)sender;
+@property (weak, nonatomic) IBOutlet UIButton *autologonButton;
 - (IBAction)textExit:(UITextField *)sender;
 @property (retain, nonatomic) IBOutlet UITextField *nameText;
 @property (retain, nonatomic) IBOutlet UITextField *cipherText;
@@ -27,7 +30,4 @@
 - (IBAction)landButton:(UIButton *)sender;
 - (IBAction)logonButton:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UIButton *dragButton;
--(void)cleanUsername;
--(void)cleanCipher;
-
 @end
