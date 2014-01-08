@@ -65,4 +65,37 @@
     }
 }
 
+// 修改购物车
+- (NSDictionary *)resetShoppingCart:(NSDictionary *)goodsInfoDictionary
+{
+    NSString *cartId = [goodsInfoDictionary objectForKey:@"cartid"];
+    NSString *goodsId = [goodsInfoDictionary objectForKey:@"goodsid"];
+    NSString *customerId = @"4";
+    NSString *goodsCount = [goodsInfoDictionary objectForKey:@"goodscount"];
+    
+    NSString *lBodyString = [NSString stringWithFormat:@"goodsid=%@&customerid=%@&goodscount=%@&cartid=%@",goodsId,customerId,goodsCount,cartId];
+    NSString *URLString = [NSString stringWithFormat:@"http://%@/shop/changecart.php",kIP];
+    NSURL *lURL = [NSURL URLWithString:URLString];
+    NSMutableURLRequest *lURLRequest = [NSMutableURLRequest requestWithURL:lURL];
+    [lURLRequest setHTTPMethod:@"post"];
+    [lURLRequest setHTTPBody:[lBodyString dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSError *error = nil;
+    NSData *lData = [NSURLConnection sendSynchronousRequest:lURLRequest returningResponse:nil error:&error];
+    if (lData == nil)
+    {
+        NSLog(@"send request failed: %@", error);
+        NSDictionary *dictionary = [[NSDictionary alloc] init];
+        return dictionary;
+    }
+    else
+    {
+        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:lData options:NSJSONReadingAllowFragments error:nil];
+        NSDictionary *lDic = [dictionary objectForKey:@"msg"];
+        NSLog(@"%@",lDic);
+        return lDic;
+    }
+}
+
+
 @end

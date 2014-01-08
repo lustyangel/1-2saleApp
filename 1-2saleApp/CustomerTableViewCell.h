@@ -17,10 +17,12 @@
 @property (nonatomic, retain)UILabel *goodsNameLabel;       // 商品名称
 @property (nonatomic, retain)UILabel *goodsColorLabel;      // 商品颜色
 @property (nonatomic, retain)UILabel *goodsCountsLabel;     // 商品数量
-@property (nonatomic, retain)UILabel *goodsPriceLabel;           // 商品价值
+@property (nonatomic, retain)UILabel *goodsPriceLabel;      // 商品价值
 
 @property (nonatomic, retain)UIButton *deleteButton;        // 删除购物车
 @property (nonatomic, retain)UIButton *subdeceButton;       // 减少商品数量
 @property (nonatomic, retain)UIButton *addButton;           // 增加商品数量
 @property (nonatomic, retain)UIButton *chooseButton;        // 选择按钮
+
+- (void)chooseButtonClick;
 @end

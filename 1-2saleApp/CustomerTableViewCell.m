@@ -7,6 +7,8 @@
 //
 
 #import "CustomerTableViewCell.h"
+#import "ShoppingCartInterface.h"
+#import "shareManager.h"
 
 @implementation CustomerTableViewCell
 
@@ -49,6 +51,7 @@
         [_subdeceButton setTitle:@"—" forState:UIControlStateNormal];
         [_subdeceButton setTitleColor:[UIColor colorWithHue:1 saturation:0 brightness:0 alpha:0.6] forState:UIControlStateNormal];
         _subdeceButton.backgroundColor = [UIColor colorWithHue:1 saturation:0 brightness:0 alpha:0.1];
+        [_subdeceButton addTarget:self action:@selector(subdeceButton:) forControlEvents:UIControlEventTouchUpInside];
         
         _addButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _addButton.frame = CGRectMake(190, 90, 30, 15);
@@ -61,7 +64,7 @@
         _chooseButton.frame = CGRectMake(285, 15, 15, 15);
         _chooseButton.layer.borderWidth = 0.3;
         _chooseButton.layer.borderColor = [[UIColor blueColor] CGColor];
-        [_chooseButton addTarget:self action:@selector(chooseButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_chooseButton addTarget:self action:@selector(chooseButtonClick) forControlEvents:UIControlEventTouchUpInside];
         
         UIView *lView = [[UIView alloc] initWithFrame:CGRectMake(0, 140, 320, 10)];
         lView.backgroundColor = [UIColor underPageBackgroundColor];
@@ -88,24 +91,69 @@
 }
 
 #pragma mark - Private Method
-- (void)chooseButtonClick:(UIButton *)sender
+- (void)chooseButtonClick
 {
     if (_isChooseGoods)
     {
         [_chooseButton setImage:nil forState:UIControlStateNormal];
         _chooseButton.layer.borderWidth = 0.3;
         _isChooseGoods = NO;
+        KsingleManager.isShowAccountView --;
+        
+        // 扫描本购物车内商品总价
+        NSScanner *lScanner = [NSScanner scannerWithString:_goodsPriceLabel.text];
+        float goodsValue;
+        [lScanner scanString:@"￥" intoString:nil];
+        [lScanner scanFloat:&goodsValue];
+        [shareManager defaultManager].accountAllGoodsPrice -= goodsValue;
+        NSLog(@"%0.2f",[shareManager defaultManager].accountAllGoodsPrice);
     }
     else
     {
+        
+        
         [_chooseButton setImage:[UIImage imageNamed:@"chooseGoods.jpg"] forState:UIControlStateNormal];
         _chooseButton.layer.borderWidth = 0;
         _isChooseGoods = YES;
+        KsingleManager.isShowAccountView ++;
+        
+        // 扫描本购物车内商品总价
+        NSScanner *lScanner = [NSScanner scannerWithString:_goodsPriceLabel.text];
+        float goodsValue;
+        [lScanner scanString:@"￥" intoString:nil];
+        [lScanner scanFloat:&goodsValue];
+        [shareManager defaultManager].accountAllGoodsPrice += goodsValue;
+        NSLog(@"%0.2f",[shareManager defaultManager].accountAllGoodsPrice);
     }
+    
+    NSDictionary *lDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:@"accountGoods",@"event", nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"post" object:self userInfo:lDictionary];
 }
 
 - (void)addButton:(UIButton *)sender
 {
     self.goodsCounts ++;
+    [self resetGoodsCart];
+}
+
+- (void)subdeceButton:(UIButton *)sender
+{
+    self.goodsCounts --;
+    [self resetGoodsCart];
+}
+
+#pragma mark - ShoppingCart Interface
+// 增加、减少购物车商品数量
+- (void)resetGoodsCart
+{
+    ShoppingCartInterface *lShoppingCartInterface = [[ShoppingCartInterface alloc] init];
+    NSDictionary *lDic = [lShoppingCartInterface checkShoppingCart:@"4"];
+    NSArray *lArray = [lDic objectForKey:@"info"];
+    NSMutableDictionary *goodsInfoDictionary = [[NSMutableDictionary alloc] initWithDictionary:[lArray objectAtIndex:self.tag-100]];
+    [goodsInfoDictionary setObject:[NSString stringWithFormat:@"%i",self.goodsCounts] forKey:@"goodscount"];
+    NSMutableDictionary *lDictionary = [[NSMutableDictionary alloc] initWithDictionary:[lShoppingCartInterface resetShoppingCart:goodsInfoDictionary]];
+    [lDictionary setObject:@"addOrSubtract" forKey:@"event"];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"post" object:self userInfo:lDictionary];
 }
 @end
