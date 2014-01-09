@@ -64,14 +64,17 @@
 //}
 
 
-#pragma mark - 导航条
+#pragma mark - 导航条热门商品和所有商品切换
 
 -(void)actionViewSelect:(int)selectNumber{
     switch (selectNumber) {
         case 0:{
+            [_AllView changeToHotView];
             if (_HotView==nil) {
                 _HotView=[[ShowHotView alloc]initWithFrame:CGRectMake(0, 44, 320, 504)];
                 [_mainView addSubview:_HotView];
+            }else{
+                [_HotView reloadView];
             }
             [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
                 _AllView.center=CGPointMake(480, _AllView.center.y);
@@ -81,10 +84,13 @@
             break;
             
         case 1:{
+            
             if (_AllView==nil) {
                 _AllView=[[ShowAllView alloc]initWithFrame:CGRectMake(320, 44, 320, 504)];
                 _AllView.LLDelegate=self;
                 [_mainView addSubview:_AllView];
+            }else{
+                [_AllView reloadView];
             }
             
             [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
@@ -99,10 +105,13 @@
     }
 }
 
+#pragma mark - 左右菜单栏
+
 -(void)buttonItemSelect:(int)selectNumber{
 //    [_lSearchBar.lField resignFirstResponder];
     if (selectNumber==0) {
 //        self.view.center=CGPointMake(320, self.view.center.y);
+        
     }
     else{
         if (_rightView==nil) {

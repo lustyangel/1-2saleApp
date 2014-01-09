@@ -90,7 +90,7 @@
         HotView *lHotView=[[HotView alloc]initWithDictionary:lDic];
         lHotView.frame=CGRectMake(10+i%2*160, 10+i/2*170, 140, 160);
         lHotView.LLDelegate=self;
-            [_lScrollView addSubview:lHotView];
+        [_lScrollView addSubview:lHotView];
 //        }
 //        else{
 //            HotView *lHotView=[[HotView alloc]initWithDictionary:lDic];
@@ -102,6 +102,12 @@
 
 -(void)HotViewClick{
     [_LLDelegate ShowHotViewClick];
+}
+
+-(void)reloadView{
+    if (_showArray.count==0) {
+        [self getdata];
+    }
 }
 
 /*

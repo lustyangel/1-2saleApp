@@ -29,7 +29,7 @@
         [self addSubview:leftButton];
         
         UIButton *rightButton=[[UIButton alloc]initWithFrame:CGRectMake(280, 5, 34, 34)];
-        [rightButton setImage:[UIImage imageNamed:@"leftButton.png"] forState:UIControlStateNormal];
+        [rightButton setImage:[UIImage imageNamed:@"fangzi.png"] forState:UIControlStateNormal];
         [rightButton addTarget:self action:@selector(rightButtonTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
         [rightButton addTarget:self action:@selector(rightButtonTouchDown:) forControlEvents:UIControlEventTouchDown];
         [rightButton addTarget:self action:@selector(rightButtonTouchCancel:) forControlEvents:UIControlEventTouchUpOutside];

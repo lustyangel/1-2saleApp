@@ -21,6 +21,8 @@
 @property (nonatomic,retain)UIButton *retryButton;
 @property (nonatomic,assign)id<ShowHotViewDelegate>LLDelegate;
 
+-(void)reloadView;
+
 @end
 
 @protocol ShowHotViewDelegate <NSObject>

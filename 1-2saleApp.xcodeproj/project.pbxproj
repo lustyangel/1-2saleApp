@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		10216043187E498200C7B833 /* ConnectFail.png in Resources */ = {isa = PBXBuildFile; fileRef = 10216042187E498200C7B833 /* ConnectFail.png */; };
 		10216049187E4BFA00C7B833 /* retry.png in Resources */ = {isa = PBXBuildFile; fileRef = 10216048187E4BFA00C7B833 /* retry.png */; };
+		1021604B187E9F3100C7B833 /* fangzi.png in Resources */ = {isa = PBXBuildFile; fileRef = 1021604A187E9F3100C7B833 /* fangzi.png */; };
 		1023FF2D1874F4F6000E19C6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1023FF2C1874F4F6000E19C6 /* UIKit.framework */; };
 		1023FF2F1874F4F6000E19C6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1023FF2E1874F4F6000E19C6 /* Foundation.framework */; };
 		1023FF311874F4F6000E19C6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1023FF301874F4F6000E19C6 /* CoreGraphics.framework */; };
@@ -105,6 +106,7 @@
 /* Begin PBXFileReference section */
 		10216042187E498200C7B833 /* ConnectFail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ConnectFail.png; sourceTree = "<group>"; };
 		10216048187E4BFA00C7B833 /* retry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = retry.png; sourceTree = "<group>"; };
+		1021604A187E9F3100C7B833 /* fangzi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fangzi.png; sourceTree = "<group>"; };
 		1023FF291874F4F6000E19C6 /* 1-2saleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "1-2saleApp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1023FF2C1874F4F6000E19C6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1023FF2E1874F4F6000E19C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -332,6 +334,7 @@
 		1023FF5418750DFD000E19C6 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				1021604A187E9F3100C7B833 /* fangzi.png */,
 				10216048187E4BFA00C7B833 /* retry.png */,
 				10216042187E498200C7B833 /* ConnectFail.png */,
 				10D02B3618764C23007FC518 /* product.png */,
@@ -667,6 +670,7 @@
 				10754982187D524F00174964 /* evaluateViewController.xib in Resources */,
 				10216043187E498200C7B833 /* ConnectFail.png in Resources */,
 				10216049187E4BFA00C7B833 /* retry.png in Resources */,
+				1021604B187E9F3100C7B833 /* fangzi.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

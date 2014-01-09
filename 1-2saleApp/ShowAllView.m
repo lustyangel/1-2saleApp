@@ -120,7 +120,7 @@
 #pragma mark - 搜索栏 textfied
 
 -(BOOL)LLtextField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-    
+//    UITextField
     if (range.location==0&&range.length==1){
         _lDeleteButton.hidden=YES;
         [_lSearchButton setImage:nil forState:UIControlStateNormal];
@@ -259,6 +259,7 @@
 
 -(void)backAllProduct:(UIButton *)sender{
     self.lSearchText=@"";
+    _lDeleteButton.hidden=YES;
     [_showArray removeAllObjects];
     [self getdata];
     sender.hidden=YES;
@@ -451,6 +452,16 @@
     [UIView commitAnimations];
     _loadState=0;
     [_loadView xuanzhuanfanhui];
+}
+
+#pragma mark - 切换到热门商品
+-(void)changeToHotView{
+    [_lSearchBar.lField resignFirstResponder];
+}
+-(void)reloadView{
+    if (_showArray.count==0) {
+        [self getdata];
+    }
 }
 /*
 // Only override drawRect: if you perform custom drawing.

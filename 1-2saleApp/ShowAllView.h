@@ -41,6 +41,9 @@
 
 @property (nonatomic,assign)id<ShowAllViewDelegate>LLDelegate;
 
+-(void)changeToHotView;
+-(void)reloadView;
+
 @end
 
 @protocol ShowAllViewDelegate <NSObject>

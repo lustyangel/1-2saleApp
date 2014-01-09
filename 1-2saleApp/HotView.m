@@ -25,7 +25,7 @@
 {
     self=[super init];
     if (self) {
-        self.layer.borderColor=[UIColor blackColor].CGColor;
+        self.layer.borderColor=[UIColor grayColor].CGColor;
         self.layer.borderWidth=1;
         self.backgroundColor=[UIColor whiteColor];
         
@@ -42,7 +42,7 @@
         name.font=[UIFont systemFontOfSize:12];
         [self addSubview:name];
         //140, 160
-        _lImageView=[[UIImageView alloc]initWithFrame:CGRectMake(20, 5, 90,90)];
+        _lImageView=[[UIImageView alloc]initWithFrame:CGRectMake(25, 5, 90,90)];
         _lImageView.image=[self judgeLocationImage:[dic objectForKey:@"headerimage"]];
         [self addSubview:_lImageView];
         
