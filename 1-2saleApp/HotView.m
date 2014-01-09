@@ -35,15 +35,33 @@
         [self addTarget:self action:@selector(HotViewTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
         
 //        self.backgroundColor=[UIColor grayColor];
-        UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(5, 110, 130, 50)];
-        label.text=[dic objectForKey:@"name"];
-        label.numberOfLines=3;
-        label.font=[UIFont systemFontOfSize:13];
-        [self addSubview:label];
+        UILabel *name=[[UILabel alloc]initWithFrame:CGRectMake(5, 100, 130, 30)];
+//        name.backgroundColor=[UIColor grayColor];
+        name.text=[dic objectForKey:@"name"];
+        name.numberOfLines=2;
+        name.font=[UIFont systemFontOfSize:12];
+        [self addSubview:name];
         //140, 160
-        _lImageView=[[UIImageView alloc]initWithFrame:CGRectMake(20, 5, 100,100)];
+        _lImageView=[[UIImageView alloc]initWithFrame:CGRectMake(20, 5, 90,90)];
         _lImageView.image=[self judgeLocationImage:[dic objectForKey:@"headerimage"]];
         [self addSubview:_lImageView];
+        
+        UILabel *price=[[UILabel alloc]initWithFrame:CGRectMake(5, 130, 130, 15)];
+//        price.backgroundColor=[UIColor grayColor];
+        price.text=[NSString stringWithFormat:@"¥  %@",[dic objectForKey:@"price"]];
+        price.textColor=[UIColor redColor];
+//        price.numberOfLines=2;
+        price.font=[UIFont systemFontOfSize:12];
+        [self addSubview:price];
+        
+        UILabel *sellCount=[[UILabel alloc]initWithFrame:CGRectMake(5, 145, 130, 15)];
+//        sellCount.backgroundColor=[UIColor grayColor];
+        sellCount.text=[NSString stringWithFormat:@"已售： %@",[dic objectForKey:@"sellcount"]];
+        sellCount.textAlignment=NSTextAlignmentRight;
+//        sellCount.textColor=[UIColor redColor];
+//        sellCount.numberOfLines=2;
+        sellCount.font=[UIFont systemFontOfSize:12];
+        [self addSubview:sellCount];
     }
     return self;
 }

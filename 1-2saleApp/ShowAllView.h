@@ -13,6 +13,7 @@
 #import "loadView.h"
 #import "ASINetworkQueue.h"
 @protocol ShowAllViewDelegate;
+
 @interface ShowAllView : UIView<LLSearchBarDelegate,UITableViewDataSource,UITableViewDelegate,NSURLConnectionDataDelegate,LLSelectButtonDelegate>{
     NSMutableData *_lData;
     int _paixu;
@@ -20,6 +21,7 @@
     loadView *_loadView;
     int _loadState;
     UIImageView *_sorryImage;
+    UIImageView *_connectFaileImage;
     UIButton *_backButton;
     BOOL _searchState;  // 0  普通状态, 1  ,2  ,3 正在下载
     UIButton *_FrontView;
@@ -33,13 +35,16 @@
 @property (nonatomic,retain)NSMutableArray *showArray;
 @property (nonatomic,retain)LLSearchBar *lSearchBar;
 @property (nonatomic,retain)ASINetworkQueue *queue;
+@property (nonatomic,copy)NSString *lSearchText;
 
-//@property (nonatomic,assign)<id>
+@property (nonatomic,retain)UIButton *retryButton;
+
+@property (nonatomic,assign)id<ShowAllViewDelegate>LLDelegate;
 
 @end
 
 @protocol ShowAllViewDelegate <NSObject>
 
--(void)showAllViewDelegate;
+-(void)showAllViewDelegate:(int)index;
 
 @end

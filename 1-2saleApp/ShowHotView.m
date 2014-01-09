@@ -18,7 +18,7 @@
         _lData=[[NSMutableData alloc]init];
         _showArray=[[NSMutableArray alloc]init];
         
-        self.backgroundColor=[UIColor underPageBackgroundColor];
+//        self.backgroundColor=[UIColor underPageBackgroundColor];
         _lScrollView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, 320, 504)];
         _lScrollView.delegate=self;
         _lScrollView.contentSize=CGSizeMake(320, 10+5*170);
@@ -51,14 +51,37 @@
 }
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
     NSLog(@"%@",error);
-    UIAlertView *lAlertView=[[UIAlertView alloc]initWithTitle:@"错误提示" message:@"网络连接错误，请检查网络连接" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
-    [lAlertView show];
+//    _lTabelView.hidden=YES;
+    if (_connectFaileImage==nil) {
+        _connectFaileImage=[[UIImageView alloc]initWithFrame:CGRectMake(90, 150, 150, 227)];
+        _connectFaileImage.image=[UIImage imageNamed:@"ConnectFail.png"];
+        [self addSubview:_connectFaileImage];
+        
+        _retryButton=[[UIButton alloc]initWithFrame:CGRectMake(130, 350, 70, 30)];
+        _retryButton.layer.borderColor=[UIColor darkGrayColor].CGColor;
+        _retryButton.layer.borderWidth=1;
+        [_retryButton setImage:[UIImage imageNamed:@"retry.png"] forState:UIControlStateNormal];
+        _retryButton.backgroundColor=[UIColor grayColor];
+        _retryButton.titleLabel.textColor=[UIColor blackColor];
+        [_retryButton addTarget:self action:@selector(retryClick:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:_retryButton];
+    }
+    _retryButton.hidden=NO;
+    _connectFaileImage.hidden=NO;
+//    UIAlertView *lAlertView=[[UIAlertView alloc]initWithTitle:@"错误提示" message:@"网络连接错误，请检查网络连接" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+//    [lAlertView show];
 }
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection{
+    _retryButton.hidden=YES;
+    _connectFaileImage.hidden=YES;
     NSDictionary *lDic=[NSJSONSerialization JSONObjectWithData:_lData options:NSJSONReadingAllowFragments error:nil];
     [_showArray setArray:[lDic objectForKey:@"msg"]];
     [self showView];
+}
+
+-(void)retryClick:(UIButton *)sender{
+    [self getdata];
 }
 
 -(void)showView{

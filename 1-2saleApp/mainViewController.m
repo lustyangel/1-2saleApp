@@ -83,6 +83,7 @@
         case 1:{
             if (_AllView==nil) {
                 _AllView=[[ShowAllView alloc]initWithFrame:CGRectMake(320, 44, 320, 504)];
+                _AllView.LLDelegate=self;
                 [_mainView addSubview:_AllView];
             }
             
@@ -179,6 +180,14 @@
 #pragma mark - hotView 点击事件，传入商品id
 
 -(void)ShowHotViewClick{
+    if (_lGoodsIngoViewController==nil) {
+        _lGoodsIngoViewController=[[GoodsIngoViewController alloc]init];
+    }
+    [self presentViewController:_lGoodsIngoViewController animated:YES completion:nil];
+    NSLog(@"%i",[DanLi sharDanli].goodsID);
+}
+
+-(void)showAllViewDelegate:(int)index{
     if (_lGoodsIngoViewController==nil) {
         _lGoodsIngoViewController=[[GoodsIngoViewController alloc]init];
     }

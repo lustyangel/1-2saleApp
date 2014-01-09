@@ -18,11 +18,13 @@
         self.backgroundColor=[UIColor whiteColor];
         
         _lData=[[NSMutableData alloc]init];
-        _showArray=[[NSMutableArray alloc]init];
+        self.showArray=[[NSMutableArray alloc]init];
         _updown=0;
         _paixu=0;
         _loadState=0;
         _searchState=NO;
+        self.lSearchText=[[NSString alloc]init];
+        self.lSearchText=@"";
         
         _lSearchButton=[[UIButton alloc]initWithFrame:CGRectMake(270, 5, 36, 30)];
         [_lSearchButton setImage:[UIImage imageNamed:@"searchButton1.png"] forState:UIControlStateNormal];
@@ -77,8 +79,6 @@
 
 -(void)searchClickUpInside:(UIButton *)sender{
     sender.backgroundColor=[UIColor colorWithRed:1 green:66/255 blue:66/255 alpha:1];
-    
-    
     if ([_lSearchBar.lField.text isEqualToString:@""]) {
         if (_lSearchBar.lField.editing==NO) {
             return;
@@ -88,8 +88,9 @@
         }
     }
     else{
+        self.lSearchText=_lSearchBar.lField.text;
         [_showArray removeAllObjects];
-        [self searchData:_lSearchBar.lField.text];
+        [self searchData];
         [_lSearchBar.lField resignFirstResponder];
         _searchState=YES;
     }
@@ -151,8 +152,25 @@
 }
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
     NSLog(@"%@",error);
-    UIAlertView *lAlertView=[[UIAlertView alloc]initWithTitle:@"错误提示" message:@"网络连接错误，请检查网络连接" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
-    [lAlertView show];
+    _lTabelView.hidden=YES;
+    if (_connectFaileImage==nil) {
+        _connectFaileImage=[[UIImageView alloc]initWithFrame:CGRectMake(90, 170, 150, 227)];
+        _connectFaileImage.image=[UIImage imageNamed:@"ConnectFail.png"];
+        [self addSubview:_connectFaileImage];
+        
+        _retryButton=[[UIButton alloc]initWithFrame:CGRectMake(130, 350, 70, 30)];
+        _retryButton.layer.borderColor=[UIColor darkGrayColor].CGColor;
+        _retryButton.layer.borderWidth=1;
+        [_retryButton setImage:[UIImage imageNamed:@"retry.png"] forState:UIControlStateNormal];
+        _retryButton.backgroundColor=[UIColor grayColor];
+        _retryButton.titleLabel.textColor=[UIColor blackColor];
+        [_retryButton addTarget:self action:@selector(retryClick:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:_retryButton];
+    }
+    
+    _connectFaileImage.hidden=NO;
+//    UIAlertView *lAlertView=[[UIAlertView alloc]initWithTitle:@"错误提示" message:@"网络连接错误，请检查网络连接" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+//    [lAlertView show];
 }
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection{
@@ -160,6 +178,8 @@
     
     
     _sorryImage.hidden=YES;
+    _connectFaileImage.hidden=YES;
+    _retryButton.hidden=YES;
     _lTabelView.hidden=NO;
     NSDictionary *lDic=[NSJSONSerialization JSONObjectWithData:_lData options:NSJSONReadingAllowFragments error:nil];
     NSDictionary *lDic1=[lDic objectForKey:@"msg"];
@@ -224,9 +244,21 @@
     [_lTabelView reloadData];
 }
 
+-(void)retryClick:(UIButton *)sender{
+    if ([_lSearchText isEqualToString:@""]) {
+        [_showArray removeAllObjects];
+        [self getdata];
+    }
+    else{
+        [_showArray removeAllObjects];
+        [self searchData];
+    }
+}
+
 #pragma mark - 返回所有商品按钮
 
 -(void)backAllProduct:(UIButton *)sender{
+    self.lSearchText=@"";
     [_showArray removeAllObjects];
     [self getdata];
     sender.hidden=YES;
@@ -262,6 +294,9 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSDictionary *lDic=[_showArray objectAtIndex:[indexPath row]];
+    [DanLi sharDanli].goodsID=[[lDic objectForKey:@"goodsid"]intValue];
+    [_LLDelegate showAllViewDelegate:[indexPath row]];
 }
 
 #pragma mark - 判断本地是否有图片
@@ -319,13 +354,13 @@
         _updown=SelectValue.value2;
     }
     
-    if ([_lSearchBar.lField.text isEqualToString:@""]) {
+    if ([_lSearchText isEqualToString:@""]) {
         [_showArray removeAllObjects];
         [self getdata];
     }
     else{
         [_showArray removeAllObjects];
-        [self searchData:nil];
+        [self searchData];
     }
     
     
@@ -350,9 +385,9 @@
     [lConnection1 start];
 }
 
--(void)searchData:(NSString *)searchText{
+-(void)searchData{
     //search=三星&type=0&order=0&owncount=0
-    NSString *bodyString=[NSString stringWithFormat:@"search=%@&type=%i&order=%i&owncount=%i",_lSearchBar.lField.text,_paixu,_updown,_showArray.count];
+    NSString *bodyString=[NSString stringWithFormat:@"search=%@&type=%i&order=%i&owncount=%i",_lSearchText,_paixu,_updown,_showArray.count];
     
     NSURL *lUrl=[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/shop/searchgoods.php",kIP]];
     NSMutableURLRequest *lRequest1=[NSMutableURLRequest requestWithURL:lUrl];

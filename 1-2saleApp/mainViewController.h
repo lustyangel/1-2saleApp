@@ -14,7 +14,7 @@
 #import "GoodsIngoViewController.h"
 #import "HotView.h"
 
-@interface mainViewController : UIViewController<LLToolbarDelegate,RightViewDelegate,ShowHotViewDelegate>{
+@interface mainViewController : UIViewController<LLToolbarDelegate,RightViewDelegate,ShowHotViewDelegate,ShowAllViewDelegate>{
     UIButton *_FrontView;
     
 }
