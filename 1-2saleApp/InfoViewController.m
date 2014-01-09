@@ -33,6 +33,7 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    UILabel *lLabel=[[UILabel alloc]init];
 }
 
 @end
