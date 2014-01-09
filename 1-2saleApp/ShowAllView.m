@@ -175,15 +175,15 @@
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection{
     _requesting=NO;
-    
-    
     _sorryImage.hidden=YES;
     _connectFaileImage.hidden=YES;
     _retryButton.hidden=YES;
     _lTabelView.hidden=NO;
+    
     NSDictionary *lDic=[NSJSONSerialization JSONObjectWithData:_lData options:NSJSONReadingAllowFragments error:nil];
     NSDictionary *lDic1=[lDic objectForKey:@"msg"];
     int count=[[lDic1 objectForKey:@"count"]intValue];
+    
     if (_loadState==3) {
         [self updateOK];
         if (_showArray.count<count) {
