@@ -16,6 +16,6 @@
 #import "Reachability.h"
 #import "DanLi.h"
 
-#define kIP @"192.168.1.136"
+#define kIP @"192.168.1.135"
 
 #endif

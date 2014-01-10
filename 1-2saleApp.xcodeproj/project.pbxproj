@@ -32,6 +32,16 @@
 		10659E2B187BF6BE0068D576 /* ShowHotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10659E28187BF6BE0068D576 /* ShowHotView.m */; };
 		10659E2C187BF6BE0068D576 /* ShowAllView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10659E2A187BF6BE0068D576 /* ShowAllView.m */; };
 		10659E35187BFB7C0068D576 /* LLToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 10659E34187BFB7C0068D576 /* LLToolbar.m */; };
+		106F9608187EAE1E00935EFA /* lengjing-1.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 106F9605187EAE1D00935EFA /* lengjing-1.tiff */; };
+		106F9609187EAE1E00935EFA /* lengjing-2.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 106F9606187EAE1E00935EFA /* lengjing-2.tiff */; };
+		106F960A187EAE1E00935EFA /* lengjing-3.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 106F9607187EAE1E00935EFA /* lengjing-3.tiff */; };
+		106F9616187EAE7200935EFA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 106F960C187EAE7200935EFA /* ViewController.m */; };
+		106F9617187EAE7200935EFA /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 106F960D187EAE7200935EFA /* ViewController.xib */; };
+		106F9618187EAE7200935EFA /* DelayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 106F960F187EAE7200935EFA /* DelayViewController.m */; };
+		106F9619187EAE7200935EFA /* logonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 106F9611187EAE7200935EFA /* logonViewController.m */; };
+		106F961A187EAE7200935EFA /* logonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 106F9612187EAE7200935EFA /* logonViewController.xib */; };
+		106F961B187EAE7200935EFA /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 106F9614187EAE7200935EFA /* InfoViewController.m */; };
+		106F961C187EAE7200935EFA /* InfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 106F9615187EAE7200935EFA /* InfoViewController.xib */; };
 		10754965187D522B00174964 /* AllAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1075495E187D522B00174964 /* AllAddressViewController.m */; };
 		10754966187D522B00174964 /* AddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10754960187D522B00174964 /* AddressViewController.m */; };
 		10754967187D522B00174964 /* AddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10754961187D522B00174964 /* AddressViewController.xib */; };
@@ -86,12 +96,6 @@
 		10D93CAA187BF841009FEBB4 /* login_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 10D93CA2187BF841009FEBB4 /* login_bg.jpg */; };
 		10D93CAB187BF841009FEBB4 /* check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 10D93CA3187BF841009FEBB4 /* check@2x.png */; };
 		10D93CAC187BF841009FEBB4 /* aoTeMan.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 10D93CA4187BF841009FEBB4 /* aoTeMan.jpg */; };
-		10D93CB6187BF84C009FEBB4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10D93CAE187BF84C009FEBB4 /* ViewController.m */; };
-		10D93CB7187BF84C009FEBB4 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10D93CAF187BF84C009FEBB4 /* ViewController.xib */; };
-		10D93CB8187BF84C009FEBB4 /* logonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10D93CB1187BF84C009FEBB4 /* logonViewController.m */; };
-		10D93CB9187BF84C009FEBB4 /* logonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10D93CB2187BF84C009FEBB4 /* logonViewController.xib */; };
-		10D93CBA187BF84C009FEBB4 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10D93CB4187BF84C009FEBB4 /* InfoViewController.m */; };
-		10D93CBB187BF84C009FEBB4 /* InfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10D93CB5187BF84C009FEBB4 /* InfoViewController.xib */; };
 		10D93CC1187BF890009FEBB4 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10D93CBF187BF890009FEBB4 /* UserInfoViewController.m */; };
 		10D93CC2187BF890009FEBB4 /* UserInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10D93CC0187BF890009FEBB4 /* UserInfoViewController.xib */; };
 		10E8B06A187A3C9100112159 /* loadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E8B069187A3C9100112159 /* loadView.m */; };
@@ -138,6 +142,20 @@
 		10659E2A187BF6BE0068D576 /* ShowAllView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowAllView.m; sourceTree = "<group>"; };
 		10659E33187BFB7C0068D576 /* LLToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLToolbar.h; sourceTree = "<group>"; };
 		10659E34187BFB7C0068D576 /* LLToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLToolbar.m; sourceTree = "<group>"; };
+		106F9605187EAE1D00935EFA /* lengjing-1.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "lengjing-1.tiff"; sourceTree = "<group>"; };
+		106F9606187EAE1E00935EFA /* lengjing-2.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "lengjing-2.tiff"; sourceTree = "<group>"; };
+		106F9607187EAE1E00935EFA /* lengjing-3.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "lengjing-3.tiff"; sourceTree = "<group>"; };
+		106F960B187EAE7200935EFA /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		106F960C187EAE7200935EFA /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		106F960D187EAE7200935EFA /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
+		106F960E187EAE7200935EFA /* DelayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelayViewController.h; sourceTree = "<group>"; };
+		106F960F187EAE7200935EFA /* DelayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelayViewController.m; sourceTree = "<group>"; };
+		106F9610187EAE7200935EFA /* logonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = logonViewController.h; sourceTree = "<group>"; };
+		106F9611187EAE7200935EFA /* logonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = logonViewController.m; sourceTree = "<group>"; };
+		106F9612187EAE7200935EFA /* logonViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = logonViewController.xib; sourceTree = "<group>"; };
+		106F9613187EAE7200935EFA /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
+		106F9614187EAE7200935EFA /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
+		106F9615187EAE7200935EFA /* InfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoViewController.xib; sourceTree = "<group>"; };
 		1075495D187D522B00174964 /* AllAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllAddressViewController.h; sourceTree = "<group>"; };
 		1075495E187D522B00174964 /* AllAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllAddressViewController.m; sourceTree = "<group>"; };
 		1075495F187D522B00174964 /* AddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressViewController.h; sourceTree = "<group>"; };
@@ -221,15 +239,6 @@
 		10D93CA2187BF841009FEBB4 /* login_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = login_bg.jpg; sourceTree = "<group>"; };
 		10D93CA3187BF841009FEBB4 /* check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check@2x.png"; sourceTree = "<group>"; };
 		10D93CA4187BF841009FEBB4 /* aoTeMan.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = aoTeMan.jpg; sourceTree = "<group>"; };
-		10D93CAD187BF84C009FEBB4 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		10D93CAE187BF84C009FEBB4 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		10D93CAF187BF84C009FEBB4 /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
-		10D93CB0187BF84C009FEBB4 /* logonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = logonViewController.h; sourceTree = "<group>"; };
-		10D93CB1187BF84C009FEBB4 /* logonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = logonViewController.m; sourceTree = "<group>"; };
-		10D93CB2187BF84C009FEBB4 /* logonViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = logonViewController.xib; sourceTree = "<group>"; };
-		10D93CB3187BF84C009FEBB4 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
-		10D93CB4187BF84C009FEBB4 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
-		10D93CB5187BF84C009FEBB4 /* InfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoViewController.xib; sourceTree = "<group>"; };
 		10D93CBE187BF890009FEBB4 /* UserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoViewController.h; sourceTree = "<group>"; };
 		10D93CBF187BF890009FEBB4 /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
 		10D93CC0187BF890009FEBB4 /* UserInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoViewController.xib; sourceTree = "<group>"; };
@@ -499,6 +508,9 @@
 		10D93C9B187BF829009FEBB4 /* LRpicture */ = {
 			isa = PBXGroup;
 			children = (
+				106F9605187EAE1D00935EFA /* lengjing-1.tiff */,
+				106F9606187EAE1E00935EFA /* lengjing-2.tiff */,
+				106F9607187EAE1E00935EFA /* lengjing-3.tiff */,
 				10D93C9D187BF841009FEBB4 /* login_textfield_more_flip@2x.png */,
 				10D93C9E187BF841009FEBB4 /* login_textfield_more@2x.png */,
 				10D93C9F187BF841009FEBB4 /* login_btn_blue_press.png */,
@@ -514,15 +526,17 @@
 		10D93C9C187BF833009FEBB4 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				10D93CAD187BF84C009FEBB4 /* ViewController.h */,
-				10D93CAE187BF84C009FEBB4 /* ViewController.m */,
-				10D93CAF187BF84C009FEBB4 /* ViewController.xib */,
-				10D93CB0187BF84C009FEBB4 /* logonViewController.h */,
-				10D93CB1187BF84C009FEBB4 /* logonViewController.m */,
-				10D93CB2187BF84C009FEBB4 /* logonViewController.xib */,
-				10D93CB3187BF84C009FEBB4 /* InfoViewController.h */,
-				10D93CB4187BF84C009FEBB4 /* InfoViewController.m */,
-				10D93CB5187BF84C009FEBB4 /* InfoViewController.xib */,
+				106F960B187EAE7200935EFA /* ViewController.h */,
+				106F960C187EAE7200935EFA /* ViewController.m */,
+				106F960D187EAE7200935EFA /* ViewController.xib */,
+				106F960E187EAE7200935EFA /* DelayViewController.h */,
+				106F960F187EAE7200935EFA /* DelayViewController.m */,
+				106F9610187EAE7200935EFA /* logonViewController.h */,
+				106F9611187EAE7200935EFA /* logonViewController.m */,
+				106F9612187EAE7200935EFA /* logonViewController.xib */,
+				106F9613187EAE7200935EFA /* InfoViewController.h */,
+				106F9614187EAE7200935EFA /* InfoViewController.m */,
+				106F9615187EAE7200935EFA /* InfoViewController.xib */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -658,9 +672,6 @@
 				10D93CAA187BF841009FEBB4 /* login_bg.jpg in Resources */,
 				10D93CAB187BF841009FEBB4 /* check@2x.png in Resources */,
 				10D93CAC187BF841009FEBB4 /* aoTeMan.jpg in Resources */,
-				10D93CB7187BF84C009FEBB4 /* ViewController.xib in Resources */,
-				10D93CB9187BF84C009FEBB4 /* logonViewController.xib in Resources */,
-				10D93CBB187BF84C009FEBB4 /* InfoViewController.xib in Resources */,
 				10D93CC2187BF890009FEBB4 /* UserInfoViewController.xib in Resources */,
 				10A2AA1A187D45700048B1B4 /* GoodsIngoViewController.xib in Resources */,
 				10754967187D522B00174964 /* AddressViewController.xib in Resources */,
@@ -671,6 +682,12 @@
 				10216043187E498200C7B833 /* ConnectFail.png in Resources */,
 				10216049187E4BFA00C7B833 /* retry.png in Resources */,
 				1021604B187E9F3100C7B833 /* fangzi.png in Resources */,
+				106F9608187EAE1E00935EFA /* lengjing-1.tiff in Resources */,
+				106F9609187EAE1E00935EFA /* lengjing-2.tiff in Resources */,
+				106F960A187EAE1E00935EFA /* lengjing-3.tiff in Resources */,
+				106F9617187EAE7200935EFA /* ViewController.xib in Resources */,
+				106F961A187EAE7200935EFA /* logonViewController.xib in Resources */,
+				106F961C187EAE7200935EFA /* InfoViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -707,9 +724,6 @@
 				10D2D026187BDDA600490C3A /* CustomerTableViewCell.m in Sources */,
 				10659E2B187BF6BE0068D576 /* ShowHotView.m in Sources */,
 				10659E2C187BF6BE0068D576 /* ShowAllView.m in Sources */,
-				10D93CB6187BF84C009FEBB4 /* ViewController.m in Sources */,
-				10D93CB8187BF84C009FEBB4 /* logonViewController.m in Sources */,
-				10D93CBA187BF84C009FEBB4 /* InfoViewController.m in Sources */,
 				10D93CC1187BF890009FEBB4 /* UserInfoViewController.m in Sources */,
 				10659E35187BFB7C0068D576 /* LLToolbar.m in Sources */,
 				10A2AA19187D45700048B1B4 /* GoodsIngoViewController.m in Sources */,
@@ -722,6 +736,10 @@
 				1075497D187D524F00174964 /* AllOrderViewController.m in Sources */,
 				1075497F187D524F00174964 /* OrderImformationViewController.m in Sources */,
 				10754981187D524F00174964 /* evaluateViewController.m in Sources */,
+				106F9616187EAE7200935EFA /* ViewController.m in Sources */,
+				106F9618187EAE7200935EFA /* DelayViewController.m in Sources */,
+				106F9619187EAE7200935EFA /* logonViewController.m in Sources */,
+				106F961B187EAE7200935EFA /* InfoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
