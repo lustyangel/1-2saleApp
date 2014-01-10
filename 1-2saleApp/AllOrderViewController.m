@@ -28,39 +28,45 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    self.view.backgroundColor=[UIColor grayColor];
+#pragma mark-导航    
     
-    UILabel  *lable=[[UILabel alloc]initWithFrame:CGRectMake(5, 10, 320, 20)];
+
+    UIView  *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
+    view.backgroundColor=[UIColor redColor];
+
+    UILabel  *lable=[[UILabel alloc]initWithFrame: view.frame];
     [lable setText:@"全部订单"];
-    [lable setTextColor:[UIColor blackColor]];
+    lable.textAlignment=NSTextAlignmentCenter;
+    lable.backgroundColor=[UIColor clearColor];
     [lable setFont:[UIFont systemFontOfSize:18]];
-    [self.view addSubview:lable];
+    [view addSubview:lable];
     
-      _data =[[NSMutableData alloc]init];
-     _array =[[NSArray alloc]init];
+    UIButton *lButton=[UIButton buttonWithType:UIButtonTypeCustom];
+    [lButton setImage:[UIImage imageNamed:@"title_back"] forState:UIControlStateNormal];
+    [lButton setFrame:CGRectMake(0, 2, 44, 44)];
+    [lButton addTarget:self action:@selector(backClick:) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:lButton];
+    [self.view  addSubview:view];
+
     
-    _tableView=[[UITableView alloc]initWithFrame:CGRectMake(5, 30, 315, self.view.frame.size.height-20) style:UITableViewStylePlain];
-    _tableView.delegate=self;
-    _tableView.dataSource=self;
-    [self.view addSubview:_tableView];
+    _data =[[NSMutableData alloc]init];
+    _array =[[NSArray alloc]init];
+     
+ 
+   // [self.view addSubview:_tableView];
  
     // Do any additional setup after loading the view from its nib.
+}
+#pragma mark-返回首页
+-(void)backClick:(UIButton *)sender{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 -(void)viewWillAppear:(BOOL)animated{
         [self getData];
 }
--(void)getData{
-    
-    NSString *bodyString=[NSString stringWithFormat:@"customerid=%i",[DanLi sharDanli].userID];
-    NSLog(@"id%i",[DanLi sharDanli].userID);
-    
-    NSURL *url=[NSURL URLWithString:[NSString  stringWithFormat:@"http://%@/shop/getorder.php",kIP]];
-    NSMutableURLRequest  *request=[NSMutableURLRequest requestWithURL:url];
-    [request setHTTPBody:[ bodyString dataUsingEncoding:NSUTF8StringEncoding]];
-    [request setHTTPMethod:@"post"];
-    NSURLConnection  *connecation=[[NSURLConnection alloc]initWithRequest:request delegate:self];
-    [connecation start];
-}
+
+
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [_array count];
 }
@@ -127,6 +133,19 @@
 }
 
 
+#pragma mark-下载数据
+-(void)getData{
+    //NSString *bodyString=[NSString stringWithFormat:@"customerid=%i",[DanLi sharDanli].userID];
+    NSLog(@"id%i",[DanLi sharDanli].userID);
+    NSString *bodyString=@"customerid=3";
+    NSURL *url=[NSURL URLWithString:[NSString  stringWithFormat:@"http://%@/shop/getorder.php",kIP]];
+    NSMutableURLRequest  *request=[NSMutableURLRequest requestWithURL:url];
+    [request setHTTPBody:[ bodyString dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPMethod:@"post"];
+    NSURLConnection  *connecation=[[NSURLConnection alloc]initWithRequest:request delegate:self];
+    [connecation start];
+}
+
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
     [_data setLength:0];
 }
@@ -138,12 +157,18 @@
     NSDictionary *dic=[NSJSONSerialization JSONObjectWithData:_data options:NSJSONReadingAllowFragments error:nil];
     if (dic==nil) {
         NSLog(@"meiyou");
+    }else{
+        
+        NSDictionary *dic1=[dic objectForKey:@"msg"];
+        _array=[dic1 objectForKey:@"info"];
+        NSLog(@"%@",dic1);
+        _tableView=[[UITableView alloc]initWithFrame:CGRectMake(5, 30, 315, self.view.frame.size.height-20) style:UITableViewStylePlain];
+        _tableView.delegate=self;
+        _tableView.dataSource=self;
     }
     
     
-    NSDictionary *dic1=[dic objectForKey:@"msg"];
-          _array=[dic1 objectForKey:@"info"];
-         NSLog(@"%@",dic1);
+  
    
         [_tableView reloadData];
 
