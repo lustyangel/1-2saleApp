@@ -202,7 +202,7 @@
         int customeridValue;
         [lScanner2 scanInt:&customeridValue];
 //        NSLog(@"%i",customeridValue);
-        
+        [DanLi sharDanli].userID=customeridValue;
         
         //把用户名密码和密码标记写入本地
         if (_localUsernameArray.count>4) {
