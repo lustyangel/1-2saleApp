@@ -38,6 +38,7 @@
         UILabel *name=[[UILabel alloc]initWithFrame:CGRectMake(5, 100, 130, 30)];
 //        name.backgroundColor=[UIColor grayColor];
         name.text=[dic objectForKey:@"name"];
+        name.textColor=[UIColor colorWithRed:0 green:0.3 blue:0.12 alpha:1];
         name.numberOfLines=2;
         name.font=[UIFont systemFontOfSize:12];
         [self addSubview:name];
