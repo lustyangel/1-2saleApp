@@ -11,6 +11,7 @@
 #import "ViewController.h"
 #import "InfoViewController.h"
 #import "DelayViewController.h"
+#import "AllOrderViewController.h"
 #define AutologonSign [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"AutologonSign"]
 
 @interface mainViewController ()
@@ -184,6 +185,10 @@
             [self presentViewController:lShoppingCartViewController animated:YES completion:nil];
         }
             break;
+        case 2:{
+            AllOrderViewController *orderController = [[AllOrderViewController alloc] init];
+            [self presentViewController:orderController animated:YES completion:nil];
+        }
         case 3:{
             InfoViewController *lInfoViewController = [[InfoViewController alloc] init];
             [self presentViewController:lInfoViewController animated:YES completion:nil];

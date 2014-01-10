@@ -9,6 +9,7 @@
 #import "AllOrderViewController.h"
 #import "OrderCell.h"
 #import "OrderImformationViewController.h"
+#import "DanLi.h"
 @interface AllOrderViewController ()
 
 @end
@@ -37,21 +38,28 @@
     
       _data =[[NSMutableData alloc]init];
      _array =[[NSArray alloc]init];
-    NSString *bodyString=@"customerid=3";
-    NSURL *url=[NSURL URLWithString:@"http://192.168.1.136/shop/getorder.php"];
+    
+    _tableView=[[UITableView alloc]initWithFrame:CGRectMake(5, 30, 315, self.view.frame.size.height-20) style:UITableViewStylePlain];
+    _tableView.delegate=self;
+    _tableView.dataSource=self;
+    [self.view addSubview:_tableView];
+ 
+    // Do any additional setup after loading the view from its nib.
+}
+-(void)viewWillAppear:(BOOL)animated{
+        [self getData];
+}
+-(void)getData{
+    
+    NSString *bodyString=[NSString stringWithFormat:@"customerid=%i",[DanLi sharDanli].userID];
+    NSLog(@"id%i",[DanLi sharDanli].userID);
+    
+    NSURL *url=[NSURL URLWithString:[NSString  stringWithFormat:@"http://%@/shop/getorder.php",kIP]];
     NSMutableURLRequest  *request=[NSMutableURLRequest requestWithURL:url];
     [request setHTTPBody:[ bodyString dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"post"];
     NSURLConnection  *connecation=[[NSURLConnection alloc]initWithRequest:request delegate:self];
     [connecation start];
-    
-    _tableView=[[UITableView alloc]initWithFrame:CGRectMake(5, 30, 315, self.view.frame.size.height-20) style:UITableViewStylePlain];
-    _tableView.delegate=self;
-    _tableView.dataSource=self;
-    
-   [self.view addSubview:_tableView];
- 
-    // Do any additional setup after loading the view from its nib.
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [_array count];
@@ -128,11 +136,15 @@
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection{
     
     NSDictionary *dic=[NSJSONSerialization JSONObjectWithData:_data options:NSJSONReadingAllowFragments error:nil];
+    if (dic==nil) {
+        NSLog(@"meiyou");
+    }
+    
     
     NSDictionary *dic1=[dic objectForKey:@"msg"];
           _array=[dic1 objectForKey:@"info"];
-    
          NSLog(@"%@",dic1);
+   
         [_tableView reloadData];
 
 }
