@@ -61,7 +61,11 @@
     if (lCell==nil) {
         lCell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
-    lCell.textLabel.text=[_lArray objectAtIndex:[indexPath row]];
+    if ([DanLi sharDanli].userID!=0&&[indexPath row]==0) {
+        lCell.textLabel.text=@"退出登陆";
+    }else{
+        lCell.textLabel.text=[_lArray objectAtIndex:[indexPath row]];
+    }
     lCell.textLabel.textColor=[UIColor whiteColor];
     lCell.textLabel.font=[UIFont systemFontOfSize:18];
     return lCell;
@@ -71,4 +75,9 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [_delegate rightViewTabelViewClick:[indexPath row]];
 }
+
+-(void)reloadRightView{
+    [_lTabelView reloadData];
+}
+
 @end

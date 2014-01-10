@@ -121,6 +121,7 @@
             self.lRightViewController=[[RightViewController alloc]init];
             _rightView=[[UIView alloc]initWithFrame:self.view.frame];
         }
+        [_lRightViewController reloadRightView];
         _lRightViewController.delegate=self;
         self.rightView=self.lRightViewController.view;
         _rightView.center=CGPointMake(480, self.view.frame.size.height/2);
@@ -168,6 +169,11 @@
     switch (num) {
         case 0:
         {
+            if ([DanLi sharDanli].userID!=0) {
+                [DanLi sharDanli].userID=0;
+                [self frontViewClickMethod];
+                return;
+            }
             NSArray *AutologonArray=[NSArray arrayWithContentsOfFile:AutologonSign];
             NSString *AutologonString=[AutologonArray objectAtIndex:0];
             if ([AutologonString isEqualToString:@"1"]) {

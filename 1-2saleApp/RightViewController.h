@@ -15,6 +15,8 @@
 @property (nonatomic,retain)UITableView *lTabelView;
 @property (nonatomic,assign)id<RightViewDelegate>delegate;
 
+-(void)reloadRightView;
+
 @end
 
 @protocol RightViewDelegate <NSObject>
