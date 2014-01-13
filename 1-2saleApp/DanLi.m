@@ -22,7 +22,7 @@ static DanLi *SellDali=nil;
 -(id)init{
     self=[super init];
     if (self) {
-        _userID=1;
+        _userID=15;
     }
     return self;
 }

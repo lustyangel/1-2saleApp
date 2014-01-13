@@ -42,6 +42,7 @@
 		106F961A187EAE7200935EFA /* logonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 106F9612187EAE7200935EFA /* logonViewController.xib */; };
 		106F961B187EAE7200935EFA /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 106F9614187EAE7200935EFA /* InfoViewController.m */; };
 		106F961C187EAE7200935EFA /* InfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 106F9615187EAE7200935EFA /* InfoViewController.xib */; };
+		1072B49B187FA17100C88694 /* goShop.png in Resources */ = {isa = PBXBuildFile; fileRef = 1072B49A187FA17100C88694 /* goShop.png */; };
 		10754965187D522B00174964 /* AllAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1075495E187D522B00174964 /* AllAddressViewController.m */; };
 		10754966187D522B00174964 /* AddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10754960187D522B00174964 /* AddressViewController.m */; };
 		10754967187D522B00174964 /* AddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10754961187D522B00174964 /* AddressViewController.xib */; };
@@ -156,6 +157,7 @@
 		106F9613187EAE7200935EFA /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
 		106F9614187EAE7200935EFA /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
 		106F9615187EAE7200935EFA /* InfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoViewController.xib; sourceTree = "<group>"; };
+		1072B49A187FA17100C88694 /* goShop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goShop.png; sourceTree = "<group>"; };
 		1075495D187D522B00174964 /* AllAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllAddressViewController.h; sourceTree = "<group>"; };
 		1075495E187D522B00174964 /* AllAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllAddressViewController.m; sourceTree = "<group>"; };
 		1075495F187D522B00174964 /* AddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressViewController.h; sourceTree = "<group>"; };
@@ -403,6 +405,7 @@
 		1075496A187D523F00174964 /* order */ = {
 			isa = PBXGroup;
 			children = (
+				1072B49A187FA17100C88694 /* goShop.png */,
 				1075496B187D524F00174964 /* UIScrollView+PullLoad.h */,
 				1075496C187D524F00174964 /* UIScrollView+PullLoad.m */,
 				1075496D187D524F00174964 /* OrderCell.h */,
@@ -688,6 +691,7 @@
 				106F9617187EAE7200935EFA /* ViewController.xib in Resources */,
 				106F961A187EAE7200935EFA /* logonViewController.xib in Resources */,
 				106F961C187EAE7200935EFA /* InfoViewController.xib in Resources */,
+				1072B49B187FA17100C88694 /* goShop.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -54,7 +54,7 @@
         _stateButton=[UIButton buttonWithType:UIButtonTypeCustom];
         _stateButton.backgroundColor=[UIColor redColor];
         [_stateButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
-        _stateButton.frame=CGRectMake( width-70, 10+imageheight/2+_price .frame.size.height, 70, imageheight/4+5);
+        _stateButton.frame=CGRectMake( width-90, 10+imageheight/2+_price .frame.size.height, 80, imageheight/4+5);
         [self.contentView addSubview:_stateButton];
         
     }

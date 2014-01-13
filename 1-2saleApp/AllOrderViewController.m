@@ -10,6 +10,7 @@
 #import "OrderCell.h"
 #import "OrderImformationViewController.h"
 #import "DanLi.h"
+#import "UIScrollView+PullLoad.h"
 @interface AllOrderViewController ()
 
 @end
@@ -53,22 +54,14 @@
     _array =[[NSArray alloc]init];
      
  
-   // [self.view addSubview:_tableView];
- 
+  
     // Do any additional setup after loading the view from its nib.
 }
-#pragma mark-返回首页
--(void)backClick:(UIButton *)sender{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
--(void)viewWillAppear:(BOOL)animated{
-        [self getData];
-}
 
-
-
+ 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [_array count];
+   
+    return _showcount;
 }
 -(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 100;
@@ -80,6 +73,7 @@
         cell=[[OrderCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         
     }
+    cell.selectionStyle=UITableViewCellSelectionStyleNone;
     NSDictionary *dic=[_array objectAtIndex:[indexPath row]];
     
     //商品的总价
@@ -96,10 +90,12 @@
     
     //商品的状态
     NSString *state=[dic objectForKey:@"state"];
-    switch ([state intValue]) {
+  
+    switch ( [state intValue]) {
         case  0:
-            [cell.stateButton  setTitle:@"付款" forState:UIControlStateNormal];
-            [cell.tradeState   setText:@"等待买家付款"];
+           // [cell.stateButton  setTitle:@"等待发货" forState:UIControlStateNormal];
+            cell.stateButton.hidden=YES;
+            [cell.tradeState   setText:@"等待卖家发货"];
             break;
         case  1:
             [cell.stateButton  setTitle:@"确认收货" forState:UIControlStateNormal];
@@ -129,15 +125,39 @@
      
 }
 -(void)stateButton:(UIButton *)sender String:(NSString *)string{
-    NSLog(@"%@",string);
+   // NSLog(@"%@",string);
+}
+
+#pragma mark-下拉加载
+-(void)scrollView:(UIScrollView *)scrollView loadWithState:(LoadState)state{
+    if (state == PullUpLoadState) {
+        [self performSelector:@selector(PullUpLoadEnd) withObject:nil afterDelay:3];
+    }
+}
+- (void)PullUpLoadEnd {
+    _showcount += 10;
+    if (_showcount > _array.count) {
+        _tableView.canPullUp = NO;
+    }
+    
+    [_tableView reloadData];
+    [_tableView stopLoadWithState:PullUpLoadState];
+}
+#pragma mark-返回首页
+-(void)backClick:(UIButton *)sender{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [self getData];
 }
 
 
 #pragma mark-下载数据
 -(void)getData{
-    //NSString *bodyString=[NSString stringWithFormat:@"customerid=%i",[DanLi sharDanli].userID];
-    NSLog(@"id%i",[DanLi sharDanli].userID);
-    NSString *bodyString=@"customerid=3";
+    NSString *bodyString=[NSString stringWithFormat:@"customerid=%i",[DanLi sharDanli].userID];
+   // NSLog(@"id%i",[DanLi sharDanli].userID);
+   //NSString *bodyString=@"customerid=3";
     NSURL *url=[NSURL URLWithString:[NSString  stringWithFormat:@"http://%@/shop/getorder.php",kIP]];
     NSMutableURLRequest  *request=[NSMutableURLRequest requestWithURL:url];
     [request setHTTPBody:[ bodyString dataUsingEncoding:NSUTF8StringEncoding]];
@@ -155,26 +175,52 @@
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection{
     
     NSDictionary *dic=[NSJSONSerialization JSONObjectWithData:_data options:NSJSONReadingAllowFragments error:nil];
-    if (dic==nil) {
-        NSLog(@"meiyou");
-    }else{
-        
         NSDictionary *dic1=[dic objectForKey:@"msg"];
+    int count=[[dic1 objectForKey:@"count"]intValue];
+    if (count==0) {
+        
+        UIView *view=[[UIView  alloc]initWithFrame:CGRectMake(100,100, 119, 170) ] ; 
+        view.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"goShop"]];
+        [self.view  addSubview:view];
+        
+        UIButton *button=[UIButton buttonWithType:UIButtonTypeCustom ];
+        button.frame=CGRectMake(120,280, 80, 30);
+        [button setTitle:@"go" forState:UIControlStateNormal];
+        button.backgroundColor=[UIColor  greenColor];
+        //[UIColor colorWithPatternImage:[UIImage imageNamed:@"goShop"]];
+        [button addTarget:self action:@selector(backClick:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view  addSubview:button];
+        
+    }else{
         _array=[dic1 objectForKey:@"info"];
-        NSLog(@"%@",dic1);
-        _tableView=[[UITableView alloc]initWithFrame:CGRectMake(5, 30, 315, self.view.frame.size.height-20) style:UITableViewStylePlain];
+      //  NSLog(@"%@",dic1);
+        
+        if (_array.count<5) {
+            _showcount=[_array count];
+           
+
+        }else{
+            _showcount=10;
+        }
+
+        _tableView=[[UITableView alloc]initWithFrame:CGRectMake(5, 44, 315,_showcount*100) style:UITableViewStylePlain];
         _tableView.delegate=self;
         _tableView.dataSource=self;
-    }
-    
-    
-  
-   
-        [_tableView reloadData];
+        _tableView.pullDelegate=self;
+        _tableView.canPullDown=NO;
+        _tableView.canPullUp=YES;
+        if (_showcount<5) {
+            _tableView.bounces=NO;
 
+        }else{
+            _tableView.bounces=YES;
+        }
+        [self.view addSubview:_tableView];
+     }
 }
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
-    NSLog(@"%@",error);
+    UIAlertView  *alter=[[UIAlertView alloc]initWithTitle:@"message" message:@"network is error!" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
+    [alter show];
 }
 - (void)didReceiveMemoryWarning
 {
