@@ -32,6 +32,8 @@
     self.emailText.delegate=self;
     self.affimCipherText.delegate=self;
     self.telephoneText.delegate=self;
+    self.cipherText.secureTextEntry = YES;
+    self.affimCipherText.secureTextEntry=YES;
     _x=-1;
    }
 
@@ -59,7 +61,8 @@
         NSMutableURLRequest *lURLRequest=[NSMutableURLRequest requestWithURL:lURL];
         [lURLRequest setHTTPMethod:@"get"];
         NSURLConnection *lConnection=[NSURLConnection connectionWithRequest:lURLRequest delegate:self];
-        [lConnection start];    }
+        [lConnection start];
+    }
     if (textField.tag==2) {
          _x=2;
         NSString *lS1=[NSString stringWithFormat:@"http://%@/shop/checkemail.php?email=",kIP];
@@ -91,7 +94,9 @@
     }
     
 }
-
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    return YES;
+}
 - (IBAction)commitButton:(UIButton *)sender {
     if (self.nameText.text==nil||[self.nameText.text isEqualToString:@""]) {
         UIAlertView *lAlertView=[[UIAlertView alloc]initWithTitle:@"Error" message:@"The Name Can Not Be Empty" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];

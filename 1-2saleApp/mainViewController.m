@@ -9,9 +9,9 @@
 #import "mainViewController.h"
 #import "ShoppingCartViewController.h"
 #import "ViewController.h"
-#import "InfoViewController.h"
+#import "userInfoViewController.h"
 #import "DelayViewController.h"
-#define AutologonSign [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"AutologonSign"]
+
 
 @interface mainViewController ()
 
@@ -185,8 +185,13 @@
         }
             break;
         case 3:{
-            InfoViewController *lInfoViewController = [[InfoViewController alloc] init];
-            [self presentViewController:lInfoViewController animated:YES completion:nil];
+            if ([DanLi sharDanli].userInfoDictionary==nil) {
+                UIAlertView *lAlertView=[[UIAlertView alloc]initWithTitle:nil message:@"YOU MUST To log in first" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [lAlertView show];
+                return;
+            }
+            UserInfoViewController *lUserInfoViewController=[[UserInfoViewController alloc]init];
+            [self presentViewController:lUserInfoViewController animated:YES completion:nil];
         }
             break;
             

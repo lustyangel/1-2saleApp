@@ -12,6 +12,7 @@
 
 @property (nonatomic,assign)int userID;
 @property (nonatomic,assign)int goodsID;
+@property (nonatomic,retain)NSDictionary *userInfoDictionary;
 
 +(DanLi *)sharDanli;
 

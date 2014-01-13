@@ -40,8 +40,6 @@
 		106F9618187EAE7200935EFA /* DelayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 106F960F187EAE7200935EFA /* DelayViewController.m */; };
 		106F9619187EAE7200935EFA /* logonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 106F9611187EAE7200935EFA /* logonViewController.m */; };
 		106F961A187EAE7200935EFA /* logonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 106F9612187EAE7200935EFA /* logonViewController.xib */; };
-		106F961B187EAE7200935EFA /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 106F9614187EAE7200935EFA /* InfoViewController.m */; };
-		106F961C187EAE7200935EFA /* InfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 106F9615187EAE7200935EFA /* InfoViewController.xib */; };
 		10754965187D522B00174964 /* AllAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1075495E187D522B00174964 /* AllAddressViewController.m */; };
 		10754966187D522B00174964 /* AddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10754960187D522B00174964 /* AddressViewController.m */; };
 		10754967187D522B00174964 /* AddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10754961187D522B00174964 /* AddressViewController.xib */; };
@@ -98,6 +96,8 @@
 		10D93CAC187BF841009FEBB4 /* aoTeMan.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 10D93CA4187BF841009FEBB4 /* aoTeMan.jpg */; };
 		10D93CC1187BF890009FEBB4 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10D93CBF187BF890009FEBB4 /* UserInfoViewController.m */; };
 		10D93CC2187BF890009FEBB4 /* UserInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10D93CC0187BF890009FEBB4 /* UserInfoViewController.xib */; };
+		10E397A2187FA1AB00387A01 /* AlerPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E397A0187FA1AA00387A01 /* AlerPasswordViewController.m */; };
+		10E397A3187FA1AB00387A01 /* AlerPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10E397A1187FA1AB00387A01 /* AlerPasswordViewController.xib */; };
 		10E8B06A187A3C9100112159 /* loadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E8B069187A3C9100112159 /* loadView.m */; };
 		10EA6B6C187B8D060067E2DA /* HotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10EA6B6B187B8D060067E2DA /* HotView.m */; };
 		10EA6B6F187B94390067E2DA /* DanLi.m in Sources */ = {isa = PBXBuildFile; fileRef = 10EA6B6E187B94390067E2DA /* DanLi.m */; };
@@ -153,9 +153,6 @@
 		106F9610187EAE7200935EFA /* logonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = logonViewController.h; sourceTree = "<group>"; };
 		106F9611187EAE7200935EFA /* logonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = logonViewController.m; sourceTree = "<group>"; };
 		106F9612187EAE7200935EFA /* logonViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = logonViewController.xib; sourceTree = "<group>"; };
-		106F9613187EAE7200935EFA /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
-		106F9614187EAE7200935EFA /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
-		106F9615187EAE7200935EFA /* InfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoViewController.xib; sourceTree = "<group>"; };
 		1075495D187D522B00174964 /* AllAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllAddressViewController.h; sourceTree = "<group>"; };
 		1075495E187D522B00174964 /* AllAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllAddressViewController.m; sourceTree = "<group>"; };
 		1075495F187D522B00174964 /* AddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressViewController.h; sourceTree = "<group>"; };
@@ -242,6 +239,9 @@
 		10D93CBE187BF890009FEBB4 /* UserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoViewController.h; sourceTree = "<group>"; };
 		10D93CBF187BF890009FEBB4 /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
 		10D93CC0187BF890009FEBB4 /* UserInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoViewController.xib; sourceTree = "<group>"; };
+		10E3979F187FA1AA00387A01 /* AlerPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlerPasswordViewController.h; sourceTree = "<group>"; };
+		10E397A0187FA1AA00387A01 /* AlerPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlerPasswordViewController.m; sourceTree = "<group>"; };
+		10E397A1187FA1AB00387A01 /* AlerPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlerPasswordViewController.xib; sourceTree = "<group>"; };
 		10E8B068187A3C9100112159 /* loadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = loadView.h; path = "1-2saleApp/loadView.h"; sourceTree = "<group>"; };
 		10E8B069187A3C9100112159 /* loadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = loadView.m; path = "1-2saleApp/loadView.m"; sourceTree = "<group>"; };
 		10EA6B6A187B8D060067E2DA /* HotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotView.h; sourceTree = "<group>"; };
@@ -534,9 +534,6 @@
 				106F9610187EAE7200935EFA /* logonViewController.h */,
 				106F9611187EAE7200935EFA /* logonViewController.m */,
 				106F9612187EAE7200935EFA /* logonViewController.xib */,
-				106F9613187EAE7200935EFA /* InfoViewController.h */,
-				106F9614187EAE7200935EFA /* InfoViewController.m */,
-				106F9615187EAE7200935EFA /* InfoViewController.xib */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -547,6 +544,9 @@
 				10D93CBE187BF890009FEBB4 /* UserInfoViewController.h */,
 				10D93CBF187BF890009FEBB4 /* UserInfoViewController.m */,
 				10D93CC0187BF890009FEBB4 /* UserInfoViewController.xib */,
+				10E3979F187FA1AA00387A01 /* AlerPasswordViewController.h */,
+				10E397A0187FA1AA00387A01 /* AlerPasswordViewController.m */,
+				10E397A1187FA1AB00387A01 /* AlerPasswordViewController.xib */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -687,7 +687,7 @@
 				106F960A187EAE1E00935EFA /* lengjing-3.tiff in Resources */,
 				106F9617187EAE7200935EFA /* ViewController.xib in Resources */,
 				106F961A187EAE7200935EFA /* logonViewController.xib in Resources */,
-				106F961C187EAE7200935EFA /* InfoViewController.xib in Resources */,
+				10E397A3187FA1AB00387A01 /* AlerPasswordViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -739,7 +739,7 @@
 				106F9616187EAE7200935EFA /* ViewController.m in Sources */,
 				106F9618187EAE7200935EFA /* DelayViewController.m in Sources */,
 				106F9619187EAE7200935EFA /* logonViewController.m in Sources */,
-				106F961B187EAE7200935EFA /* InfoViewController.m in Sources */,
+				10E397A2187FA1AB00387A01 /* AlerPasswordViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

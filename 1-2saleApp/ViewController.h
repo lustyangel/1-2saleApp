@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,NSURLConnectionDataDelegate>{
+@interface ViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,NSURLConnectionDataDelegate,UITextFieldDelegate>{
     NSMutableData *_data;
     UITableView *_tableView;
     BOOL _ifDragButtonSpread;
