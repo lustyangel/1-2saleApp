@@ -10,6 +10,8 @@
 
 @interface OrderImformationViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>{
     NSArray *_array;
+    UITableView  * _tableView;
+      NSMutableData   *_data;
 }
 @property(nonatomic,retain)NSDictionary *dictionary;
  
