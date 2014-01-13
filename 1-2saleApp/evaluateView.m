@@ -29,7 +29,7 @@
 }
 
 -(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 80;
+    return 120;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return  _ShowArray.count;
@@ -42,9 +42,9 @@
 //        [lCell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 //        lCell.textLabel.font=[UIFont systemFontOfSize:15];
     }else{
-        [[tableView viewWithTag:101]removeFromSuperview];
-        [[tableView viewWithTag:102]removeFromSuperview];
-        [[tableView viewWithTag:103]removeFromSuperview];
+        [[lCell viewWithTag:101]removeFromSuperview];
+        [[lCell viewWithTag:102]removeFromSuperview];
+        [[lCell viewWithTag:103]removeFromSuperview];
     }
     int row=[indexPath row];
     NSDictionary *lDic=[_ShowArray objectAtIndex:row];
@@ -56,14 +56,15 @@
     name.backgroundColor=[UIColor clearColor];
     [lCell.contentView addSubview:name];
     
-    UILabel *detail=[[UILabel alloc]initWithFrame:CGRectMake(5, 30, 80, 20)];
+    UILabel *detail=[[UILabel alloc]initWithFrame:CGRectMake(5, 30, 310, 50)];
+    detail.numberOfLines=3;
     detail.tag=102;
     detail.text=[lDic objectForKey:@"detail"];
     detail.font=[UIFont systemFontOfSize:14];
     detail.backgroundColor=[UIColor clearColor];
     [lCell.contentView addSubview:detail];
     
-    UILabel *date=[[UILabel alloc]initWithFrame:CGRectMake(5, 55, 80, 20)];
+    UILabel *date=[[UILabel alloc]initWithFrame:CGRectMake(5, 85, 150, 20)];
     date.tag=103;
     date.text=[lDic objectForKey:@"date"];
     date.font=[UIFont systemFontOfSize:13];
