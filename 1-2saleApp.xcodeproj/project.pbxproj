@@ -105,6 +105,9 @@
 		10EA6B74187B9C780067E2DA /* LeftViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10EA6B72187B9C780067E2DA /* LeftViewController.xib */; };
 		10EA6B78187B9C860067E2DA /* RightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10EA6B76187B9C860067E2DA /* RightViewController.m */; };
 		10EA6B79187B9C860067E2DA /* RightViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10EA6B77187B9C860067E2DA /* RightViewController.xib */; };
+		10EB066318839558006E7043 /* DetailInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10EB066118839557006E7043 /* DetailInfoViewController.m */; };
+		10EB066418839558006E7043 /* DetailInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10EB066218839557006E7043 /* DetailInfoViewController.xib */; };
+		10EB06671883D67F006E7043 /* evaluateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10EB06661883D67F006E7043 /* evaluateView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -254,6 +257,11 @@
 		10EA6B75187B9C860067E2DA /* RightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RightViewController.h; path = "1-2saleApp/RightViewController.h"; sourceTree = "<group>"; };
 		10EA6B76187B9C860067E2DA /* RightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RightViewController.m; path = "1-2saleApp/RightViewController.m"; sourceTree = "<group>"; };
 		10EA6B77187B9C860067E2DA /* RightViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RightViewController.xib; path = "1-2saleApp/RightViewController.xib"; sourceTree = "<group>"; };
+		10EB066018839557006E7043 /* DetailInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailInfoViewController.h; sourceTree = "<group>"; };
+		10EB066118839557006E7043 /* DetailInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailInfoViewController.m; sourceTree = "<group>"; };
+		10EB066218839557006E7043 /* DetailInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailInfoViewController.xib; sourceTree = "<group>"; };
+		10EB06651883D67E006E7043 /* evaluateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = evaluateView.h; sourceTree = "<group>"; };
+		10EB06661883D67F006E7043 /* evaluateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = evaluateView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -379,6 +387,11 @@
 				10A2AA16187D45700048B1B4 /* GoodsIngoViewController.h */,
 				10A2AA17187D45700048B1B4 /* GoodsIngoViewController.m */,
 				10A2AA18187D45700048B1B4 /* GoodsIngoViewController.xib */,
+				10EB06651883D67E006E7043 /* evaluateView.h */,
+				10EB06661883D67F006E7043 /* evaluateView.m */,
+				10EB066018839557006E7043 /* DetailInfoViewController.h */,
+				10EB066118839557006E7043 /* DetailInfoViewController.m */,
+				10EB066218839557006E7043 /* DetailInfoViewController.xib */,
 				10EA6B7B187B9CAE0067E2DA /* CustomView */,
 				10EA6B7A187B9C8F0067E2DA /* right&leftView */,
 			);
@@ -688,6 +701,7 @@
 				106F9617187EAE7200935EFA /* ViewController.xib in Resources */,
 				106F961A187EAE7200935EFA /* logonViewController.xib in Resources */,
 				106F961C187EAE7200935EFA /* InfoViewController.xib in Resources */,
+				10EB066418839558006E7043 /* DetailInfoViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -740,6 +754,8 @@
 				106F9618187EAE7200935EFA /* DelayViewController.m in Sources */,
 				106F9619187EAE7200935EFA /* logonViewController.m in Sources */,
 				106F961B187EAE7200935EFA /* InfoViewController.m in Sources */,
+				10EB066318839558006E7043 /* DetailInfoViewController.m in Sources */,
+				10EB06671883D67F006E7043 /* evaluateView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

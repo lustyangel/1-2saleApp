@@ -7,7 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DetailInfoViewController.h"
+#import "evaluateView.h"
 
-@interface GoodsIngoViewController : UIViewController
+@interface GoodsIngoViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>{
+    NSMutableData *_lData;
+    UIImageView *_connectFaileImage;
+    BOOL _lBoolDetailInfo;
+}
+
+@property (nonatomic,retain)UIButton *retryButton;
+@property (nonatomic,retain)NSDictionary *lDic;
+@property (nonatomic,retain)UITextField *lNumber;
+@property (nonatomic,retain)UIScrollView *lScrollView;
+@property (nonatomic,retain)UIWebView *lWebView;
+@property (nonatomic,retain)UILabel *titleLabel;
 
 @end

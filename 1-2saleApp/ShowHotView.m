@@ -15,6 +15,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+//        self.backgroundColor=[UIColor underPageBackgroundColor];
+        
         _lData=[[NSMutableData alloc]init];
         _showArray=[[NSMutableArray alloc]init];
         

@@ -153,12 +153,13 @@
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
     NSLog(@"%@",error);
     _lTabelView.hidden=YES;
+    _requesting=NO;
     if (_connectFaileImage==nil) {
         _connectFaileImage=[[UIImageView alloc]initWithFrame:CGRectMake(90, 170, 150, 227)];
         _connectFaileImage.image=[UIImage imageNamed:@"ConnectFail.png"];
         [self addSubview:_connectFaileImage];
         
-        _retryButton=[[UIButton alloc]initWithFrame:CGRectMake(130, 350, 70, 30)];
+        _retryButton=[[UIButton alloc]initWithFrame:CGRectMake(130, 370, 70, 30)];
         _retryButton.layer.borderColor=[UIColor darkGrayColor].CGColor;
         _retryButton.layer.borderWidth=1;
         [_retryButton setImage:[UIImage imageNamed:@"retry.png"] forState:UIControlStateNormal];

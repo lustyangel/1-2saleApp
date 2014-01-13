@@ -192,6 +192,11 @@
         }
             break;
         case 2:{
+            if ([DanLi sharDanli].userID==0) {
+                ViewController *lLoginViewController = [[ViewController alloc] init];
+                [self presentViewController:lLoginViewController animated:YES completion:nil];
+                return;
+            }
             AllOrderViewController *orderController = [[AllOrderViewController alloc] init];
             [self presentViewController:orderController animated:YES completion:nil];
         }
@@ -210,18 +215,15 @@
 #pragma mark - hotView 点击事件，传入商品id
 
 -(void)ShowHotViewClick{
-    if (_lGoodsIngoViewController==nil) {
-        _lGoodsIngoViewController=[[GoodsIngoViewController alloc]init];
-    }
-    [self presentViewController:_lGoodsIngoViewController animated:YES completion:nil];
+
+    GoodsIngoViewController *lGoodsIngoViewController=[[GoodsIngoViewController alloc]init];
+    [self presentViewController:lGoodsIngoViewController animated:YES completion:nil];
     NSLog(@"%i",[DanLi sharDanli].goodsID);
 }
 
 -(void)showAllViewDelegate:(int)index{
-    if (_lGoodsIngoViewController==nil) {
-        _lGoodsIngoViewController=[[GoodsIngoViewController alloc]init];
-    }
-    [self presentViewController:_lGoodsIngoViewController animated:YES completion:nil];
+    GoodsIngoViewController *lGoodsIngoViewController=[[GoodsIngoViewController alloc]init];
+    [self presentViewController:lGoodsIngoViewController animated:YES completion:nil];
     NSLog(@"%i",[DanLi sharDanli].goodsID);
 }
 
