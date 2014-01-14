@@ -18,5 +18,5 @@
 
 // 购物车
 @property (nonatomic, assign)float accountAllGoodsPrice;         // 结算所有商品金额
-@property (nonatomic, assign)int isShowAccountView;              // 是否显示结算栏
+@property (nonatomic, assign)BOOL isChooseAllGoods;              // 是否选中所有商品
 @end

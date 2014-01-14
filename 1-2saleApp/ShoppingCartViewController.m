@@ -28,16 +28,21 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.view.backgroundColor = [UIColor colorWithWhite:255 alpha:1];
+    self.view.backgroundColor = [UIColor colorWithRed:0.5 green:1 blue:0 alpha:0.2];
     
     // 加载数据
     _allGoodsArray = [[NSMutableArray alloc] initWithArray:[self getShoppingCartInfroArray]];
+    _isShowGoodsArray = [[NSMutableArray alloc] init];
+    for (int i=0; i<_allGoodsArray.count; i++) {
+        NSNumber *lNumber = [NSNumber numberWithBool:NO];
+        [_isShowGoodsArray addObject:lNumber];
+    }
     
     // 加载菜单栏
     [self getMenuBar];
     
     // 加载tableView
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 55, 320, self.view.frame.size.height) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 55, 320, self.view.frame.size.height-55) style:UITableViewStylePlain];
     _tableView.dataSource = self;
     _tableView.delegate = self;
     _tableView.rowHeight = 145;             // 设置行高
@@ -101,6 +106,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+// 选择按钮
 - (void)chooseButtonClick:(UIButton *)sender
 {
     if (_isChooseAllGoods)
@@ -109,11 +115,16 @@
         _chooseGoodsButton.layer.borderWidth = 0.3;
         _isChooseAllGoods = NO;
         
-        for (int i=0; i<_allGoodsArray.count; i++) {
-            CustomerTableViewCell *lCell = (CustomerTableViewCell *) [self.view viewWithTag:100+i];
-            lCell.isChooseGoods = YES;
-            [lCell chooseButtonClick];
+        // 清空数据
+        [DanLi sharDanli].accountAllGoodsPrice = 0;
+        
+        for (int i=0; i<_isShowGoodsArray.count; i++)
+        {
+            NSNumber *lNumber = [NSNumber numberWithBool:NO];
+            [_isShowGoodsArray replaceObjectAtIndex:i withObject:lNumber];
         }
+        _castAccountView.hidden = YES;
+        
     }
     else
     {
@@ -122,23 +133,32 @@
         _isChooseAllGoods = YES;
         
         // 结算前先清空数据
-        [DanLi sharDanli].isShowAccountView = 0;
         [DanLi sharDanli].accountAllGoodsPrice = 0;
         
-        for (int i=0; i<_allGoodsArray.count; i++) {
-            CustomerTableViewCell *lCell = (CustomerTableViewCell *) [self.view viewWithTag:100+i];
-            lCell.isChooseGoods = NO;
-            [lCell chooseButtonClick];
+        for (int i=0; i<_allGoodsArray.count; i++)
+        {
+            NSDictionary *lDictionary = [_allGoodsArray objectAtIndex:i];
+            NSString *priceString = [lDictionary objectForKey:@"amount"];
+            [DanLi sharDanli].accountAllGoodsPrice += [priceString floatValue];
+            
+            NSNumber *lNumber = [NSNumber numberWithBool:YES];
+            [_isShowGoodsArray replaceObjectAtIndex:i withObject:lNumber];
         }
-        
+
+        _allGoodsPriceLabel.text = [NSString stringWithFormat:@"￥%0.2f",[DanLi sharDanli].accountAllGoodsPrice];
+        _castAccountView.hidden = NO;
+        _tableView.frame = CGRectMake(0, 55, 320, self.view.frame.size.height-55-54);
     }
+
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"cellPost" object:[NSNumber numberWithBool:_isChooseAllGoods] userInfo:nil];
 }
 
 // 结算栏
 - (void)getCastAccountView
 {
     _castAccountView = [[UIView alloc] initWithFrame:CGRectMake(0, 494, 320, 54)];
-    _castAccountView.backgroundColor = [UIColor colorWithHue:1 saturation:0 brightness:0 alpha:0.1];
+    _castAccountView.backgroundColor = [UIColor colorWithRed:1 green:1 blue:0 alpha:1];
     _castAccountView.hidden = YES;
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 4, 150, 14)];
@@ -158,6 +178,7 @@
     UIButton *deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
     deleteButton.frame = CGRectMake(30, 22, 30, 30);
     [deleteButton setImage:[UIImage imageNamed:@"delete.jpg"] forState:UIControlStateNormal];
+    [deleteButton addTarget:self action:@selector(deleteButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [_castAccountView addSubview:deleteButton];
     
     UIButton *castAccountButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -169,6 +190,35 @@
     [_castAccountView addSubview:castAccountButton];
     
     [self.view addSubview:_castAccountView];
+}
+
+// 删除购物车按钮
+- (void)deleteButtonClick:(UIButton *)sender
+{
+    NSMutableArray *lArray = [[NSMutableArray alloc] init];
+    
+    for (int i=0; i<_allGoodsArray.count; i++)
+    {
+        CustomerTableViewCell *lCell = (CustomerTableViewCell *)[self.view viewWithTag:100 + i];
+        if (lCell.isChooseGoods)
+        {
+            NSDictionary *lDictionary = [_allGoodsArray objectAtIndex:i];
+            NSString *cartId = [lDictionary objectForKey:@"cartid"];
+            [lArray addObject:cartId];
+        }
+    }
+    
+    ShoppingCartInterface *lShoppingCartInterface = [[ShoppingCartInterface alloc] init];
+    NSDictionary *lDictionary = [lShoppingCartInterface deleteShoppingCart:lArray];
+    NSArray *lInfoArray  = [lDictionary objectForKey:@"info"];
+    [_allGoodsArray setArray:lInfoArray];
+    _isShowGoodsArray = [[NSMutableArray alloc] init];
+    for (int i=0; i<_allGoodsArray.count; i++) {
+        [_isShowGoodsArray addObject:[NSNumber numberWithBool:NO]];
+    }
+    
+    [_tableView reloadData];
+    [self emtpyViewData];
 }
 
 // 得到数据
@@ -190,6 +240,7 @@
 - (void)shoppingCartNotificationCenter:(NSNotification *)sender
 {
     NSDictionary *lDictionary = sender.userInfo;
+    CustomerTableViewCell *lCell = sender.object;
     
     // 增减购物车商品数量
     if ([[lDictionary objectForKey:@"event"] isEqual:@"addOrSubtract"]) {
@@ -206,46 +257,71 @@
         [_allGoodsArray setArray:lArray];
         [_tableView reloadData];
         
-        // 更新数据时，清空页面数据和单例数据
-        [_chooseGoodsButton setImage:nil forState:UIControlStateNormal];
-        _chooseGoodsButton.layer.borderWidth = 0.3;
-        _isChooseAllGoods = NO;
+        [self emtpyViewData];
         
-        [DanLi sharDanli].isShowAccountView = 0;
-        [DanLi sharDanli].accountAllGoodsPrice = 0;
-        
-        _castAccountView.hidden = YES;
     }
     
     // 显示结算栏
     if ([[lDictionary objectForKey:@"event"] isEqual:@"accountGoods"])
-    {
+    {            
+        BOOL isShowChooseButton = lCell.isChooseGoods;
+        NSNumber *lNumber = [NSNumber numberWithBool:isShowChooseButton];
+        [_isShowGoodsArray replaceObjectAtIndex:lCell.tag-100 withObject:lNumber];
+        
+        NSDictionary *lDictionary = [_allGoodsArray objectAtIndex:lCell.tag-100];
+        NSString *priceString = [lDictionary objectForKey:@"amount"];
+        if (isShowChooseButton) {            
+            [DanLi sharDanli].accountAllGoodsPrice += [priceString floatValue];
+        } else {
+            [DanLi sharDanli].accountAllGoodsPrice -= [priceString floatValue];
+        }
         _allGoodsPriceLabel.text = [NSString stringWithFormat:@"￥%0.2f",[DanLi sharDanli].accountAllGoodsPrice];
         
-        if ([DanLi sharDanli].isShowAccountView)
-        {
-            _castAccountView.hidden = NO;
-        }
-        else
-        {
-            _castAccountView.hidden = YES;
-        }
-        
-        if ([DanLi sharDanli].isShowAccountView != _allGoodsArray.count)
-        {
-            [_chooseGoodsButton setImage:nil forState:UIControlStateNormal];
-            _chooseGoodsButton.layer.borderWidth = 0.3;
-            _isChooseAllGoods = NO;
-        }
-        else
-        {
-            [_chooseGoodsButton setImage:[UIImage imageNamed:@"chooseGoods.jpg"] forState:UIControlStateNormal];
-            _chooseGoodsButton.layer.borderWidth = 0;
-            _isChooseAllGoods = YES;
+        // 是否显示结算栏
+        for (int i=0; i<_isShowGoodsArray.count; i++) {
+            BOOL lBool = [[_isShowGoodsArray objectAtIndex:i] boolValue];
+            if (lBool) {
+                _castAccountView.hidden = NO;
+                _tableView.frame = CGRectMake(0, 55, 320, self.view.frame.size.height-55-54);
+                break;
+            } 
+            
+            if ((i == _isShowGoodsArray.count-1) && (lBool == NO)) {
+                _castAccountView.hidden = YES;
+                _tableView.frame = CGRectMake(0, 55, 320, self.view.frame.size.height-55);
+            }
         }
         
+        // 是否显示菜单栏选择按钮
+        for (int i=0; i<_isShowGoodsArray.count; i++) {
+            BOOL lBool = [[_isShowGoodsArray objectAtIndex:i] boolValue];
+            if (lBool == NO) {
+                [_chooseGoodsButton setImage:nil forState:UIControlStateNormal];
+                _chooseGoodsButton.layer.borderWidth = 0.3;
+                _isChooseAllGoods = NO;
+                break;
+            }
+            
+            if ((i == _isShowGoodsArray.count-1) && lBool) {
+                [_chooseGoodsButton setImage:[UIImage imageNamed:@"chooseGoods.jpg"] forState:UIControlStateNormal];
+                _chooseGoodsButton.layer.borderWidth = 0;
+                _isChooseAllGoods = YES;
+            }
+        }
     }
     
+}
+
+// 更新页面数据时，清空页面数据和单例数据
+- (void)emtpyViewData
+{
+    [_chooseGoodsButton setImage:nil forState:UIControlStateNormal];
+    _chooseGoodsButton.layer.borderWidth = 0.3;
+    _isChooseAllGoods = NO;
+    
+    [DanLi sharDanli].accountAllGoodsPrice = 0;
+    
+    _castAccountView.hidden = YES;
 }
 
 #pragma mark - UITableView DataSource
@@ -280,6 +356,22 @@
     lCell.goodsColorLabel.text = [NSString stringWithFormat:@"颜色:%@  型号:%@",goodsColor,goodsSize];
     lCell.goodsCountsLabel.text = [NSString stringWithFormat:@"%i",lCell.goodsCounts];
     lCell.goodsPriceLabel.text = [NSString stringWithFormat:@"￥%@",goosPrice];
+    
+    BOOL isShowChooseButton = [[_isShowGoodsArray objectAtIndex:row] boolValue];
+    if (isShowChooseButton) {
+        [lCell.chooseButton setImage:[UIImage imageNamed:@"chooseGoods.jpg"] forState:UIControlStateNormal];
+        lCell.chooseButton.layer.borderWidth = 0;
+    }
+    
+    if ([goodsCount isEqualToString:@"1"]) {
+        lCell.subdeceButton.hidden = YES;
+    }
+    
+    if (_isChooseAllGoods) {
+        lCell.isChooseGoods = YES;
+    }
+    
+    
     return lCell;
 }
 

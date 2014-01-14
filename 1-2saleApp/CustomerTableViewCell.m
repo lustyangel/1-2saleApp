@@ -40,19 +40,13 @@
         _goodsPriceLabel.font = [UIFont systemFontOfSize:15];
         _goodsPriceLabel.backgroundColor = [UIColor clearColor];
         
-        _deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _deleteButton.frame = CGRectMake(273, 35, 40, 50);
-        [_deleteButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [_deleteButton setTitle:@"删除" forState:UIControlStateNormal];
-        _deleteButton.titleLabel.font = [UIFont systemFontOfSize:14];
-        
         _subdeceButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _subdeceButton.frame = CGRectMake(100, 90, 30, 15);
         [_subdeceButton setTitle:@"—" forState:UIControlStateNormal];
         [_subdeceButton setTitleColor:[UIColor colorWithHue:1 saturation:0 brightness:0 alpha:0.6] forState:UIControlStateNormal];
         _subdeceButton.backgroundColor = [UIColor colorWithHue:1 saturation:0 brightness:0 alpha:0.1];
         [_subdeceButton addTarget:self action:@selector(subdeceButton:) forControlEvents:UIControlEventTouchUpInside];
-        
+                
         _addButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _addButton.frame = CGRectMake(190, 90, 30, 15);
         [_addButton setTitle:@"+" forState:UIControlStateNormal];
@@ -61,10 +55,10 @@
         [_addButton addTarget:self action:@selector(addButton:) forControlEvents:UIControlEventTouchUpInside];
         
         _chooseButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _chooseButton.frame = CGRectMake(285, 15, 15, 15);
+        _chooseButton.frame = CGRectMake(285, 50, 15, 15);
         _chooseButton.layer.borderWidth = 0.3;
         _chooseButton.layer.borderColor = [[UIColor blueColor] CGColor];
-        [_chooseButton addTarget:self action:@selector(chooseButtonClick) forControlEvents:UIControlEventTouchUpInside];
+        [_chooseButton addTarget:self action:@selector(chooseButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         
         UIView *lView = [[UIView alloc] initWithFrame:CGRectMake(0, 140, 320, 10)];
         lView.backgroundColor = [UIColor underPageBackgroundColor];
@@ -74,11 +68,13 @@
         [self.contentView addSubview:_goodsColorLabel];
         [self.contentView addSubview:_goodsCountsLabel];
         [self.contentView addSubview:_goodsPriceLabel];
-        [self.contentView addSubview:_deleteButton];
         [self.contentView addSubview:_subdeceButton];
         [self.contentView addSubview:_addButton];
         [self.contentView addSubview:_chooseButton];
         [self.contentView addSubview:lView];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tableViewCellNotifictionCenter:) name:@"cellPost" object:nil];
+        
     }
     return self;
 }
@@ -91,39 +87,25 @@
 }
 
 #pragma mark - Private Method
-- (void)chooseButtonClick
+- (void)chooseButtonClick:(UIButton *)sender
 {
+    if (_chooseButton.layer.borderWidth == 0) {
+        _isChooseGoods = YES;
+    } else {
+        _isChooseGoods = NO;
+    }
+    
     if (_isChooseGoods)
     {
         [_chooseButton setImage:nil forState:UIControlStateNormal];
         _chooseButton.layer.borderWidth = 0.3;
         _isChooseGoods = NO;
-        [DanLi sharDanli].isShowAccountView --;
-        
-        // 扫描本购物车内商品总价
-        NSScanner *lScanner = [NSScanner scannerWithString:_goodsPriceLabel.text];
-        float goodsValue;
-        [lScanner scanString:@"￥" intoString:nil];
-        [lScanner scanFloat:&goodsValue];
-        [DanLi sharDanli].accountAllGoodsPrice -= goodsValue;
-        NSLog(@"%0.2f",[DanLi sharDanli].accountAllGoodsPrice);
     }
     else
     {
-        
-        
         [_chooseButton setImage:[UIImage imageNamed:@"chooseGoods.jpg"] forState:UIControlStateNormal];
         _chooseButton.layer.borderWidth = 0;
         _isChooseGoods = YES;
-        [DanLi sharDanli].isShowAccountView ++;
-        
-        // 扫描本购物车内商品总价
-        NSScanner *lScanner = [NSScanner scannerWithString:_goodsPriceLabel.text];
-        float goodsValue;
-        [lScanner scanString:@"￥" intoString:nil];
-        [lScanner scanFloat:&goodsValue];
-        [DanLi sharDanli].accountAllGoodsPrice += goodsValue;
-        NSLog(@"%0.2f",[DanLi sharDanli].accountAllGoodsPrice);
     }
     
     NSDictionary *lDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:@"accountGoods",@"event", nil];
@@ -138,8 +120,33 @@
 
 - (void)subdeceButton:(UIButton *)sender
 {
+    if (self.goodsCounts == 1)
+    {
+        sender.hidden = YES;
+    }
+    
     self.goodsCounts --;
     [self resetGoodsCart];
+}
+
+// 通知
+- (void)tableViewCellNotifictionCenter:(NSNotification *)sender
+{
+    BOOL isChooseAllGoods = [sender.object boolValue];
+    
+    if (isChooseAllGoods)
+    {
+        [_chooseButton setImage:[UIImage imageNamed:@"chooseGoods.jpg"] forState:UIControlStateNormal];
+        _chooseButton.layer.borderWidth = 0;
+        _isChooseGoods = YES;
+        
+    }
+    else
+    {
+        [_chooseButton setImage:nil forState:UIControlStateNormal];
+        _chooseButton.layer.borderWidth = 0.3;
+        _isChooseGoods = NO;
+    }
 }
 
 #pragma mark - ShoppingCart Interface

@@ -97,5 +97,30 @@
     }
 }
 
-
+// 删除购物车
+- (NSDictionary *)deleteShoppingCart:(NSArray *)cartIdArray
+{
+    NSDictionary *lDictionary;
+    
+    for (int i=0; i<cartIdArray.count; i++)
+    {
+        NSString *lBodyString = [NSString stringWithFormat:@"cartid=%@&customerid=4",[cartIdArray objectAtIndex:i]];
+        
+        NSString *URLString = [NSString stringWithFormat:@"http://%@/shop/deletecart.php",kIP];
+        NSURL *lURL = [NSURL URLWithString:URLString];
+        NSMutableURLRequest *lURLRequest = [NSMutableURLRequest requestWithURL:lURL];
+        [lURLRequest setHTTPMethod:@"post"];
+        [lURLRequest setHTTPBody:[lBodyString dataUsingEncoding:NSUTF8StringEncoding]];
+        
+        NSError *error = nil;
+        NSData *lData = [NSURLConnection sendSynchronousRequest:lURLRequest returningResponse:nil error:&error];
+        
+        if (i == cartIdArray.count-1) {
+            NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:lData options:NSJSONReadingAllowFragments error:nil];
+            lDictionary = [dictionary objectForKey:@"msg"];
+        }
+    }
+    
+    return lDictionary;
+}
 @end
