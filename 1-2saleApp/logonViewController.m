@@ -96,6 +96,8 @@
             [lAlertView show];
             self.cipherText.text=@"";
             self.affimCipherText.text=@"";
+            self.passwordCheak.hidden=YES;
+            self.affimPasswordCheak.hidden=YES;
             return;
         }
     }
@@ -301,6 +303,7 @@
                 self.telephoneText.text=@"";
                 self.usernameCheak.hidden=YES;
                 self.passwordCheak.hidden=YES;
+                self.affimPasswordCheak.hidden=YES;
                 self.emailCheak.hidden=YES;
                 self.telephoneCheak.hidden=YES;
             }

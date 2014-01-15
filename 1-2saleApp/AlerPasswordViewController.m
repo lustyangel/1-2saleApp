@@ -34,6 +34,9 @@
     self.npassword.secureTextEntry=YES;
     self.oldPassword.secureTextEntry=YES;
     self.affirmText.secureTextEntry=YES;
+    self.npasswordCheck.hidden=YES;
+    self.oldPasswordCheck.hidden=YES;
+    self.affirmPasswordCheck.hidden=YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -58,6 +61,8 @@
             [lAlertView show];
             self.affirmText.text=@"";
             self.npassword.text=@"";
+            self.affirmPasswordCheck.hidden=YES;
+            self.npasswordCheck.hidden=YES;
             return;
        }
     }
@@ -67,11 +72,75 @@
         if (![self.oldPassword.text isEqualToString:lString]) {
             UIAlertView *lAlertView=[[UIAlertView alloc]initWithTitle:@"Error" message:@"Wrong Password" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [lAlertView show];
+            self.oldPassword.text=@"";
+            self.oldPasswordCheck.hidden=YES;
         }
     }
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     return YES;
+}
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    if (textField.tag==1) {
+        _x=3;
+        NSString *lS1=[NSString stringWithFormat:@"http://%@/shop/checkpassword.php?password=",kIP];
+        NSString *lS2=[lS1 stringByAppendingString:self.npassword.text];
+        NSString *lS3;
+        if ([string isEqualToString:@""]) {
+            lS3=[lS2 substringToIndex:lS2.length-1];
+        }
+        else{
+            lS3=[lS2 stringByAppendingString:string];
+        }
+        NSURL *lURL=[NSURL URLWithString:lS3];
+        NSMutableURLRequest *lURLRequest=[NSMutableURLRequest requestWithURL:lURL];
+        [lURLRequest setHTTPMethod:@"get"];
+        NSURLConnection *lConnection=[NSURLConnection connectionWithRequest:lURLRequest delegate:self];
+        [lConnection start];
+    }
+    if (textField.tag==2) {
+        NSString *lADD;
+        if ([string isEqualToString:@""]) {
+            lADD=[self.affirmText.text substringToIndex:self.affirmText.text.length-1];
+        }
+        else{
+            lADD=[self.affirmText.text stringByAppendingString:string];
+        }
+        if ([self.npassword.text isEqualToString:lADD]) {
+            self.affirmText.hidden=NO;
+            [self.affirmPasswordCheck setImage:[UIImage imageNamed:@"right.png"]];
+        }
+        else{
+            self.affirmPasswordCheck.hidden=NO;
+            [self.affirmPasswordCheck setImage:[UIImage imageNamed:@"wrong.png"]];
+        }
+        if ([lADD isEqualToString:@""]) {
+            self.affirmPasswordCheck.hidden=YES;
+        }
+    }
+    if (textField.tag==3) {
+        NSArray *lArray=[NSArray arrayWithContentsOfFile:localPassword];
+        NSString *lString=[lArray objectAtIndex:lArray.count-1];
+        NSString *lADD;
+        if ([string isEqualToString:@""]) {
+            lADD=[self.oldPassword.text substringToIndex:self.oldPassword.text.length-1];
+        }
+        else{
+            lADD=[self.oldPassword.text stringByAppendingString:string];
+        }
+        if ([lString isEqualToString:lADD]) {
+            self.oldPasswordCheck.hidden=NO;
+            [self.oldPasswordCheck setImage:[UIImage imageNamed:@"right.png"]];
+        }
+        else{
+            self.oldPasswordCheck.hidden=NO;
+            [self.oldPasswordCheck setImage:[UIImage imageNamed:@"wrong.png"]];
+        }
+        if ([lADD isEqualToString:@""]) {
+            self.oldPasswordCheck.hidden=YES;
+        }
+    }
+   return YES;
 }
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
     [_data setLength:0];
@@ -98,10 +167,11 @@
     switch (_x) {
         case 1:
         {
-            if ([msgString isEqualToString:@"0"]&&self.npassword.text!=nil) {
+            if (![msgString isEqualToString:@"1"]&&![self.npassword.text isEqualToString:@""]) {
                 UIAlertView *lAlertView=[[UIAlertView alloc]initWithTitle:@"Error" message:@"Invalid password" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
                 [lAlertView show];
                 self.npassword.text=@"";
+                self.npasswordCheck.hidden=YES;
             }
         }
             break;
@@ -114,11 +184,31 @@
             else{
                 UIAlertView *lAlertView=[[UIAlertView alloc]initWithTitle:nil message:@"Your change is successful" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
                 [lAlertView show];
-                self.npassword.text=nil;
-                self.affirmText.text=nil;
-                self.oldPassword.text=nil;
+                self.npassword.text=@"";
+                self.affirmText.text=@"";
+                self.oldPassword.text=@"";
+                self.npasswordCheck.hidden=YES;
+                self.affirmPasswordCheck.hidden=YES;
+                self.oldPasswordCheck.hidden=YES;
+               NSMutableArray *lArray=[NSArray arrayWithContentsOfFile:localPassword];
+                [lArray removeLastObject];
+                [lArray addObject:self.npassword.text];
+                [lArray writeToFile:localPassword atomically:YES];
             }
         }
+            break;
+            case 3:
+        if (![msgString isEqualToString:@"1"]&&![self.npassword.text isEqualToString:@""]) {
+            self.npasswordCheck.image=[UIImage imageNamed:@"wrong.png"];
+            self.npasswordCheck.hidden=NO;
+        }
+            if ([msgString isEqualToString:@"1"]) {
+                self.npasswordCheck.image=[UIImage imageNamed:@"right.png"];
+                self.npasswordCheck.hidden=NO;
+            }
+            if ([self.npassword.text isEqualToString:@""]) {
+                self.npasswordCheck.hidden=YES;
+            }
             break;
         default:
             break;
