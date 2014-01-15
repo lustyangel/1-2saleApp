@@ -7,13 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "AddressCell.h"
 @interface EditAddressViewController : UIViewController{
-    UITextField  *_name;
-    UITextField  *_telephone;
-    UITextField   *_code;
-    UITextField   *_detailAddress;
+    AddressCell  *_name;
+    AddressCell  *_telephone;
+    AddressCell   *_code;
+    AddressCell   *_detailAddress;
     NSMutableData *_data;
+    BOOL  _isSubmit;
+    BOOL  _setAddress;
 }
 @property(nonatomic,retain)NSDictionary *dictionary;
 - (IBAction)hideKey:(UIControl *)sender;

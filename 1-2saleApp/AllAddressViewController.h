@@ -14,5 +14,5 @@
     NSArray *_addressArray;
      
 }
-
+@property(nonatomic,assign)BOOL isSelect;
 @end

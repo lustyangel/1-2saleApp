@@ -23,7 +23,9 @@ static DanLi *SellDali=nil;
     self=[super init];
     if (self) {
         _userID=0;
-        _userID=15;
+        _userID=3;
+        NSDictionary *address=[[NSUserDefaults  standardUserDefaults]objectForKey: @"address"];
+        _address=[[NSDictionary  alloc]initWithDictionary:address];
     }
     return self;
 }
