@@ -18,7 +18,7 @@
 #import "mainViewController.h"
 #import "ViewController.h"
 
-#define kIP @"192.168.1.141"
+#define kIP @"192.168.1.120"
 #define localUserInfoDic [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"UserInfoDic"]
 #define AutologonSign [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"AutologonSign"]
 #define localPassword [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"PasswordData"]
