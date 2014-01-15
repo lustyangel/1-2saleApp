@@ -34,6 +34,12 @@
     self.telephoneText.delegate=self;
     self.cipherText.secureTextEntry = YES;
     self.affimCipherText.secureTextEntry=YES;
+    self.usernameCheak.hidden=YES;
+    self.passwordCheak.hidden=YES;
+    self.affimPasswordCheak.hidden=YES;
+    self.emailCheak.hidden=YES;
+    self.telephoneCheak.hidden=YES;
+//     self.nameText.autocorrectionType = UITextAutocorrectionTypeNo;
     _x=-1;
    }
 
@@ -42,6 +48,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 - (void)textFieldDidEndEditing:(UITextField *)textField{
     if (textField.tag==0) {
         _x=0;
@@ -95,6 +102,97 @@
     
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    return YES;
+}
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+      if (textField.tag==0) {
+        _x=5;
+        NSString *lS1=[NSString stringWithFormat:@"http://%@/shop/checkname.php?name=",kIP];
+        NSString *lS2=[lS1 stringByAppendingString:self.nameText.text];
+        NSString *lS3;
+        if ([string isEqualToString:@""]) {
+            lS3=[lS2 substringToIndex:lS2.length-1];
+        }
+        else{
+        lS3=[lS2 stringByAppendingString:string];
+        }
+        NSURL *lURL=[NSURL URLWithString:lS3];
+        NSMutableURLRequest *lURLRequest=[NSMutableURLRequest requestWithURL:lURL];
+        [lURLRequest setHTTPMethod:@"get"];
+        NSURLConnection *lConnection=[NSURLConnection connectionWithRequest:lURLRequest delegate:self];
+        [lConnection start];
+    }
+    if (textField.tag==1) {
+        _x=6;
+        NSString *lS1=[NSString stringWithFormat:@"http://%@/shop/checkpassword.php?password=",kIP];
+        NSString *lS2=[lS1 stringByAppendingString:self.cipherText.text];
+        NSString *lS3;
+        if ([string isEqualToString:@""]) {
+            lS3=[lS2 substringToIndex:lS2.length-1];
+        }
+        else{
+            lS3=[lS2 stringByAppendingString:string];
+        }
+        NSURL *lURL=[NSURL URLWithString:lS3];
+        NSMutableURLRequest *lURLRequest=[NSMutableURLRequest requestWithURL:lURL];
+        [lURLRequest setHTTPMethod:@"get"];
+        NSURLConnection *lConnection=[NSURLConnection connectionWithRequest:lURLRequest delegate:self];
+        [lConnection start];
+    }
+    if (textField.tag==2) {
+        _x=7;
+        NSString *lS1=[NSString stringWithFormat:@"http://%@/shop/checkemail.php?email=",kIP];
+        NSString *lS2=[lS1 stringByAppendingString:self.emailText.text];
+        NSString *lS3;
+        if ([string isEqualToString:@""]) {
+            lS3=[lS2 substringToIndex:lS2.length-1];
+        }
+        else{
+            lS3=[lS2 stringByAppendingString:string];
+        }
+        NSURL *lURL=[NSURL URLWithString:lS3];
+        NSMutableURLRequest *lURLRequest=[NSMutableURLRequest requestWithURL:lURL];
+        [lURLRequest setHTTPMethod:@"get"];
+        NSURLConnection *lConnection=[NSURLConnection connectionWithRequest:lURLRequest delegate:self];
+        [lConnection start];
+    }
+    if (textField.tag==3) {
+        _x=8;
+        NSString *lS1=[NSString stringWithFormat:@"http://%@/shop/checktelephone.php?telephone=",kIP];
+        NSString *lS2=[lS1 stringByAppendingString:self.telephoneText.text];
+        NSString *lS3;
+        if ([string isEqualToString:@""]) {
+            lS3=[lS2 substringToIndex:lS2.length-1];
+        }
+        else{
+            lS3=[lS2 stringByAppendingString:string];
+        }
+        NSURL *lURL=[NSURL URLWithString:lS3];
+        NSMutableURLRequest *lURLRequest=[NSMutableURLRequest requestWithURL:lURL];
+        [lURLRequest setHTTPMethod:@"get"];
+        NSURLConnection *lConnection=[NSURLConnection connectionWithRequest:lURLRequest delegate:self];
+        [lConnection start];
+    }
+    if (textField.tag==4) {
+        NSString *lADD;
+        if ([string isEqualToString:@""]) {
+            lADD=[self.affimCipherText.text substringToIndex:self.affimCipherText.text.length-1];
+        }
+        else{
+        lADD=[self.affimCipherText.text stringByAppendingString:string];
+        }
+        if ([self.cipherText.text isEqualToString:lADD]) {
+            self.affimPasswordCheak.hidden=NO;
+            [self.affimPasswordCheak setImage:[UIImage imageNamed:@"right.png"]];
+        }
+        else{
+            self.affimPasswordCheak.hidden=NO;
+            [self.affimPasswordCheak setImage:[UIImage imageNamed:@"wrong.png"]];
+        }
+       if ([lADD isEqualToString:@""]) {
+            self.affimPasswordCheak.hidden=YES;
+        }
+    }
     return YES;
 }
 - (IBAction)commitButton:(UIButton *)sender {
@@ -154,47 +252,57 @@
     [lScanner2 scanString:lC intoString:nil];
     [lScanner2 scanUpToString:lD intoString:&msgString];
     
-    NSLog(@"%@",lString);
-    NSLog(@"%i %@ %@",_x,errorString,msgString);
+//    NSLog(@"%@",lString);
+//    NSLog(@"%@ %@",errorString,msgString);
     
     switch (_x) {
         case 0:
-            if ([msgString isEqualToString:@"0"]&&self.nameText.text!=nil) {
+            NSLog(@"%@",self.nameText.text);
+            if (![msgString isEqualToString:@"1"]&&self.nameText.text!=nil&&![self.nameText.text isEqualToString:@""]) {
                 UIAlertView *lAlertView=[[UIAlertView alloc]initWithTitle:@"Error" message:@"Invalid userName" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
                 [lAlertView show];
                 self.nameText.text=@"";
+                self.usernameCheak.hidden=YES;
             }
             break;
         case 1:
-            if ([msgString isEqualToString:@"0"]&&self.cipherText.text!=nil) {
+            if (![msgString isEqualToString:@"1"]&&self.cipherText.text!=nil&&![self.cipherText.text isEqualToString:@""]) {
                 UIAlertView *lAlertView=[[UIAlertView alloc]initWithTitle:@"Error" message:@"Invalid password" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
                 [lAlertView show];
                 self.cipherText.text=@"";
+                self.passwordCheak.hidden=YES;
             }
             break;
         case 2:
-            if ([msgString isEqualToString:@"0"]&&self.emailText.text!=nil) {
+            if (![msgString isEqualToString:@"1"]&&self.emailText.text!=nil&&![self.emailText.text isEqualToString:@""]) {
                 UIAlertView *lAlertView=[[UIAlertView alloc]initWithTitle:@"Error" message:@"Invalid email" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
                 [lAlertView show];
                 self.emailText.text=@"";
+                self.emailCheak.hidden=YES;
             }
             break;
         case 3:
-            if ([msgString isEqualToString:@"0"]&&self.telephoneText.text!=nil) {
+            if (![msgString isEqualToString:@"1"]&&self.telephoneText.text!=nil&&![self.telephoneText.text isEqualToString:@""]) {
                 UIAlertView *lAlertView=[[UIAlertView alloc]initWithTitle:@"Error" message:@"Invalid telephonenumber" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
                 [lAlertView show];
                 self.telephoneText.text=@"";
+                self.telephoneCheak.hidden=YES;
             }
             break;
         case 4:
             if ([errorString isEqualToString:@"0"]) {
                 UIAlertView *lAlertView=[[UIAlertView alloc]initWithTitle:nil message:@"Registration Successful" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                lAlertView.delegate=self;
                 [lAlertView show];
                 self.nameText.text=@"";
                 self.cipherText.text=@"";
                 self.affimCipherText.text=@"";
                 self.emailText.text=@"";
                 self.telephoneText.text=@"";
+                self.usernameCheak.hidden=YES;
+                self.passwordCheak.hidden=YES;
+                self.emailCheak.hidden=YES;
+                self.telephoneCheak.hidden=YES;
             }
             else{
                 UIAlertView *lAlertView=[[UIAlertView alloc]initWithTitle:@"Error" message:@"Wrong Information，Your Signup Failed" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -204,6 +312,62 @@
                 self.affimCipherText.text=@"";
                 self.emailText.text=@"";
                 self.telephoneText.text=@"";
+                self.usernameCheak.hidden=YES;
+                self.passwordCheak.hidden=YES;
+                self.emailCheak.hidden=YES;
+                self.telephoneCheak.hidden=YES;
+            }
+            break;
+        case 5:
+            if (![msgString isEqualToString:@"1"]&&![self.nameText.text isEqualToString:@""]) {
+                self.usernameCheak.image=[UIImage imageNamed:@"wrong.png"];
+                self.usernameCheak.hidden=NO;
+            }
+            if ([msgString isEqualToString:@"1"]) {
+                 self.usernameCheak.image=[UIImage imageNamed:@"right.png"];
+                 self.usernameCheak.hidden=NO;
+            }
+            if ([self.nameText.text isEqualToString:@""]) {
+                self.usernameCheak.hidden=YES;
+            }
+            break;
+        case 6:
+            if (![msgString isEqualToString:@"1"]&&![self.cipherText.text isEqualToString:@""]) {
+                self.passwordCheak.image=[UIImage imageNamed:@"wrong.png"];
+                self.passwordCheak.hidden=NO;
+            }
+            if ([msgString isEqualToString:@"1"]) {
+                self.passwordCheak.image=[UIImage imageNamed:@"right.png"];
+                self.passwordCheak.hidden=NO;
+            }
+            if ([self.cipherText.text isEqualToString:@""]) {
+                self.passwordCheak.hidden=YES;
+            }
+            break;
+        case 7:
+            if (![msgString isEqualToString:@"1"]&&![self.emailText.text isEqualToString:@""]) {
+                self.emailCheak.image=[UIImage imageNamed:@"wrong.png"];
+                self.emailCheak.hidden=NO;
+            }
+            if ([msgString isEqualToString:@"1"]) {
+                self.emailCheak.image=[UIImage imageNamed:@"right.png"];
+                self.emailCheak.hidden=NO;
+            }
+            if ([self.emailText.text isEqualToString:@""]) {
+                self.emailCheak.hidden=YES;
+            }
+            break;
+        case 8:
+            if (![msgString isEqualToString:@"1"]&&![self.telephoneText.text isEqualToString:@""]) {
+                self.telephoneCheak.image=[UIImage imageNamed:@"wrong.png"];
+                self.telephoneCheak.hidden=NO;
+            }
+            if ([msgString isEqualToString:@"1"]) {
+                self.telephoneCheak.image=[UIImage imageNamed:@"right.png"];
+                self.telephoneCheak.hidden=NO;
+            }
+            if ([self.telephoneText.text isEqualToString:@""]) {
+                self.telephoneCheak.hidden=YES;
             }
             break;
         default:
@@ -211,7 +375,9 @@
     }
      _x=-1;
 }
-
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 - (IBAction)backButton:(UIButton *)sender {
   [self dismissViewControllerAnimated:YES completion:nil];
 }

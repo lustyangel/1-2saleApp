@@ -60,6 +60,7 @@
 }
 
 - (IBAction)changeUesr:(UIButton *)sender {
+    [DanLi sharDanli].userInfoDictionary=nil;
     ViewController *lViewController=[[ViewController alloc]init];
     [self presentViewController:lViewController animated:YES completion:nil];
 }

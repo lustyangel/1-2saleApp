@@ -96,6 +96,8 @@
 		10D93CAC187BF841009FEBB4 /* aoTeMan.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 10D93CA4187BF841009FEBB4 /* aoTeMan.jpg */; };
 		10D93CC1187BF890009FEBB4 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10D93CBF187BF890009FEBB4 /* UserInfoViewController.m */; };
 		10D93CC2187BF890009FEBB4 /* UserInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10D93CC0187BF890009FEBB4 /* UserInfoViewController.xib */; };
+		10DBABCD1884D4CC00C3B3E5 /* wrong.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DBABCC1884D4CC00C3B3E5 /* wrong.png */; };
+		10DBABCF1884D4D000C3B3E5 /* right.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DBABCE1884D4D000C3B3E5 /* right.png */; };
 		10E397A2187FA1AB00387A01 /* AlerPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E397A0187FA1AA00387A01 /* AlerPasswordViewController.m */; };
 		10E397A3187FA1AB00387A01 /* AlerPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10E397A1187FA1AB00387A01 /* AlerPasswordViewController.xib */; };
 		10E8B06A187A3C9100112159 /* loadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E8B069187A3C9100112159 /* loadView.m */; };
@@ -239,6 +241,8 @@
 		10D93CBE187BF890009FEBB4 /* UserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoViewController.h; sourceTree = "<group>"; };
 		10D93CBF187BF890009FEBB4 /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
 		10D93CC0187BF890009FEBB4 /* UserInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoViewController.xib; sourceTree = "<group>"; };
+		10DBABCC1884D4CC00C3B3E5 /* wrong.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wrong.png; sourceTree = "<group>"; };
+		10DBABCE1884D4D000C3B3E5 /* right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right.png; sourceTree = "<group>"; };
 		10E3979F187FA1AA00387A01 /* AlerPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlerPasswordViewController.h; sourceTree = "<group>"; };
 		10E397A0187FA1AA00387A01 /* AlerPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlerPasswordViewController.m; sourceTree = "<group>"; };
 		10E397A1187FA1AB00387A01 /* AlerPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlerPasswordViewController.xib; sourceTree = "<group>"; };
@@ -508,6 +512,8 @@
 		10D93C9B187BF829009FEBB4 /* LRpicture */ = {
 			isa = PBXGroup;
 			children = (
+				10DBABCE1884D4D000C3B3E5 /* right.png */,
+				10DBABCC1884D4CC00C3B3E5 /* wrong.png */,
 				106F9605187EAE1D00935EFA /* lengjing-1.tiff */,
 				106F9606187EAE1E00935EFA /* lengjing-2.tiff */,
 				106F9607187EAE1E00935EFA /* lengjing-3.tiff */,
@@ -688,6 +694,8 @@
 				106F9617187EAE7200935EFA /* ViewController.xib in Resources */,
 				106F961A187EAE7200935EFA /* logonViewController.xib in Resources */,
 				10E397A3187FA1AB00387A01 /* AlerPasswordViewController.xib in Resources */,
+				10DBABCD1884D4CC00C3B3E5 /* wrong.png in Resources */,
+				10DBABCF1884D4D000C3B3E5 /* right.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

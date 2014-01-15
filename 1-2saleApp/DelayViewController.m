@@ -57,7 +57,7 @@
         [_autologonImageView addSubview:lUIActivityIndicatorView];
         [lUIActivityIndicatorView startAnimating];
     
-        [self performSelector:@selector(DelayOfLanding) withObject:nil afterDelay:3.5];
+        [self performSelector:@selector(DelayOfLanding) withObject:nil afterDelay:2.5];
 }
 -(void)DelayOfLanding{
     [DanLi sharDanli].userInfoDictionary=[NSDictionary dictionaryWithContentsOfFile:localUserInfoDic];

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface logonViewController : UIViewController<NSURLConnectionDataDelegate,UITextFieldDelegate>{
+@interface logonViewController : UIViewController<NSURLConnectionDataDelegate,UITextFieldDelegate,UIAlertViewDelegate>{
     NSMutableData *_data;
     int _x;
 }
@@ -21,5 +21,11 @@
 @property (weak, nonatomic) IBOutlet UITextField *telephoneText;
 @property (weak, nonatomic) IBOutlet UITextField *emailText;
 - (IBAction)commitButton:(UIButton *)sender;
+
+@property (weak, nonatomic) IBOutlet UIImageView *telephoneCheak;
+@property (weak, nonatomic) IBOutlet UIImageView *emailCheak;
+@property (weak, nonatomic) IBOutlet UIImageView *usernameCheak;
+@property (weak, nonatomic) IBOutlet UIImageView *passwordCheak;
+@property (weak, nonatomic) IBOutlet UIImageView *affimPasswordCheak;
 
 @end

@@ -18,6 +18,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *affirmText;
 @property (weak, nonatomic) IBOutlet UITextField *oldPassword;
 @property (weak, nonatomic) IBOutlet UITextField *npassword;
+@property (weak, nonatomic) IBOutlet UIImageView *npasswordCheck;
+@property (weak, nonatomic) IBOutlet UIImageView *affirmPasswordCheck;
+@property (weak, nonatomic) IBOutlet UIImageView *oldPasswordCheck;
 
 - (IBAction)backButton:(UIButton *)sender;
 - (IBAction)confirmAler:(UIButton *)sender;
