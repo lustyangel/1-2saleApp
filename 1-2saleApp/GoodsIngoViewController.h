@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "DetailInfoViewController.h"
 #import "evaluateView.h"
+#import "AffirmOrderViewController.h"
 
 @interface GoodsIngoViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>{
     NSMutableData *_lData;
     UIImageView *_connectFaileImage;
     BOOL _lBoolDetailInfo;
+    NSMutableDictionary  *_information;
 }
 
 @property (nonatomic,retain)UIButton *retryButton;

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+<<<<<<< HEAD
 		1019553118863D45006BEB4C /* ShoppingCartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1019552718863D45006BEB4C /* ShoppingCartViewController.m */; };
 		1019553218863D45006BEB4C /* ShoppingCartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1019552818863D45006BEB4C /* ShoppingCartViewController.xib */; };
 		1019553318863D45006BEB4C /* ShoppingCartInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 1019552A18863D45006BEB4C /* ShoppingCartInterface.m */; };
@@ -15,6 +16,12 @@
 		1019553618863D45006BEB4C /* chooseGoods.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1019552E18863D45006BEB4C /* chooseGoods.jpg */; };
 		1019553718863D45006BEB4C /* delete.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1019552F18863D45006BEB4C /* delete.jpg */; };
 		1019553818863D45006BEB4C /* title_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 1019553018863D45006BEB4C /* title_back.png */; };
+=======
+		10068BB91884F02200A21F16 /* AddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10068BB81884F02200A21F16 /* AddressCell.m */; };
+		10068BBC1884F03600A21F16 /* NetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 10068BBB1884F03600A21F16 /* NetManager.m */; };
+		10068BC01884F52000A21F16 /* AffirmOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10068BBE1884F52000A21F16 /* AffirmOrderViewController.m */; };
+		10068BC11884F52000A21F16 /* AffirmOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10068BBF1884F52000A21F16 /* AffirmOrderViewController.xib */; };
+>>>>>>> 8fef0b2833f596c929c17962bfe6e46bd0add858
 		10216043187E498200C7B833 /* ConnectFail.png in Resources */ = {isa = PBXBuildFile; fileRef = 10216042187E498200C7B833 /* ConnectFail.png */; };
 		10216049187E4BFA00C7B833 /* retry.png in Resources */ = {isa = PBXBuildFile; fileRef = 10216048187E4BFA00C7B833 /* retry.png */; };
 		1021604B187E9F3100C7B833 /* fangzi.png in Resources */ = {isa = PBXBuildFile; fileRef = 1021604A187E9F3100C7B833 /* fangzi.png */; };
@@ -116,6 +123,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+<<<<<<< HEAD
 		1019552618863D45006BEB4C /* ShoppingCartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingCartViewController.h; sourceTree = "<group>"; };
 		1019552718863D45006BEB4C /* ShoppingCartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingCartViewController.m; sourceTree = "<group>"; };
 		1019552818863D45006BEB4C /* ShoppingCartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoppingCartViewController.xib; sourceTree = "<group>"; };
@@ -127,6 +135,15 @@
 		1019552E18863D45006BEB4C /* chooseGoods.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = chooseGoods.jpg; sourceTree = "<group>"; };
 		1019552F18863D45006BEB4C /* delete.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = delete.jpg; sourceTree = "<group>"; };
 		1019553018863D45006BEB4C /* title_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title_back.png; sourceTree = "<group>"; };
+=======
+		10068BB71884F02200A21F16 /* AddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressCell.h; sourceTree = "<group>"; };
+		10068BB81884F02200A21F16 /* AddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressCell.m; sourceTree = "<group>"; };
+		10068BBA1884F03600A21F16 /* NetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetManager.h; sourceTree = "<group>"; };
+		10068BBB1884F03600A21F16 /* NetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetManager.m; sourceTree = "<group>"; };
+		10068BBD1884F51E00A21F16 /* AffirmOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AffirmOrderViewController.h; path = ../AffirmOrderViewController.h; sourceTree = "<group>"; };
+		10068BBE1884F52000A21F16 /* AffirmOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AffirmOrderViewController.m; path = ../AffirmOrderViewController.m; sourceTree = "<group>"; };
+		10068BBF1884F52000A21F16 /* AffirmOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AffirmOrderViewController.xib; path = ../AffirmOrderViewController.xib; sourceTree = "<group>"; };
+>>>>>>> 8fef0b2833f596c929c17962bfe6e46bd0add858
 		10216042187E498200C7B833 /* ConnectFail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ConnectFail.png; sourceTree = "<group>"; };
 		10216048187E4BFA00C7B833 /* retry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = retry.png; sourceTree = "<group>"; };
 		1021604A187E9F3100C7B833 /* fangzi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fangzi.png; sourceTree = "<group>"; };
@@ -400,8 +417,8 @@
 				1078F7801883E201007CCF24 /* GoodsIngoViewController.h */,
 				1078F7811883E201007CCF24 /* GoodsIngoViewController.m */,
 				10A2AA18187D45700048B1B4 /* GoodsIngoViewController.xib */,
-				1078F78E1883E269007CCF24 /* DanLi.m */,
 				1078F78F1883E269007CCF24 /* DanLi.h */,
+				1078F78E1883E269007CCF24 /* DanLi.m */,
 				10EA6B7B187B9CAE0067E2DA /* CustomView */,
 				10EA6B7A187B9C8F0067E2DA /* right&leftView */,
 			);
@@ -419,6 +436,10 @@
 				10754962187D522B00174964 /* EditAddressViewController.h */,
 				10754963187D522B00174964 /* EditAddressViewController.m */,
 				10754964187D522B00174964 /* EditAddressViewController.xib */,
+				10068BB71884F02200A21F16 /* AddressCell.h */,
+				10068BB81884F02200A21F16 /* AddressCell.m */,
+				10068BBA1884F03600A21F16 /* NetManager.h */,
+				10068BBB1884F03600A21F16 /* NetManager.m */,
 			);
 			name = address;
 			sourceTree = "<group>";
@@ -426,6 +447,9 @@
 		1075496A187D523F00174964 /* order */ = {
 			isa = PBXGroup;
 			children = (
+				10068BBD1884F51E00A21F16 /* AffirmOrderViewController.h */,
+				10068BBE1884F52000A21F16 /* AffirmOrderViewController.m */,
+				10068BBF1884F52000A21F16 /* AffirmOrderViewController.xib */,
 				1078F7911883E2E3007CCF24 /* AllOrderViewController.h */,
 				1078F7921883E2E3007CCF24 /* AllOrderViewController.m */,
 				1078F7951883E2E3007CCF24 /* OrderImformationViewController.h */,
@@ -690,6 +714,7 @@
 				1021604B187E9F3100C7B833 /* fangzi.png in Resources */,
 				1078F7871883E201007CCF24 /* DetailInfoViewController.xib in Resources */,
 				1078F7981883E2E3007CCF24 /* goShop.png in Resources */,
+<<<<<<< HEAD
 				1019553218863D45006BEB4C /* ShoppingCartViewController.xib in Resources */,
 				1019553518863D45006BEB4C /* ddefault.png in Resources */,
 				1019553618863D45006BEB4C /* chooseGoods.jpg in Resources */,
@@ -714,6 +739,9 @@
 				10D35A2718866A7700E17A59 /* AlerPasswordViewController.xib in Resources */,
 				10E2C78F1887892D001C4AD5 /* smile.jpg in Resources */,
 				10E2C79118878D76001C4AD5 /* smile_go.jpg in Resources */,
+=======
+				10068BC11884F52000A21F16 /* AffirmOrderViewController.xib in Resources */,
+>>>>>>> 8fef0b2833f596c929c17962bfe6e46bd0add858
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -760,6 +788,7 @@
 				1078F7991883E2E3007CCF24 /* OrderCell.m in Sources */,
 				1078F79A1883E2E3007CCF24 /* OrderImformationViewController.m in Sources */,
 				1078F79C1883E387007CCF24 /* showCell.m in Sources */,
+<<<<<<< HEAD
 				1019553118863D45006BEB4C /* ShoppingCartViewController.m in Sources */,
 				1019553318863D45006BEB4C /* ShoppingCartInterface.m in Sources */,
 				1019553418863D45006BEB4C /* CustomerTableViewCell.m in Sources */,
@@ -768,6 +797,12 @@
 				10D359FE1886694A00E17A59 /* logonViewController.m in Sources */,
 				10D35A2418866A7700E17A59 /* UserInfoViewController.m in Sources */,
 				10D35A2618866A7700E17A59 /* AlerPasswordViewController.m in Sources */,
+=======
+				1078F79F1883E493007CCF24 /* DelayViewController.m in Sources */,
+				10068BB91884F02200A21F16 /* AddressCell.m in Sources */,
+				10068BBC1884F03600A21F16 /* NetManager.m in Sources */,
+				10068BC01884F52000A21F16 /* AffirmOrderViewController.m in Sources */,
+>>>>>>> 8fef0b2833f596c929c17962bfe6e46bd0add858
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

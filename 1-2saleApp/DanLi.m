@@ -23,9 +23,15 @@ static DanLi *SellDali=nil;
     self=[super init];
     if (self) {
         _userID=0;
+<<<<<<< HEAD
         _userID=15;
         
         _cartIdArray = [[NSMutableArray alloc] init];
+=======
+        _userID=3;
+        NSDictionary *address=[[NSUserDefaults  standardUserDefaults]objectForKey: @"address"];
+        _address=[[NSDictionary  alloc]initWithDictionary:address];
+>>>>>>> 8fef0b2833f596c929c17962bfe6e46bd0add858
     }
     return self;
 }

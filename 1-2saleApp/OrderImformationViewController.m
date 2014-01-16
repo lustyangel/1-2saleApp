@@ -110,6 +110,20 @@
         //商品的名字
         cell.name.text=[dic objectForKey:@"name"];
         cell.stateButton.hidden=YES;
+        //商品的图片
+        NSString  *headerimage=[dic objectForKey:@"headerimage"];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            NSURL *lURL=[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/shop/goodsimage/%@",kIP, headerimage]];
+            NSData *lData=[NSData dataWithContentsOfURL:lURL];
+            UIImage *image=[[UIImage alloc]initWithData:lData];
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                cell.imageview.image=image;
+                
+            });
+        });
+
+        
+        
         return cell;
     }else if( row==_array.count+1){
         
@@ -250,6 +264,7 @@
 }
 -(void)deleteOrder:(UIButton*)sender{
     NSLog(@"delete");
+    [self getData];
     
 }
 #pragma mark-删除数据
@@ -275,12 +290,25 @@
     
 //    NSDictionary *dic=[NSJSONSerialization JSONObjectWithData:_data options:NSJSONReadingAllowFragments error:nil];
 //    NSDictionary *dic1=[dic objectForKey:@"msg"];
+    [self dismissViewControllerAnimated:YES completion:nil];
     
     
 }
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
-    UIAlertView  *alter=[[UIAlertView alloc]initWithTitle:@"message" message:@"network is error!" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
-    [alter show];
+    [self errorView];
+//    UIAlertView  *alter=[[UIAlertView alloc]initWithTitle:@"message" message:@"network is error!" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
+//    [alter show];
+}
+#pragma mark- 下载错误提醒
+-(void)errorView{
+    
+    UIImageView*connectFaileImage=[[UIImageView alloc]initWithFrame:CGRectMake(90, 150, 150, 227)];
+    connectFaileImage.image=[UIImage imageNamed:@"ConnectFail.png"];
+    [self.view addSubview:connectFaileImage];
+    [self performSelector:@selector(retryClick:) withObject:connectFaileImage afterDelay:3];
+}
+-(void)retryClick: (UIImageView*)image{
+    [image removeFromSuperview];
 }
 - (void)didReceiveMemoryWarning
 {

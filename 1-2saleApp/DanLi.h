@@ -13,7 +13,11 @@
 @property (nonatomic,assign)int userID;
 @property (nonatomic,assign)int goodsID;
 @property (nonatomic,assign)int goodsCount;
+<<<<<<< HEAD
 @property (nonatomic,retain)NSDictionary *userInfoDictionary;
+=======
+@property (nonatomic,retain)NSDictionary *address;
+>>>>>>> 8fef0b2833f596c929c17962bfe6e46bd0add858
 
 +(DanLi *)sharDanli;
 

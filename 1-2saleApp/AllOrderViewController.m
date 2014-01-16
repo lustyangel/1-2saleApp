@@ -11,6 +11,8 @@
 #import "OrderImformationViewController.h"
 #import "DanLi.h"
 #import "UIScrollView+PullLoad.h"
+
+
 @interface AllOrderViewController ()
 
 @end
@@ -52,8 +54,7 @@
     
     _data =[[NSMutableData alloc]init];
     _array =[[NSArray alloc]init];
-     
- 
+    
   
     // Do any additional setup after loading the view from its nib.
 }
@@ -75,10 +76,13 @@
     }
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     NSDictionary *dic=[_array objectAtIndex:[indexPath row]];
+    NSLog(@"dci%@",dic);
     
-    //商品的总价
+        //商品的总价
        NSString  *amount=[dic objectForKey:@"amount"];
         cell.price.text=[NSString stringWithFormat:@"¥%@",amount];
+    
+ 
     
     //商品的数量
        NSArray  *array=[dic objectForKey:@"carts"];
@@ -87,6 +91,20 @@
       //第一个商品的名字
         NSDictionary *dic1=[array objectAtIndex: 0];
        cell.name.text=[dic1 objectForKey:@"name"];
+    
+    //商品的图片
+    NSString  *headerimage=[dic1 objectForKey:@"headerimage"];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSURL *lURL=[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/shop/goodsimage/%@",kIP, headerimage]];
+        NSData *lData=[NSData dataWithContentsOfURL:lURL];
+        UIImage *image=[[UIImage alloc]initWithData:lData];
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            cell.imageview.image=image;
+           
+        });
+    });
+
+    
     
     //商品的状态
     NSString *state=[dic objectForKey:@"state"];
@@ -102,7 +120,7 @@
                [cell.tradeState   setText:@"卖家已发货"];
             break;
         case  2:
-            [cell.stateButton  setTitle:@"评价" forState:UIControlStateNormal];
+             [cell.stateButton  setTitle:@"评价" forState:UIControlStateNormal];
               [cell.tradeState   setText:@"交易成功"];
             break;
             
@@ -111,6 +129,10 @@
     }
       
       cell.delegate=self;
+    
+    
+    
+    
 
     return cell;
 }
@@ -125,7 +147,7 @@
      
 }
 -(void)stateButton:(UIButton *)sender String:(NSString *)string{
-   // NSLog(@"%@",string);
+    NSLog(@"%@",string);
 }
 
 #pragma mark-下拉加载
@@ -145,7 +167,7 @@
 }
 #pragma mark-返回首页
 -(void)backClick:(UIButton *)sender{
-    [self dismissViewControllerAnimated:YES completion:nil];
+ [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -209,18 +231,48 @@
         _tableView.pullDelegate=self;
         _tableView.canPullDown=NO;
         _tableView.canPullUp=YES;
+     
+          
         if (_showcount<5) {
             _tableView.bounces=NO;
 
         }else{
             _tableView.bounces=YES;
         }
-        [self.view addSubview:_tableView];
+           [self.view addSubview:_tableView];
      }
 }
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
-    UIAlertView  *alter=[[UIAlertView alloc]initWithTitle:@"message" message:@"network is error!" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
-    [alter show];
+    
+    [self errorView];
+    
+//    UIAlertView  *alter=[[UIAlertView alloc]initWithTitle:@"message" message:@"network is error!" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
+//    [alter show];
+}
+
+#pragma mark- 错误提醒
+-(void)errorView{
+    UIView  *view=[[UIView alloc]initWithFrame:CGRectMake(90, 150, 150, 257)];
+    view.tag=900;
+    
+    UIImageView*connectFaileImage=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 150, 227)];
+    connectFaileImage.image=[UIImage imageNamed:@"ConnectFail.png"];
+    [view addSubview:connectFaileImage];
+    
+    UIButton*retryButton=[[UIButton alloc]initWithFrame:CGRectMake(40, 227, 70, 30)];
+    retryButton.layer.borderColor=[UIColor darkGrayColor].CGColor;
+    retryButton.layer.borderWidth=1;
+    [retryButton setImage:[UIImage imageNamed:@"retry.png"] forState:UIControlStateNormal];
+    retryButton.backgroundColor=[UIColor grayColor];
+    retryButton.titleLabel.textColor=[UIColor blackColor];
+    [retryButton addTarget:self action:@selector(retryClick:) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:retryButton];
+    [self.view addSubview:view];
+}
+-(void)retryClick:(UIButton*)sender{
+    UIView *view=[self.view viewWithTag:900];
+    [view removeFromSuperview];
+    [self getData];
 }
 - (void)didReceiveMemoryWarning
 {

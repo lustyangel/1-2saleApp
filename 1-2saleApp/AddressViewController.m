@@ -7,7 +7,7 @@
 //
 
 #import "AddressViewController.h"
-
+#import "NetManager.h"
 @interface AddressViewController ()
 
 @end
@@ -29,27 +29,39 @@
     _isClick=YES;
     _data=[[NSMutableData alloc]init];
     _cityString=[[NSMutableString alloc]init];
+    _cityArray=[[NSMutableArray alloc]initWithArray:[[self getAllCity]allKeys]];
+#pragma mark-导航
+    UIView  *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
+    view.backgroundColor=[UIColor redColor];
     
-    UILabel  *lable=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 320, 40)];
-    [lable setText:@"  收货地址"];
-    lable.backgroundColor=[UIColor grayColor];
-    [lable setTextColor:[UIColor blackColor]];
+    UILabel  *lable=[[UILabel alloc]initWithFrame: view.frame];
+    [lable setText:@"收货地址管理"];
+    lable.textAlignment=NSTextAlignmentCenter;
+    lable.backgroundColor=[UIColor clearColor];
     [lable setFont:[UIFont systemFontOfSize:18]];
-    [self.view addSubview:lable];
+    [view addSubview:lable];
+    
+    UIButton *lButton=[UIButton buttonWithType:UIButtonTypeCustom];
+    [lButton setImage:[UIImage imageNamed:@"title_back"] forState:UIControlStateNormal];
+    [lButton setFrame:CGRectMake(0, 2, 44, 44)];
+    [lButton addTarget:self action:@selector(backClick:) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:lButton];
+    [self.view  addSubview:view];
     
    
-    _tableView=[[UITableView alloc]initWithFrame:CGRectMake(5, 40, 320, self.view.frame.size.height ) style:UITableViewStylePlain];
+    _tableView=[[UITableView alloc]initWithFrame:CGRectMake(5, 44, 320, self.view.frame.size.height ) style:UITableViewStylePlain];
     _tableView.delegate=self;
     _tableView.dataSource=self;
      _tableView.showsVerticalScrollIndicator=NO;
     [self.view addSubview:_tableView];
-    
-    
-    _cityArray=[[NSMutableArray alloc]initWithArray:[[self getAllCity]allKeys]];
-    
-  
+   
     // Do any dditional setup after loading the view from its nib.
 }
+#pragma mark-返回上页
+-(void)backClick:(UIButton *)sender{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+#pragma mark-tableview
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
    
     return _cityArray.count;
@@ -77,8 +89,7 @@
            UIButton *button=(UIButton *)[self.view viewWithTag:100];
            [button removeFromSuperview];
            
-            UIView  *view=[self addressView];
-           [self.view addSubview:view];
+           [self addressView];
            
        }else{
            
@@ -100,15 +111,61 @@
        }
      _isClick=NO;
 }
-
+#pragma mark-点击回到城市的选择
 -(void)buttonClick:(UIButton*)sender{
         _isClick=YES;
      [_cityString  setString:@" "];
         [sender removeFromSuperview];
-        _tableView.frame=CGRectMake(5, 40, 320, self.view.frame.size.height );
+        _tableView.frame=CGRectMake(5, 44, 320, self.view.frame.size.height );
          _cityArray=[NSMutableArray  arrayWithArray:[[self getAllCity]allKeys]];
         [_tableView  reloadData];
      
+}
+#pragma mark-提交地址数据
+-(void)submitAddress:(UIButton*)sender{
+    [_cityString appendString:_detailRess.text];
+    if (![_detailRess.text  isEqualToString:@""]&&![_name.text isEqualToString:@""]&&![_telephone.text isEqualToString:@""]&&![_code.text isEqualToString:@""]) {
+       
+        if ([self verifyTelephone:_telephone.text]&&[self verifyCode:_code.text]) {
+             [self getData];
+        }else{
+            NSString  *string=@"电话号码或是邮编错误";
+            [self errorMessage:string];
+        }
+        
+           }else{
+                NSString *string=@"地址，收件人，电话号码或邮编不能为空!";
+               [self errorMessage:string];
+               
+        }
+}
+#pragma mark-数据输入错误提醒
+-(void)errorMessage:(NSString*)string{
+    UILabel  *message=[[UILabel alloc]initWithFrame:CGRectMake(0, 250, 320, 30)];
+    message.text=string;
+    [message setTextColor:[UIColor redColor]];
+    message.tag=800;
+    message.alpha=0.5;
+    message.font=[UIFont systemFontOfSize:14];
+    message.textAlignment=NSTextAlignmentCenter;
+    [self.view addSubview:message];
+    [self  performSelector:@selector(removeMessage:) withObject:message afterDelay:1];
+}
+-(void)removeMessage:(UILabel*)label{
+        [label removeFromSuperview];
+  }
+
+#pragma mark-数据下载
+-(void)getData{
+    NSURL *url=[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/shop/addaddress.php",kIP] ];
+    NSString *bobyString=[NSString stringWithFormat:@"customerid=%i&name=%@&telephone=%@&code=%@&address=%@",[DanLi sharDanli].userID,_name.text,_telephone.text,_code.text, _cityString ];
+    
+    NSMutableURLRequest  *request=[[NSMutableURLRequest alloc]initWithURL:url];
+    [request setHTTPMethod:@"post"];
+    [request setHTTPBody:[ bobyString dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSURLConnection  *connecation=[[NSURLConnection alloc]initWithRequest:request delegate:self];
+    [connecation start];
 }
 
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
@@ -118,16 +175,24 @@
     [_data setData:data];
 }
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection{
-    
-   // NSDictionary *dic=[NSJSONSerialization JSONObjectWithData:_data options:NSJSONReadingAllowFragments error:nil];
-  // NSLog(@"%@",dic);
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
-    NSLog(@"%@",error);
+                [self errorView];
+}
+#pragma mark- 下载错误提醒
+-(void)errorView{
+       
+    UIImageView*connectFaileImage=[[UIImageView alloc]initWithFrame:CGRectMake(90, 150, 150, 227)];
+    connectFaileImage.image=[UIImage imageNamed:@"ConnectFail.png"];
+    [self.view addSubview:connectFaileImage];
+    [self performSelector:@selector(retryClick:) withObject:connectFaileImage afterDelay:3];
+}
+-(void)retryClick: (UIImageView*)image{
+    [image removeFromSuperview];
 }
 
-
+#pragma mark-获取城市和区县
 -(NSDictionary*)getAllCity{
     
     NSString  *path= [[NSBundle mainBundle]pathForResource:@"city" ofType:@"json"];
@@ -150,63 +215,120 @@
     return cityDic;
 
 }
--(UIView*)addressView{
-    UIView  *view=[[UIView alloc]initWithFrame:CGRectMake(5, 50, 320, self.view.frame.size.height)];
-    UILabel  *label=[[UILabel alloc]initWithFrame:CGRectMake(10, 0, 320, 40)];
+
+#pragma mark- 数据页面
+-(void)addressView{
+   // UIView  *view=[[UIView alloc]initWithFrame:CGRectMake(5, 50, 320, self.view.frame.size.height)];
+    
+    UILabel  *label=[[UILabel alloc]initWithFrame:CGRectMake(10, 50, 320, 40)];
     [label setText:  [NSString stringWithFormat:@"所在地区:%@",_cityString]];
     label.backgroundColor=[UIColor clearColor];
-    [view addSubview:label];
+    [self.view addSubview:label];
     
-_detailRess=[[UITextField alloc]initWithFrame:CGRectMake(20, 45, 250, 30)];
+  _detailRess=[[UITextField alloc]initWithFrame:CGRectMake(20, 95, 250, 30)];
     _detailRess.borderStyle=UITextBorderStyleRoundedRect;
     _detailRess.placeholder=@"请输入详细的街道地址";
-    [view addSubview:_detailRess];
+    _detailRess.text=@"";
+    [self.view addSubview:_detailRess];
     
-     _name=[[UITextField alloc]initWithFrame:CGRectMake(20, 80, 250, 30)];
+     _name=[[UITextField alloc]initWithFrame:CGRectMake(20, 125, 250, 30)];
     _name.borderStyle=UITextBorderStyleRoundedRect;
     _name.placeholder=@"请输入收货人姓名";
-    [view addSubview:_name];
+    _name.text=@"";
+    [self.view addSubview:_name];
     
-    _telephone=[[UITextField alloc]initWithFrame:CGRectMake(20, 115, 250, 30)];
+    _telephone=[[UITextField alloc]initWithFrame:CGRectMake(20, 155, 250, 30)];
     _telephone.borderStyle=UITextBorderStyleRoundedRect;
     _telephone.placeholder=@"请输入收货人联系电话";
-    [view addSubview:_telephone];
+    _telephone.text=@"";
+    _telephone.tag=500;
+    _telephone.delegate=self;
+    [self.view addSubview:_telephone];
     
-    _code=[[UITextField alloc]initWithFrame:CGRectMake(20, 150, 250, 30)];
+    _code=[[UITextField alloc]initWithFrame:CGRectMake(20, 185, 250, 30)];
     _code.borderStyle=UITextBorderStyleRoundedRect;
     _code.placeholder=@"请输入邮编";
-    [view addSubview:_code];
+    _code.tag=600;
+    _code.delegate=self;
+    _code.text=@"";
+    [self.view addSubview:_code];
+    
+    _verifyView=[[UIImageView alloc]initWithFrame:CGRectMake(270, 165, 15, 15)];
+    _verifyView.hidden=YES;
+    _verifyView.image=[UIImage imageNamed:@"error"];
+       [self.view addSubview:_verifyView];
     
     
     UIButton  * button=[UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame=CGRectMake(120, 190, 60,30);
+    button.frame=CGRectMake(120, 225, 60,30);
     button.backgroundColor=[UIColor redColor];
     [button setTitle: @"提交" forState:UIControlStateNormal];
     [button addTarget:self action:@selector(submitAddress:) forControlEvents:UIControlEventTouchUpInside];
     button.titleLabel.textAlignment=NSTextAlignmentLeft;
-    [view addSubview:button];
+    [self.view addSubview:button];
     
-    return view;
+  //  return view;
    
 }
--(void)submitAddress:(UIButton*)sender{
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+    if (![textField.text isEqualToString:@""]) {
+              if (textField.tag==500) {
+                       if (![self verifyTelephone:textField.text]) {
+                               _verifyView.frame=CGRectMake(270, 165, 15, 15);
+                                _verifyView.hidden=NO;
+                             }else{
+                                   _verifyView.hidden=YES;
+                               }
+                    }else if (textField.tag==600){
+                         if (![self verifyCode:textField.text]) {
+                                  _verifyView.frame=CGRectMake(270, 195, 15, 15);
+                                  _verifyView.hidden=NO;
+                             }else{
+                                      _verifyView.hidden=YES;
+                                    }
+                         }
+           }
+
     
-  
-   [_cityString appendString:_detailRess.text];
-      NSURL *url=[NSURL URLWithString:@"http://192.168.1.137/shop/addaddress.php" ];
-    NSString *bobyString=[NSString stringWithFormat:@"customerid=3&name=%@&telephone=%@&code=%@&address=%@",_name.text,_telephone.text,_code.text, _cityString ];
-    
-    NSMutableURLRequest  *request=[[NSMutableURLRequest alloc]initWithURL:url];
-    [request setHTTPMethod:@"post"];
-    [request setHTTPBody:[ bobyString dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    NSURLConnection  *connecation=[[NSURLConnection alloc]initWithRequest:request delegate:self];
-    [connecation start];
 }
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+#pragma mark-验证电话号码
+-(BOOL)verifyTelephone:(NSString *)string{
+       NSString *regex=@"[0-9]{11}";
+     NSPredicate  *predicate=[NSPredicate predicateWithFormat:@"self matches %@",regex];
+     bool isMatch=[predicate evaluateWithObject:string];
+        if (isMatch) {
+              return YES;
+          }else{
+                   return NO;
+               }
+  
+   }
+#pragma mark-验证邮政编码
+-(BOOL)verifyCode:(NSString *)string{
+       //^(13[0-9]|15[0|3|6|7|8|9]|18[8|9])d{8}$
+        NSString *regex=@"[0-9]{6}";
+        NSPredicate  *predicate=[NSPredicate predicateWithFormat:@"self matches %@",regex];
+      BOOL isMatch=[predicate evaluateWithObject:string];
+      if (isMatch) {
+           return YES;
+         }else{
+               return NO;
+            }  
+}
+-(void)viewWillAppear:(BOOL)animated{
+    if (![NetManager sharNet].connectedToNetwork) {
+        [self errorView];
+    }
+}
+- (IBAction)hideKey:(UIControl *)sender {
+    [_code resignFirstResponder];
+    [_detailRess  resignFirstResponder];
+    [_name resignFirstResponder];
+    [_telephone resignFirstResponder];
+}
 @end

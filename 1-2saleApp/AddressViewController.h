@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddressViewController : UIViewController< UITableViewDataSource,UITableViewDelegate,NSURLConnectionDataDelegate>{
+@interface AddressViewController : UIViewController< UITableViewDataSource,UITableViewDelegate,NSURLConnectionDataDelegate,UITextFieldDelegate>{
    NSMutableData  *_data;
     NSMutableArray  *_cityArray;
     UITableView  *_tableView;
@@ -18,7 +18,9 @@
     UITextField  *_name;
     UITextField  *_telephone;
     UITextField  *_code;
+    UIImageView *_verifyView;
     
      
 }
+- (IBAction)hideKey:(UIControl *)sender;
 @end

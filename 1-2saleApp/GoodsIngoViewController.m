@@ -23,6 +23,7 @@
         _lData=[[NSMutableData alloc]init];
         _lDic=[[NSDictionary alloc]init];
         _lBoolDetailInfo=NO;
+        
     }
     return self;
 }
@@ -442,7 +443,26 @@
 #pragma mark - 立即购买
 
 -(void)buyTouchDown:(UIButton *)sender{
+    
+      
+    
+   float  amountString=[_lNumber.text intValue]*[ [_lDic objectForKey:@"price"]intValue ];
+   
+    _information=[[NSMutableDictionary alloc]initWithDictionary:_lDic];
+    [_information removeObjectForKey:@"detail"];
+    [_information  setObject:_lNumber.text forKey:@"goodscount"];
+    [_information  setObject:[NSString stringWithFormat:@"%.2f",amountString] forKey:@"amount"];
+    //NSLog(@"_information%@",_information);
+    
+    
+    AffirmOrderViewController  *affirm=[[AffirmOrderViewController alloc]init];
+    affirm.cartInfo=[NSDictionary dictionaryWithDictionary:_information];
+    [self presentViewController:affirm animated:YES completion:nil];
+    
+    
+    
     sender.backgroundColor=[UIColor orangeColor];
+  //  NSLog(@"dic%@",_lDic);
 }
 -(void)buyClick:(UIButton *)sender{
     sender.backgroundColor=[UIColor colorWithRed:1 green:0.2 blue:0 alpha:1];

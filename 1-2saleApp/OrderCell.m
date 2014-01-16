@@ -28,7 +28,7 @@
       // [_tradeState setText:@"交易关闭"];
         _tradeState .backgroundColor=[UIColor clearColor];
          _tradeState.font=[UIFont systemFontOfSize:12];
-        [_tradeState setTextColor:[UIColor whiteColor]];
+        [_tradeState setTextColor:[UIColor redColor]];
         _tradeState.textAlignment=NSTextAlignmentCenter;
         [self.contentView addSubview:_tradeState];
         
@@ -61,7 +61,7 @@
     return self;
 }
 -(void)buttonClick:(UIButton*)sender{
-    [_delegate  stateButton:sender String:_count.text];
+    [_delegate  stateButton:sender String:_stateButton.currentTitle];
 }
 
 
