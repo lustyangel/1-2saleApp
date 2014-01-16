@@ -13,7 +13,13 @@
 @property (nonatomic,assign)int userID;
 @property (nonatomic,assign)int goodsID;
 @property (nonatomic,assign)int goodsCount;
+@property (nonatomic,retain)NSDictionary *userInfoDictionary;
 
 +(DanLi *)sharDanli;
 
+
+// 购物车
+@property (nonatomic, assign)float           accountAllGoodsPrice;        // 结算所有商品金额
+@property (nonatomic, copy)NSString         *myUserID;                    // 用户ID
+@property (nonatomic, retain)NSMutableArray *cartIdArray;                 // 购物车数组
 @end

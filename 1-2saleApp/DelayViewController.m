@@ -32,7 +32,7 @@
         UIImage *lImage=[UIImage imageNamed:@"lengjing-1.tiff"];
         NSArray *lArray=[[NSArray alloc]initWithObjects:[UIImage imageNamed:@"lengjing-1.tiff"],[UIImage imageNamed:@"lengjing-2.tiff"],[UIImage imageNamed:@"lengjing-3.tiff"],nil];
         _autologonImageView=[[UIImageView alloc]initWithImage:lImage];
-        [_autologonImageView setFrame:self.view.frame];
+    [_autologonImageView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
         _autologonImageView.animationImages=lArray;
         _autologonImageView.animationDuration=0.2;
         [_autologonImageView setUserInteractionEnabled:YES];//UIImageView默认是把事件关闭的！！
@@ -57,9 +57,11 @@
         [_autologonImageView addSubview:lUIActivityIndicatorView];
         [lUIActivityIndicatorView startAnimating];
     
-        [self performSelector:@selector(DelayOfLanding) withObject:nil afterDelay:3.5];
+        [self performSelector:@selector(DelayOfLanding) withObject:nil afterDelay:2.5];
 }
 -(void)DelayOfLanding{
+    [DanLi sharDanli].userInfoDictionary=[NSDictionary dictionaryWithContentsOfFile:localUserInfoDic];
+    NSLog(@"%@", [DanLi sharDanli].userInfoDictionary);
     mainViewController *lmainViewController=[[mainViewController alloc]init];
     [self presentViewController:lmainViewController animated:YES completion:nil];
 }

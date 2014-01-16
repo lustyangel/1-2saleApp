@@ -7,6 +7,7 @@
 //
 
 #import "GoodsIngoViewController.h"
+#import "ShoppingCartInterface.h"
 
 @interface GoodsIngoViewController ()
 
@@ -154,7 +155,7 @@
     UIButton *lBuyButton=[[UIButton alloc]initWithFrame:CGRectMake(160, 160, 75, 25)];
     lBuyButton.backgroundColor=[UIColor colorWithRed:1 green:0.2 blue:0 alpha:1];
     lBuyButton.titleLabel.font=[UIFont systemFontOfSize:15];
-    [lBuyButton setTitle:@"立即购买" forState:UIControlStateNormal];
+    [lBuyButton setTitle:@"我的购物车" forState:UIControlStateNormal];
     [lBuyButton addTarget: self action:@selector(buyClick:) forControlEvents:UIControlEventTouchUpInside];
     [lBuyButton addTarget: self action:@selector(buyCancel:) forControlEvents:UIControlEventTouchCancel];
     [lBuyButton addTarget: self action:@selector(buyCancel:) forControlEvents:UIControlEventTouchUpOutside];
@@ -365,7 +366,7 @@
     
     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionLayoutSubviews animations:^{
         _lWebView.center=CGPointMake(160, _lWebView.center.y);
-        NSURL *lURL=[NSURL URLWithString:[NSString stringWithFormat:@"http://192.168.1.138/shop/html/%i/%@",[DanLi sharDanli].goodsID,lStr]];
+        NSURL *lURL=[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/shop/html/%i/%@",kIP,[DanLi sharDanli].goodsID,lStr]];
         NSURLRequest *lRequest=[[NSURLRequest alloc]initWithURL:lURL];
         [_lWebView loadRequest:lRequest];
     }completion:nil];
@@ -458,6 +459,12 @@
 }
 -(void)addShopCarClick:(UIButton *)sender{
     sender.backgroundColor=[UIColor orangeColor];
+    
+    NSString *goodsid = [NSString stringWithFormat:@"%i",[DanLi sharDanli].goodsID];
+    NSString *goodscount = _lNumber.text;
+    NSDictionary *lDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:goodsid,@"goodsid",goodscount,@"goodscount", nil];
+    ShoppingCartInterface *lShoppingCartInterface = [[ShoppingCartInterface alloc] init];
+    [lShoppingCartInterface addToShoppingCart:lDictionary];
 }
 -(void)addShopCarCancel:(UIButton *)sender{
     sender.backgroundColor=[UIColor orangeColor];

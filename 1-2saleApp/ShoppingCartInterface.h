@@ -11,6 +11,7 @@
 @interface ShoppingCartInterface : NSObject
 
 - (void)addToShoppingCart:(NSDictionary *)goodsInfoDictionary;                  // 添加到购物车
-- (NSDictionary *)checkShoppingCart:(NSString *)coustomerId;                    // 查看购物车
-
+- (NSDictionary *)checkShoppingCart;                                            // 查看购物车
+- (NSDictionary *)resetShoppingCart:(NSDictionary *)goodsInfoDictionary;        // 修改购物车
+- (NSDictionary *)deleteShoppingCart:(NSArray *)cartIdArray;                    // 删除购物车
 @end

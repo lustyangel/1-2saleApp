@@ -13,9 +13,9 @@
 
 #define signImage [UIImage imageNamed:@"check@2x.png"]
 #define localUsername [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"UesrnameData"]
-#define AutologonSign [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"AutologonSign"]
 #define localPassword [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"PasswordData"]
 #define localRemPassword [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"RemPassword"]
+
 @interface ViewController ()
 
 @end
@@ -64,10 +64,6 @@
         [self.passwordSaveButton setImage:signImage forState:UIControlStateNormal];
         _passwordSign=@"1";
     }
-    else{
-        [self.autologonButton setImage:signImage forState:UIControlStateNormal];
-        _autologonSign=@"0";
-    }
     NSArray *AutologonArray=[NSArray arrayWithContentsOfFile:AutologonSign];
     NSString *AutologonString=[AutologonArray objectAtIndex:0];
     if ([AutologonString isEqualToString:@"1"]) {
@@ -76,6 +72,9 @@
         DelayViewController *lDelayViewController=[[DelayViewController alloc]init];
         [self presentViewController:lDelayViewController animated:YES completion:nil];
     }
+    self.nameText.delegate=self;
+    self.cipherText.delegate=self;
+    self.cipherText.secureTextEntry = YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -83,7 +82,12 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    if (textField.tag==2) {
+        [self landButton:nil];
+    }
+      return YES;
+}
 -(void)clickBackButton:(UIButton *)sender{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -155,6 +159,10 @@
         _passwordSign=@"0";
 
     }
+    UIImage *lImage=[UIImage imageNamed:@"login_textfield_more@2x.png"];
+    [self.dragButton setImage:lImage forState:UIControlStateNormal];
+    _ifDragButtonSpread=NO;
+    
 }
 - (IBAction)landButton:(UIButton *)sender {
         if (self.nameText.text==nil||[self.nameText.text isEqualToString:@""]) {
@@ -201,10 +209,21 @@
         [lScanner2 setScanLocation:32];
         int customeridValue;
         [lScanner2 scanInt:&customeridValue];
-//        NSLog(@"%i",customeridValue);
+        NSLog(@"%i",customeridValue);
         [DanLi sharDanli].userID=customeridValue;
+        //得到用户信息并写入本地
+//        NSLog(@"%@",lString);
+        NSString *userDicString1=[lString substringFromIndex:17];
+        NSString *userDicString2=[userDicString1 substringToIndex:userDicString1.length-1];
+        NSData *ldata=[userDicString2 dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary *lDictionary=[NSJSONSerialization JSONObjectWithData:ldata options:NSJSONReadingAllowFragments error:nil];
+        [DanLi sharDanli].userInfoDictionary=lDictionary;
+//        NSLog(@"%@ %@ %@",userDicString1,userDicString2,lDictionary);
+//        NSLog(@"%@",[DanLi sharDanli].userInfoDictionary);
+        [lDictionary writeToFile:localUserInfoDic atomically:YES];
         
-        //把用户名密码和密码标记写入本地
+        
+        //把用户名,密码和密码标记写入本地
         if (_localUsernameArray.count>4) {
             if (![_localUsernameArray containsObject:self.nameText.text]) {
                 NSMutableArray *usernameArray=[NSMutableArray arrayWithArray:  _localUsernameArray];
@@ -290,7 +309,7 @@
 - (IBAction)logonButton:(UIButton *)sender {
     logonViewController *llogonViewController=[[logonViewController alloc]init];
     [self presentViewController:llogonViewController animated:YES completion:nil];
-//    [self.navigationController pushViewController:llogonViewController animated:YES];
+
 }
 - (IBAction)textExit:(UITextField *)sender {
 }

@@ -24,6 +24,8 @@ static DanLi *SellDali=nil;
     if (self) {
         _userID=0;
         _userID=15;
+        
+        _cartIdArray = [[NSMutableArray alloc] init];
     }
     return self;
 }
