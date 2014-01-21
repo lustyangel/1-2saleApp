@@ -11,7 +11,7 @@
 #import "LLTabelViewCell.h"
 #import "LLSelectButton.h"
 #import "loadView.h"
-#import "ASINetworkQueue.h"
+
 @protocol ShowAllViewDelegate;
 
 @interface ShowAllView : UIView<LLSearchBarDelegate,UITableViewDataSource,UITableViewDelegate,NSURLConnectionDataDelegate,LLSelectButtonDelegate>{
@@ -34,7 +34,7 @@
 @property (nonatomic,retain)UIButton *lSearchButton;
 @property (nonatomic,retain)NSMutableArray *showArray;
 @property (nonatomic,retain)LLSearchBar *lSearchBar;
-@property (nonatomic,retain)ASINetworkQueue *queue;
+//@property (nonatomic,retain)ASINetworkQueue *queue;
 @property (nonatomic,copy)NSString *lSearchText;
 
 @property (nonatomic,retain)UIButton *retryButton;

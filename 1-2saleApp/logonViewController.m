@@ -39,6 +39,8 @@
     self.affimPasswordCheak.hidden=YES;
     self.emailCheak.hidden=YES;
     self.telephoneCheak.hidden=YES;
+    self.cipherText.clearButtonMode=UITextFieldViewModeWhileEditing;
+    self.affimCipherText.clearButtonMode=UITextFieldViewModeWhileEditing;
 //     self.nameText.autocorrectionType = UITextAutocorrectionTypeNo;
     _x=-1;
    }
@@ -48,7 +50,21 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (BOOL)textFieldShouldClear:(UITextField *)textField{
+    switch (textField.tag) {
+        case 1:
+            self.passwordCheak.hidden=YES;
+            break;
+        case 4:
+            self.affimPasswordCheak.hidden=YES;
+            break;
+       
+        default:
+            break;
+    }
+    return YES;
+}
+#pragma mark - 编辑结束后在线验证输入内容的正确性
 - (void)textFieldDidEndEditing:(UITextField *)textField{
     if (textField.tag==0) {
         _x=0;
@@ -103,9 +119,12 @@
     }
     
 }
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     return YES;
-}
+} //按Enter键回收键盘，编辑结束
+
+#pragma mark - 编辑进行时在线验证输入信息的正确性
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
       if (textField.tag==0) {
         _x=5;
@@ -114,7 +133,7 @@
         NSString *lS3;
         if ([string isEqualToString:@""]) {
             lS3=[lS2 substringToIndex:lS2.length-1];
-        }
+        }//按的Backspace就是输入的@""
         else{
         lS3=[lS2 stringByAppendingString:string];
         }
@@ -197,6 +216,8 @@
     }
     return YES;
 }
+
+#pragma mark - 提交时验证输入信息的正确性
 - (IBAction)commitButton:(UIButton *)sender {
     if (self.nameText.text==nil||[self.nameText.text isEqualToString:@""]) {
         UIAlertView *lAlertView=[[UIAlertView alloc]initWithTitle:@"Error" message:@"The Name Can Not Be Empty" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -223,6 +244,17 @@
         [lAlertView show];
         return;
     }
+    if ([JPNetwork isNetworkContected] )
+    {
+        //网络连接正常
+        NSLog(@"网络连接正常");
+    }else{
+        //无网络连接
+        [JPNetwork networkBreak];
+        NSLog(@"网络连接不正常");
+        return;
+    }
+    
     _x=4;
     NSString *lBodyString=[NSString stringWithFormat:@"name=%@&password=%@&email=%@&telephone=%@",self.nameText.text,self.cipherText.text,self.emailText.text,self.telephoneText.text];
     NSURL *lURL=[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/shop/register.php",kIP]];
@@ -232,6 +264,8 @@
     NSURLConnection *lConnection=[NSURLConnection connectionWithRequest:lURLRequest delegate:self];
     [lConnection start];
 }
+
+#pragma mark - 请求网络数据
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
     [_data setLength:0];
 }
@@ -254,9 +288,7 @@
     [lScanner2 scanString:lC intoString:nil];
     [lScanner2 scanUpToString:lD intoString:&msgString];
     
-//    NSLog(@"%@",lString);
-//    NSLog(@"%@ %@",errorString,msgString);
-    
+//0－4和5－8分别是编辑完成时和编辑进行时的在线验证
     switch (_x) {
         case 0:
             NSLog(@"%@",self.nameText.text);
@@ -296,16 +328,6 @@
                 UIAlertView *lAlertView=[[UIAlertView alloc]initWithTitle:nil message:@"Registration Successful" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
                 lAlertView.delegate=self;
                 [lAlertView show];
-                self.nameText.text=@"";
-                self.cipherText.text=@"";
-                self.affimCipherText.text=@"";
-                self.emailText.text=@"";
-                self.telephoneText.text=@"";
-                self.usernameCheak.hidden=YES;
-                self.passwordCheak.hidden=YES;
-                self.affimPasswordCheak.hidden=YES;
-                self.emailCheak.hidden=YES;
-                self.telephoneCheak.hidden=YES;
             }
             else{
                 UIAlertView *lAlertView=[[UIAlertView alloc]initWithTitle:@"Error" message:@"Wrong Information，Your Signup Failed" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -317,6 +339,7 @@
                 self.telephoneText.text=@"";
                 self.usernameCheak.hidden=YES;
                 self.passwordCheak.hidden=YES;
+                self.affimPasswordCheak.hidden=YES;
                 self.emailCheak.hidden=YES;
                 self.telephoneCheak.hidden=YES;
             }
@@ -379,8 +402,24 @@
      _x=-1;
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
+    NSDictionary *lDictionary=[NSDictionary dictionaryWithObjectsAndKeys:self.nameText.text,@"name",self.cipherText.text,@"password",nil];
+    
+    landViewController *llandViewController=[[landViewController alloc]init];
+    [self presentViewController:llandViewController animated:YES completion:nil];
+    self.nameText.text=@"";
+    self.cipherText.text=@"";
+    self.affimCipherText.text=@"";
+    self.emailText.text=@"";
+    self.telephoneText.text=@"";
+    self.usernameCheak.hidden=YES;
+    self.passwordCheak.hidden=YES;
+    self.affimPasswordCheak.hidden=YES;
+    self.emailCheak.hidden=YES;
+    self.telephoneCheak.hidden=YES;
+    
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"logonSuccess" object:self userInfo:lDictionary];
+}//注册成功后直接跳到登陆界面
+
 - (IBAction)backButton:(UIButton *)sender {
   [self dismissViewControllerAnimated:YES completion:nil];
 }

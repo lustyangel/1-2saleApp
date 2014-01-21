@@ -9,16 +9,16 @@
 #endif
 
 #ifdef __OBJC__
-    #import <UIKit/UIKit.h>
-    #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 #import<QuartzCore/QuartzCore.h>
-#import "ASIHTTPRequest.h"
 #import "Reachability.h"
 #import "DanLi.h"
 #import "mainViewController.h"
-#import "ViewController.h"
+#import "landViewController.h"
+#import "JPNetwork.h"
 
-#define kIP @"192.168.1.120"
+#define kIP @"192.168.1.119"
 #define localUserInfoDic [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"UserInfoDic"]
 #define AutologonSign [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"AutologonSign"]
 #define localPassword [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"PasswordData"]

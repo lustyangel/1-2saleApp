@@ -8,7 +8,7 @@
 
 #import "DelayViewController.h"
 #import "mainViewController.h"
-#import "ViewController.h"
+
 
 @interface DelayViewController ()
 
@@ -57,17 +57,17 @@
         [_autologonImageView addSubview:lUIActivityIndicatorView];
         [lUIActivityIndicatorView startAnimating];
     
-        [self performSelector:@selector(DelayOfLanding) withObject:nil afterDelay:2.5];
+        [self performSelector:@selector(DelayOfLanding) withObject:nil afterDelay:2.0];
 }
 -(void)DelayOfLanding{
     [DanLi sharDanli].userInfoDictionary=[NSDictionary dictionaryWithContentsOfFile:localUserInfoDic];
-    NSLog(@"%@", [DanLi sharDanli].userInfoDictionary);
+//    NSLog(@"%@", [DanLi sharDanli].userInfoDictionary);
     mainViewController *lmainViewController=[[mainViewController alloc]init];
     [self presentViewController:lmainViewController animated:YES completion:nil];
 }
 -(void)cancelAutologon:(UIButton *)sender{
-    ViewController *lViewController=[[ViewController alloc]init];
-    [self presentViewController:lViewController animated:YES completion:nil];
+    landViewController*llandViewController=[[landViewController alloc]init];
+    [self presentViewController:llandViewController animated:YES completion:nil];
 }
 - (void)didReceiveMemoryWarning
 {

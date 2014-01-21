@@ -8,7 +8,6 @@
 
 #import "mainViewController.h"
 #import "ShoppingCartViewController.h"
-#import "ViewController.h"
 #import "userInfoViewController.h"
 #import "DelayViewController.h"
 
@@ -167,12 +166,9 @@
     switch (num) {
         case 0:
         {
-            NSArray *AutologonArray=[NSArray arrayWithContentsOfFile:AutologonSign];
-            NSString *AutologonString=[AutologonArray objectAtIndex:0];
-            if ([AutologonString isEqualToString:@"1"]) {
-                DelayViewController *lDelayViewController=[[DelayViewController alloc]init];
-                [self presentViewController:lDelayViewController animated:YES completion:nil];
-            }
+            landViewController *llandViewController = [[landViewController alloc] init];
+            [self presentViewController:llandViewController animated:YES completion:nil];
+        }
             else{
                 ViewController *lLoginViewController = [[ViewController alloc] init];
                 [self presentViewController:lLoginViewController animated:YES completion:nil];

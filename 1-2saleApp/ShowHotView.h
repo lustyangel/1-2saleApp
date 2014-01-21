@@ -7,8 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HotView.h"
-#import "ASINetworkQueue.h"
 @protocol ShowHotViewDelegate;
 
 @interface ShowHotView : UIView<NSURLConnectionDataDelegate,UIScrollViewDelegate,HotViewDelegate>{

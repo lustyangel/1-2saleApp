@@ -37,12 +37,31 @@
     self.npasswordCheck.hidden=YES;
     self.oldPasswordCheck.hidden=YES;
     self.affirmPasswordCheck.hidden=YES;
+    self.npassword.clearButtonMode=UITextFieldViewModeWhileEditing;
+    self.affirmText.clearButtonMode=UITextFieldViewModeWhileEditing;
+    self.oldPassword.clearButtonMode=UITextFieldViewModeWhileEditing;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (BOOL)textFieldShouldClear:(UITextField *)textField{
+    switch (textField.tag) {
+        case 1:
+            self.npasswordCheck.hidden=YES;
+            break;
+        case 2:
+            self.affirmPasswordCheck.hidden=YES;
+            break;
+        case 3:
+            self.oldPasswordCheck.hidden=YES;
+            break;
+        default:
+            break;
+    }
+    return YES;
 }
 - (void)textFieldDidEndEditing:(UITextField *)textField{
     if (textField.tag==1&self.npassword.text.length>0) {
@@ -184,17 +203,18 @@
             else{
                 UIAlertView *lAlertView=[[UIAlertView alloc]initWithTitle:nil message:@"Your change is successful" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
                 [lAlertView show];
+               
+               NSMutableArray *lArray=[NSArray arrayWithContentsOfFile:localPassword];
+                [lArray removeLastObject];
+                [lArray addObject:self.npassword.text];
+                [lArray writeToFile:localPassword atomically:YES];
                 self.npassword.text=@"";
                 self.affirmText.text=@"";
                 self.oldPassword.text=@"";
                 self.npasswordCheck.hidden=YES;
                 self.affirmPasswordCheck.hidden=YES;
                 self.oldPasswordCheck.hidden=YES;
-               NSMutableArray *lArray=[NSArray arrayWithContentsOfFile:localPassword];
-                [lArray removeLastObject];
-                [lArray addObject:self.npassword.text];
-                [lArray writeToFile:localPassword atomically:YES];
-            }
+            }//修改成功后，把本地密码文件也修正
         }
             break;
             case 3:
@@ -213,8 +233,6 @@
         default:
             break;
     }
-   
-
 }
 
 - (IBAction)backButton:(UIButton *)sender {
@@ -222,22 +240,32 @@
 }
 
 - (IBAction)confirmAler:(UIButton *)sender {
-    if (self.npassword==nil) {
+    if ([JPNetwork isNetworkContected] )
+    {
+        //网络连接正常
+        NSLog(@"网络连接正常");
+    }else{
+        //无网络连接
+        [JPNetwork networkBreak];
+        NSLog(@"网络连接不正常");
+        return;
+    }
+    if (self.npassword.text==nil&&[self.npassword.text isEqualToString:@""]) {
         UIAlertView *lAlertView=[[UIAlertView alloc]initWithTitle:@"Error" message:@"Password can not be nil" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [lAlertView show];
         return;
     }
-    if (self.affirmText==nil) {
+    if (self.affirmText.text==nil&&[self.affirmText.text isEqualToString:@""]) {
         UIAlertView *lAlertView=[[UIAlertView alloc]initWithTitle:@"Error" message:@"AffirmPassword can not be nil" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [lAlertView show];
         return;
     }
-    if (self.oldPassword==nil) {
+    if (self.oldPassword.text==nil&&[self.oldPassword.text isEqualToString:@""]) {
         UIAlertView *lAlertView=[[UIAlertView alloc]initWithTitle:@"Error" message:@"Old password can not be nil" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [lAlertView show];
         return;
     }
-    NSLog(@"%@",[DanLi sharDanli].userInfoDictionary);
+
     _x=2;
     NSString *lBodyString=[NSString stringWithFormat:@"name=%@&newpassword=%@&oldpassword=%@",[[DanLi sharDanli].userInfoDictionary objectForKey:@"name"],self.npassword.text,self.oldPassword.text];
     NSURL *lURL=[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/shop/changepassword.php",kIP]];

@@ -1,9 +1,9 @@
 //
 //  UserInfoViewController.m
-//  1-2saleApp
+//  pp
 //
-//  Created by TY on 14-1-7.
-//  Copyright (c) 2014年 ljt. All rights reserved.
+//  Created by TY on 14-1-17.
+//  Copyright (c) 2014年 liumengxiang. All rights reserved.
 //
 
 #import "UserInfoViewController.h"
@@ -29,14 +29,16 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    NSString *lN=@"用户名: ";
-    self.userNameLable.text=[lN stringByAppendingString:[[DanLi sharDanli].userInfoDictionary objectForKey:@"name"]];
-    NSString *lI=@"我的ID: ";
+    self.userNameLable.text=[[DanLi sharDanli].userInfoDictionary objectForKey:@"name"];
+    NSString *lI=@"ID: ";
     self.userIDLable.text=[lI stringByAppendingString:[[DanLi sharDanli].userInfoDictionary objectForKey:@"customerid"]];
-    NSString *le=@"我的邮箱: ";
+    NSString *le=@"邮箱: ";
     self.emailLabel.text=[le stringByAppendingString:[[DanLi sharDanli].userInfoDictionary objectForKey:@"email"]];
-    NSString *lt=@"我的电话: ";
+    NSString *lt=@"电话: ";
     self.telephoneLabel.text=[lt stringByAppendingString:[[DanLi sharDanli].userInfoDictionary objectForKey:@"telephone"]];
+    self.alerPasswordButton.layer.cornerRadius=5;
+    self.myAdress.layer.cornerRadius=5;
+    self.headImageView.layer.cornerRadius=200;
 }
 
 - (void)didReceiveMemoryWarning
@@ -45,8 +47,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)backButton:(UIButton *)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+- (IBAction)myAdressButton:(UIButton *)sender {
+    AllAddressViewController *lAllAddressViewController=[[AllAddressViewController alloc]init];
+    [self presentViewController:lAllAddressViewController animated:YES completion:nil];
 }
 
 - (IBAction)alterPasswordButton:(UIButton *)sender {
@@ -54,14 +57,16 @@
     [self presentViewController:lAlerPasswordViewController animated:YES completion:nil];
 }
 
-- (IBAction)myAdressButton:(UIButton *)sender {
-    AllAddressViewController *lAllAddressViewController=[[AllAddressViewController alloc]init];
-    [self presentViewController:lAllAddressViewController animated:YES completion:nil];
+- (IBAction)myOrder:(UIButton *)sender {
+}
+
+- (IBAction)backButton:(UIButton *)sender {
+     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)changeUesr:(UIButton *)sender {
     [DanLi sharDanli].userInfoDictionary=nil;
-    ViewController *lViewController=[[ViewController alloc]init];
-    [self presentViewController:lViewController animated:YES completion:nil];
+    landViewController *llandViewController=[[landViewController alloc]init];
+    [self presentViewController:llandViewController animated:YES completion:nil];
 }
 @end

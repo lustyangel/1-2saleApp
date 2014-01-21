@@ -16,9 +16,17 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
-//    HotViewController *lHotViewController=[[HotViewController alloc]init];
+    //    HotViewController *lHotViewController=[[HotViewController
+    NSArray *AutologonArray=[NSArray arrayWithContentsOfFile:AutologonSign];
+    DelayViewController *lDelayViewController=[[DelayViewController alloc]init];
     mainViewController *lMainViewController=[[mainViewController alloc]init];
-    self.window.rootViewController=lMainViewController;
+    NSString *AutologonString=[AutologonArray objectAtIndex:0];
+    if ([AutologonString isEqualToString:@"1"]) {
+        self.window.rootViewController=lDelayViewController;
+    }
+    else{
+        self.window.rootViewController=lMainViewController;
+    }
     [self.window makeKeyAndVisible];
     return YES;
 }
